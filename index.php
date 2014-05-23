@@ -14,6 +14,7 @@ and open the template in the editor.
         // put your code here
         echo 'oi';
         echo 'ola';
+        echo 'paulo';
         ?>
     </body>
 </html>
