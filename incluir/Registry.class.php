@@ -1,5 +1,5 @@
 <?php
-namespace manual;
+namespace incluir;
 /* Design pattern Registry
  * Legal para armazenar variaveis globais com segurança no trabalho em equipe.
  */

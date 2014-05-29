@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php require "incluir/config.php" ?>
 <html>
     <head>
         <meta charset="UTF-8">
