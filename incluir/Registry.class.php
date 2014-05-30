@@ -34,8 +34,8 @@ class Registry {
     /**
      * set()
      * Este método é utilizado para adicionar objetos ao registro.
-     * @param type $nome - nome para armazenamento no array interno
-     * @param type $obj  - o objeto que nome dará acesso.
+     * @param string $nome - nome para armazenamento no array interno
+     * @param Object $obj  - o objeto que nome dará acesso.
      * @throws Exception
      */
     public function set($nome,$obj) {
