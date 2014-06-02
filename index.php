@@ -13,22 +13,5 @@
         <div id="teste"></div>
     </body>
     <script type="text/javascript" src="libs/jquery-1.11.1.min.js" ></script>
-    <script language="Javascript" type="text/javascript">
-        $(document).ready(function(){
-            $("#botao").click(function(){
-                $.post(
-                    "incluir/config.php",
-                    {tipo: 'teste'},
-                    function(retorno){
-                        if(retorno){
-                            $('#teste').text(retorno.teste);
-                            alert(retorno.outro);
-                        }else
-                            alert('erro');
-                    },
-                    'json'
-                );
-            });
-        });
-    </script>
+    <script type="text/javascript" src="index.js"></script>
 </html>
