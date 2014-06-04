@@ -1,5 +1,5 @@
 <?php 
-//require "incluir/config.php";
+require "incluir/config.php";
 ?>
 <html>
     <head>
