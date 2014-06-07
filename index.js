@@ -16,7 +16,7 @@ var testePostagem = function testePostagem(e){
     
     //Executando uma requisição Ajax de mandeira simplificada utilizando Jquery.
     $.post(
-        "incluir/config.php", //Página que receberá a requisição.
+        "config.php", //Página que receberá a requisição.
         {tipo: 'teste'}, //parâmetros. (Neste caso são recuperados no php utilizando $_POST['tipo'] / em alguns casos será $_GET
         function(retorno){ //função de callback
             //Manipulação do retorno da requisição

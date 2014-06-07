@@ -1,5 +1,7 @@
 <?php 
-require "incluir/config.php";
+//die(php_info());
+//error_reporting(E_ALL);
+require "config.php";
 ?>
 <html>
     <head>

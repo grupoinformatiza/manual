@@ -1,10 +1,11 @@
 <?php
-namespace incluir;
-use PDO;
-
 //Habilitando carregamento automatico de classes
-spl_autoload_extensions(".class.php");
-spl_autoload_register();
+spl_autoload_register(
+        function($class) { 
+            require(str_replace('\\', '/', $class).'.class.php');
+        }
+ );
+
 
 if(isset($_POST['tipo']) && $_POST['tipo'] == 'teste'){
     $retorno['teste'] = 'oi';
@@ -12,6 +13,7 @@ if(isset($_POST['tipo']) && $_POST['tipo'] == 'teste'){
     die(json_encode($retorno));
 }
 
+use \incluir\Registry;
 //Exemplo de utilização do Registry.
 //Buscando instancia do registro
 $r = Registry::getInstancia();
