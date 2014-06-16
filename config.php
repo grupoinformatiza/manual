@@ -8,8 +8,8 @@ spl_autoload_register(
 
 
 if(isset($_POST['tipo']) && $_POST['tipo'] == 'teste'){
-    $retorno['teste'] = 'oi';
-    $retorno['outro'] = 'olá';
+    $retorno['teste'] = 'Resposta vindo do PHP';
+    $retorno['outro'] = 'Neste exemplo utilizamos o formato JSON para retorno do PHP para Javascript.';
     die(json_encode($retorno));
 }
 
