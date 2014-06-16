@@ -10,7 +10,7 @@ require "config.php";
     </head>
     <body role="document">
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
+            <div class="container-fluid">
               <div class="navbar-header">
                 <a class="navbar-brand" href="#">Informatiza</a>
               </div>
