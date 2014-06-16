@@ -21,8 +21,8 @@ var testePostagem = function testePostagem(e){
         function(retorno){ //função de callback
             //Manipulação do retorno da requisição
             if(retorno){
-                $('#teste').text(retorno.teste);
-                alert(retorno.outro);
+                $('#teste').text(retorno.teste).show();
+                $('#teste2').text(retorno.outro).show();
             }else
                 alert('erro');
         },
