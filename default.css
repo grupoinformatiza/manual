@@ -8,7 +8,6 @@ body{
 
 /*Escondendo o menu lateral. (para mobile)*/
 .sidebar{
-    display:none;
     top: 51px;
     bottom: 0;
     left: 0;
@@ -59,7 +58,15 @@ body{
 @media(max-width:767px){
     .sidebar{
         position: fixed;
+        -webkit-transition: all .25s ease-out;
+        -moz-transition: all .25s ease-out;
+        transition: all .25s ease-out;
+        left:-100%;
         overflow-x: hidden;
         overflow-y: auto;
+    }
+    .sidebar.active{
+
+        left:0;
     }
 }

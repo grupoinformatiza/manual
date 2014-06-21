@@ -1,3 +1,4 @@
+<!DOCTYPE HTML>
 <?php 
 require "config.php";
 ?>
@@ -12,21 +13,32 @@ require "config.php";
     <body role="document">
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                    <span class="sr-only">Abrir Índice</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-                    <img src="imagens/informatiza_pequeno.png"/> Informatiza</a>
-              </div>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Abrir Menu</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <button type="button" class="btn btn-primary btn-xs pull-left visible-xs" data-toggle="menulateral">
+                        Índice
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img src="imagens/informatiza_pequeno.png"/> Informatiza
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Sobre</a></li>
+                        <li><a href="#">Desenvolvedor</a></li>
+                        <li class="active"><a href="#">Usuário</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="container-fluid" role="main">
             <div class="row">
-                <div class="col-md-2 col-sm-2 col-xs-12 sidebar collapse sidebar-collapse">
+                <div class="col-md-2 col-sm-2 col-xs-12 sidebar menulateral">
                     <ul class="nav  nav-sidebar">
                         <li class="nav-header">ownCloud</li>
                         <li class="active"><a href="">Introdução</a></li>

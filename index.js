@@ -2,6 +2,9 @@
 $(document).ready(function(){
     //Adicionando um evento ao botão de id="botao"
     $("#botao").click(testePostagem);
+    $("[data-toggle=menulateral]").click(function(){
+        $('.sidebar').toggleClass('active');
+    });
 });
 
 //testePostagem poderia ser uma função, mas precisamos declarar desta forma
