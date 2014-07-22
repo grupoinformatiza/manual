@@ -40,12 +40,12 @@ require "config.php";
             <div class="row">
                 <div class="col-md-2 col-sm-2 col-xs-12 sidebar menulateral">
                     <ul class="nav  nav-sidebar">
-                        <li class="nav-header">ownCloud</li>
+                        <li class="nav-header">ownCloud<div class="pull-right">&#9650;</div></li>
                         <li class="active"><a href="">Introdução</a></li>
                         <li><a href="">Criando conta</a></li>
                         <li><a href="">Enviando arquivos</a></li>
-                        <li class="nav-header">SAMBA4</li>
-                        <li class="nav-header">Linux</li>
+                        <li class="nav-header">SAMBA4<div class="pull-right">&#9660;</div></li>
+                        <li class="nav-header">Linux<div class="pull-right">&#9660;</div></li>
                     </ul>                    
                 </div>
                 
@@ -65,6 +65,7 @@ require "config.php";
                     </div>
                 </div>
             </div>
+            
         </div>
     </body>
     <script type="text/javascript" src="libs/jquery-1.11.1.min.js" ></script>
