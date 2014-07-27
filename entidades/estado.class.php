@@ -45,7 +45,7 @@
         }
 
         public function setCodigoibge($_codigoibge) {
-                if ($codigoibge > 0)
+                if ($_codigoibge > 0)
                         $this->codigoibge = $_codigoibge;
 
                 $message = "Código do IBGE tem de ser maior que 0!";
