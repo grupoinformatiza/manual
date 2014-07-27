@@ -13,7 +13,7 @@
         
         private $codigoibge;
         
-        public function _construct($_codigo,$_nome,$_estado,$_codigoibge){
+        public function __construct($_codigo,$_nome,$_estado,$_codigoibge){
             $this->Codigo = $_codigo;
             $this->Nome = $_nome;
             $this->Estado = $_estado;
