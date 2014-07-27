@@ -41,9 +41,9 @@ require "config.php";
                 <div class="col-md-2 col-sm-2 col-xs-12 sidebar menulateral">
                     <ul class="nav  nav-sidebar">
                         <li class="nav-header">ownCloud<div class="pull-right">&#9650;</div></li>
-                        <li class="active"><a href="">Introdução</a></li>
-                        <li><a href="">Criando conta</a></li>
-                        <li><a href="">Enviando arquivos</a></li>
+                        <li class="active"><a href="index.php?topico=Introducao">Introdução</a></li>
+                        <li><a href="index.php?topico=Criando">Criando conta</a></li>
+                        <li><a href="index.php?topico=Enviando">Enviando arquivos</a></li>
                         <li class="nav-header">SAMBA4<div class="pull-right">&#9660;</div></li>
                         <li class="nav-header">Linux<div class="pull-right">&#9660;</div></li>
                     </ul>                    
@@ -55,14 +55,11 @@ require "config.php";
                         <li><a href="#">ownCloud</a></li>
                         <li class="active">Introdução</li>
                     </ol>
-                    <div id="teste" class="alert alert-success"></div>
-                    <div id="teste2" class="alert alert-info"></div>
+                    
                     <div class="jumbotron">
-                        <h1>Exemplo Twitter Bootstrap</h1>
-                        <p>Mostrando classes básicas do twitter bootstrap em conjunto com o exemplo anterior</p>
-                        <input type="button" class="btn btn-primary btn-lg" id="botao" value="Clique aqui" />
-
+                        <h1 id="tituloTopico">Título do Tópico</h1>
                     </div>
+                    
                 </div>
             </div>
             
