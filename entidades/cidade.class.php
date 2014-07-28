@@ -1,19 +1,13 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-    class cidade extends Base {
+    class Cidade extends Base {
         private $nome;
         
         private $estado;
         
         private $codigoibge;
         
-        public function __construct($_codigo,$_nome,$_estado,$_codigoibge){
+        public function __construct($_codigo,$_nome,Estado $_estado,$_codigoibge){
             $this->Codigo = $_codigo;
             $this->Nome = $_nome;
             $this->Estado = $_estado;
@@ -32,11 +26,11 @@
                 return $this->nome;
         }
         
-        public function setEstado($_estado) {
+        public function setEstado(Estado $_estado) {
                 if ($_estado <> "")
                         $this->estado = $_estado;
 
-                $message = "Nome tem de ser diferente de $_estado!";
+                $message = "Estado tem de ser diferente de $_estado!";
                 throw new Exception($message);
         }
         
@@ -52,9 +46,6 @@
                 $message = "Código do IBGE tem de ser maior que 0!";
                 throw new Exception($message);
         }
-        
-        
-               
-        
+       
     }
 
