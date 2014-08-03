@@ -21,10 +21,11 @@
         }
         
         public function setNome($_nome) {
-                if ($_nome <> "")
-                        $this->nome = $_nome;
+                if ($_nome <> ""){
+                        $this->nome = $_nome;                        
+                }
 
-                $message = "Nome tem de ser diferente de $_nome!";
+                $message = "Nome deve ser diferente de $_nome!";
                 throw new Exception($message);
         }
         
@@ -33,10 +34,11 @@
         }
         
         public function setEstado($_estado) {
-                if ($_estado <> "")
-                        $this->estado = $_estado;
+                if ($_estado <> ""){
+                    $this->estado = $_estado;                
+                }
 
-                $message = "Nome tem de ser diferente de $_estado!";
+                $message = "Nome deve ser diferente de $_estado!";
                 throw new Exception($message);
         }
         
@@ -49,8 +51,12 @@
                         $this->codigoibge = $_codigoibge;
                 }
 
-                $message = "Código do IBGE tem de ser maior que 0!";
+                $message = "Código do IBGE deve ser maior que 0!";
                 throw new Exception($message);
+        }
+        
+        public function getCodigoibge(){
+            return $this->codigoibge;
         }
         
         
