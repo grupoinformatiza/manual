@@ -21,10 +21,11 @@
         }
 
         public function setNome($_nome) {
-                if ($_nome <> "")
+                if ($_nome <> ""){
                         $this->nome = $_nome;
+                }
 
-                $message = "Nome tem de ser diferente de $_nome!";
+                $message = "Nome deve ser diferente de $_nome!";
                 throw new Exception($message);
         }
 
@@ -33,10 +34,11 @@
         }
 
         public function setSigla($_sigla) {
-                if ($_sigla <> "")
+                if ($_sigla <> ""){
                         $this->sigla = $_sigla;
+                }
 
-                $message = "Sigla tem de ser diferente de $_sigla!";
+                $message = "Sigla deve ser diferente de $_sigla!";
                 throw new Exception($message);
         }
 
@@ -45,10 +47,15 @@
         }
 
         public function setCodigoibge($_codigoibge) {
-                if ($_codigoibge > 0)
+                if ($_codigoibge > 0){
                         $this->codigoibge = $_codigoibge;
+                }
 
-                $message = "Código do IBGE tem de ser maior que 0!";
+                $message = "Código do IBGE deve ser maior que 0!";
                 throw new Exception($message);
+        }
+        
+        public function getCodigoibge(){
+            return $this->codigoibge;
         }
     }
