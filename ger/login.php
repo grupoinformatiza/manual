@@ -25,7 +25,6 @@
                             <button class="btn btn-lg btn-info pull-right">Entrar</button>        
                         </div>
                     </form>
-                    <div class="alert alert-danger">Dados inválidos</div>
                 </div>
             <div/>
         </div>
