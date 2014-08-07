@@ -8,7 +8,9 @@
     </head>
     <body role="document">
         <?php require_once 'layout/cabecalho.php';?>
-
+        <div class="page-header">
+            <h1>Usuários</h1>
+        </div>
     </body>
     <script type="text/javascript" src="../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../libs/bootstrap/js/bootstrap.min.js"></script>
