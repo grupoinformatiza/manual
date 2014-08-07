@@ -22,7 +22,7 @@
                             <input type="password" class="form-control input-lg" placeholder="Senha"/>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-lg btn-info pull-right">Entrar</button>        
+                            <button class="btn btn-lg btn-primary pull-right">Entrar</button>        
                         </div>
                     </form>
                 </div>
