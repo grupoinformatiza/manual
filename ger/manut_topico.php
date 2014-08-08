@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Cadastrar Tutorial</title>
+        <title>Cadastrar Tópico</title>
         <link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="layout/default.css">
     </head>
@@ -11,28 +11,28 @@
         <?php require_once 'layout/cabecalho.php';?>
         <div class="container">
             <div class="page-header">
-                <h1>Tutorial</h1>
+                <h1>Tópico</h1>
             </div>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form name="frmManutTutorial" id="frmManutTutorial" class="form" action="manut_tutorial.php" method="post">
+                    <form name="frmManutTopico" id="frmManutTopico" class="form" action="manut_topico.php" method="post">
                         <div class="form-group">
-                            <label for="txtNome">Nome</label>
-                            <input type="text" name="txtNome" id="txtNome" class="form-control input-md"/>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="cmbTipo">Tipo do tutorial</label>
-                            <select class="form-control input-md" id="cmbTipo" name="cmbTipo">
-                                <option value="1">Usuário</option>
-                                <option value="2">Administrador</option>
-                            </select>
+                            <label for="txtTitulo">Título</label>
+                            <input type="text" name="txtTitulo" id="txtTitulo" class="form-control input-md"/>
                         </div>
 
                         <div class="form-group">
-                            <label for="cmbTipo">Imagem ilustrativa</label>
+                            <label for="txtConteudo">Conteúdo</label>
+                            <input type="text" name="txtConteudo" id="txtConteudo" class="form-control"/>
                         </div>
                         
+                        <div class="form-group">
+                            <label for="cmbTutorial">Tutorial</label>
+                            <select class="form-control input-md" id="cmbTutorial" name="cmbTutorial">
+                                <option value="1">Carregar os tutoriais existentes</option>
+                            </select>
+                        </div>
+
                         
                         <button type="submit" class="btn btn-default">Gravar</button>
                         <button type="reset" class="btn btn-default">Limpar</button>
@@ -47,3 +47,4 @@
     <script type="text/javascript" src="../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../libs/bootstrap/js/bootstrap.min.js"></script>
 </html>
+
