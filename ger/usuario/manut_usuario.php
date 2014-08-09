@@ -4,23 +4,21 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Cadastrar Usuários</title>
-        <link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="layout/default.css">
+        <link rel="stylesheet" href="../../libs/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../layout/default.css">
     </head>
     <body role="document">
-        <?php require_once 'layout/cabecalho.php';?>
+        <?php require_once '../layout/cabecalho.php';?>
         
         <div class="container">
         
             <div class="page-header">
                 <h1>Usuários</h1>
-            </div>
-            
-            
+            </div>            
             <!-- Linha para o formulario de cadastro -->
             <div class="row">
                 <div class="col-md-12">
-                    <form name="frmManutUsuario" id="frmManutUsuario" method="post" action="manut_usuario.php" class="form">
+                    <form name="frmManutUsuario" id="frmManutUsuario" method="post" action="manut_usuario.php?acao=gravar" class="form">
                         <fieldset class="panel panel-info">
                             <div class="panel-heading">Dados Pessoais</div>
 
@@ -77,8 +75,9 @@
 
                         <!-- Controles do formulario -->
                         <div class="form-inline pull-right">
-                            <button class="btn btn-default btn-md">Cancelar</button>
-                            <button class="btn btn-primary btn-md">Salvar</button>
+                            <a class="btn btn-default btn-md" href="lista_usuario.php">Cancelar</a>
+                            <button class="btn btn-default btn-md" type="reset">Limpar</button>
+                            <button class="btn btn-primary btn-md" type="submit">Salvar</button>
                         </div>
 
                     </form>                    
@@ -89,6 +88,6 @@
         </div> <!-- /container -->
         
     </body>
-    <script type="text/javascript" src="../libs/jquery-1.11.1.min.js" ></script>
-    <script type="text/javascript" src="../libs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
+    <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
 </html>
