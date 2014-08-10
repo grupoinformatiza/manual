@@ -1,7 +1,7 @@
 <?php
 namespace Servico;
 use PDO;
-use \Exception;
+use Exception;
 class CidadeDAO{
     
     
@@ -38,7 +38,7 @@ class CidadeDAO{
                 . "FROM cidade "
                 . "WHERE cid_codigo = :cod";
         
-        $cnn = PdoFactory::getConexao();
+        $cnn = \Suporte\PdoFactory::getConexao();
         
         $st = $cnn->prepare($sql);
         $st->bindValue(':cod', $codigoCidade, PDO::PARAM_INT);

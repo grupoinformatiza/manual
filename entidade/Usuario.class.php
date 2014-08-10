@@ -12,14 +12,16 @@ use Exception;
         private $senha;
         
         
-        public function __construct($_codigo,$_nome,$_dataNascimento,$_cidade,$_sexo, $_email, $_login, $_senha) {
-            $this->Codigo = $_codigo;
+        public function __construct($_codigo = '',$_nome,$_dataNascimento,$_cidade,$_sexo, $_email, $_login, $_senha = '') {
+            if(trim($_codigo) != '')
+                $this->Codigo = $_codigo;
             $this->Nome = $_nome;
             $this->DataNascimento = $_dataNascimento;
             $this->Sexo = $_sexo;
             $this->Email = $_email;
             $this->Login = $_login;
-            $this->Senha = $_senha;
+            if(trim($_senha) != '')
+                $this->Senha = $_senha;
             $this->Cidade = $_cidade;
         }
        
@@ -27,6 +29,10 @@ use Exception;
             if($_cidade == "")
                 throw new Exception("Cidade deve ser preenchido");
             $this->cidade = $_cidade;
+        }
+        
+        public function getCidade(){
+            return $this->cidade;
         }
         
         public function setNome($_nome) {

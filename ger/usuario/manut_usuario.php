@@ -18,6 +18,19 @@
                 die($opt);
                 
                 break;
+            case 'gravar':
+                
+                try{
+                    $cidade  = CidadeDAO::carregarCidade($_POST['cmbCidade']);
+                    $usuario = new Entidade\Usuario('',$_POST['txtNome'],$_POST['txtDtNasc'],$cidade,$_POST['cmbSexo'],
+                            $_POST['txtEmail'],$_POST['txtLogin']);
+                    Servico\UsuarioDAO::gravar($usuario);
+                    $sucesso = "Usuário gravado com sucesso!";
+                } catch (Exception $ex) {
+                    $erro = $ex->getMessage();
+                }
+                
+                break;
         }
     }
     
@@ -41,11 +54,26 @@
             <div class="page-header">
                 <h1>Usuário</h1>
             </div>         
-            <div class="alert alert-danger">Preencha todos os campos</div>
+            
+            <?php if(isset($erro)) : ?>
+            
+            <div class="alert alert-danger"><?php echo $erro ?></div>
+            
+            <?php endif ?>
+            
+            <?php if(isset($sucesso)) : ?>
+            
+            <div class="alert alert-success"><?php echo $sucesso ?></div>
+            
+            <?php endif ?>
+            
+            
+            
             <!-- Linha para o formulario de cadastro -->
             <div class="row">
                 <div class="col-md-12">
-                    <form name="frmManutUsuario" id="frmManutUsuario" method="post" action="manut_usuario.php?acao=gravar" class="form">
+                    <form name="frmManutUsuario" id="frmManutUsuario" method="post" action="manut_usuario.php" class="form">
+                        <input type="hidden" name="acao" value="gravar" />
                         <fieldset class="panel panel-info">
                             <div class="panel-heading">Dados Pessoais</div>
 
@@ -98,7 +126,7 @@
 
                                 <div class="col-md-6 form-group">
                                     <label for="txtLogin">Login</label>
-                                    <input type="text" name="txtNome" id="txtLogin" class="form-control input-md" />
+                                    <input type="text" name="txtLogin" id="txtLogin" class="form-control input-md" />
                                 </div>
                             </div>
                         </fieldset> <!-- /fieldset dados para acesso -->
