@@ -31,7 +31,26 @@ class CidadeDAO{
     }
     
     public static function carregarCidade($codigoCidade){
-                
+        if(trim($codigoCidade) == '')
+            throw new Exception("Código da cidade não foi preenchido. Não será possível carrega-la");
+        
+        $sql = "SELECT * "
+                . "FROM cidade "
+                . "WHERE cid_codigo = :cod";
+        
+        $cnn = PdoFactory::getConexao();
+        
+        $st = $cnn->prepare($sql);
+        $st->bindValue(':cod', $codigoCidade, PDO::PARAM_INT);
+        $st->execute();
+         
+        $cid = $st->fetchObject();
+        
+        $estado = EstadoDAO::carregarEstado($cid->est_codigo);
+        
+        $cidade = new \Entidade\Cidade($cid->cid_codigo,$cid->cid_nome,$estado,$cid->cid_ibge);
+        
+        return $cidade;
     }
     
 }

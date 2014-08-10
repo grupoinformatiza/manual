@@ -15,6 +15,10 @@ use Exception;
             $this->codigoibge = $_codigoibge;
         }
         
+        public function __toString() {
+            return $this->Nome;
+        }
+        
         public function setNome($_nome) {
                 if ($_nome == "")
                     throw new Exception("Nome deve ser preenchido");
