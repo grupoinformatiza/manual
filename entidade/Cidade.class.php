@@ -1,5 +1,6 @@
 <?php
-
+namespace Entidade;
+use Exception;
     class Cidade extends Base {
         private $nome;
         
