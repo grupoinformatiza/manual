@@ -21,11 +21,10 @@ use Exception;
         }
         
         public function setNome($_nome){
-            if ($nome <> "")
-                $this->nome = $_nome;
-            
-            $message = "Nome deve ser diferente de $_nome!";
-            throw new Exception($message);
+            if ($nome == "")
+                throw new Exception("Nome deve ser preenchido");
+            $this->nome = $_nome;
+
         }
         
         public function getNome(){
@@ -33,11 +32,10 @@ use Exception;
         }
         
         public function setTipo($_tipo){
-            if ($_tipo <> "")
-                $this->tipo = $_tipo;
-            
-            $message = "tipo deve ser diferente de $_tipo!";
-            throw new Exception($message);
+            if ($_tipo == "")
+                throw new Exception("Tipo deve ser preenchido");    
+            $this->tipo = $_tipo;
+  
         }
         
         public function getTipo(){
@@ -45,11 +43,10 @@ use Exception;
         }
     
         public function setImagem($_imagem){
-            if ($_imagem <> ""){
-                $this->imagem = $_imagem;
-            }
-            $message = "imagem deve ser diferente de $_imagem!";
-            throw new Exception($message);
+            if ($_imagem == "")
+                throw new Exception("Imagem deve ser preenchido");
+            $this->imagem = $_imagem;
+
         }
         
         public function getImagem(){

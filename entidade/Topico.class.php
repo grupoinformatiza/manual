@@ -22,12 +22,9 @@ use Exception;
         
         public function setTipo($_tipo) {
                 if ($_tipo == "")
-                    throw new Exception("Nome deve ser preenchido");
+                    throw new Exception("Tipo deve ser preenchido");
                 $this->tipo = $_tipo;
                 
-
-                $message = "tipo deve ser diferente de $_tipo!";
-                throw new Exception($message);
         }
         
         public function getTipo(){
@@ -36,12 +33,10 @@ use Exception;
         
         public function setConteudo($_conteudo) {
                 if ($_conteudo == "")
-                    throw new Exception(" deve ser preenchido");
-            $this->conteudo = $_conteudo;
+                    throw new Exception("Conteúdo deve ser preenchido");
+                $this->conteudo = $_conteudo;
                 
 
-                $message = "Conteudo deve ser diferente de $_conteudo!";
-                throw new Exception($message);
         }
         
         public function getConteudo(){
@@ -49,12 +44,10 @@ use Exception;
         }
         
         public function setTutorial($_tutorial) {
-                if ($_tutorial <> ""){
-                        $this->tutorial = $_tutorial;
-                }
-
-                $message = "Tutorial deve ser diferente de $_tutorial!";
-                throw new Exception($message);
+                if ($_tutorial == "")
+                    throw new Exception("Tutorial deve ser preenchido");
+                $this->tutorial = $_tutorial;
+                
         }
         
         public function getTutorial(){
