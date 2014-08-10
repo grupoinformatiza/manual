@@ -33,8 +33,7 @@ use Exception;
                 if ($_nome == "")
                     throw new Exception("Nome deve ser preenchido");
                 $this->nome = $_nome;
-                $message = "Nome tem que ser diferente de $_nome!";
-                throw new Exception($message);
+               
         }
         
         public function getNome(){
@@ -46,10 +45,6 @@ use Exception;
                 throw new Exception("Data de nascimento deve ser preenchido");
             $this->dataNascimento = $_dataNascimento;
             
-            
-            $message = "Data de nascimento deve ser diferente de $_dataNascimento!";
-            
-            throw new Exception($message);
         }  
         
         public function getDataNascimento(){
@@ -62,9 +57,6 @@ use Exception;
             $this->sexo = $_sexo;
             }
             
-            $message = "Sexo deve ser diferente de $_sexo!";
-            
-            throw new Exception($message);
         }  
         
         public function getSexo(){
@@ -76,10 +68,6 @@ use Exception;
                 throw new Exception("Email deve ser preenchido");
             $this->email = $_email;
             
-            
-            $message = "Email deve ser diferente de $_email!";
-            
-            throw new Exception($message);
         }  
         
         public function getEmail(){
@@ -88,13 +76,9 @@ use Exception;
         
         public function setLogin($_login){
             if ($_login == "")
-                throw new Exception("Nome deve ser preenchido");
+                throw new Exception("Login deve ser preenchido");
             $this->login = $_login;
-            
-            
-            $message = "Login deve ser diferente de $_login!";
-            
-            throw new Exception($message);
+          
         }  
         
         public function getLogin(){
@@ -103,13 +87,9 @@ use Exception;
         
         public function setSenha($_senha){
             if ($_senha == "")
-                throw new Exception("Nome deve ser preenchido");
+                throw new Exception("Senha deve ser preenchido");
             $this->senha = $_senha;
-            
-            
-            $message = "Senha deve ser diferente de $_senha!";
-            
-            throw new Exception($message);
+         
         }  
         
         public function getSenha(){
