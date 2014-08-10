@@ -16,7 +16,7 @@ class TopicoDAO{
         $st = $con->prepare($sql);
         $st->bindValue(':titulo', $topico->Titulo);
         $st->bindValue(':conteudo', $topico->Conteudo);
-        $st->bindValue(':tutorial', $topipco->Tutorial);
+        $st->bindValue(':tutorial', $topico->Tutorial);
         
         $st->execute();
        
