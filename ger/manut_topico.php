@@ -26,6 +26,7 @@
                             <input type="text" name="txtConteudo" id="txtConteudo" class="form-control"/>
                         </div>
                         
+                        <!-- Combo carregado com os tutoriais disponíveis -->
                         <div class="form-group">
                             <label for="cmbTutorial">Tutorial</label>
                             <select class="form-control input-md" id="cmbTutorial" name="cmbTutorial">
@@ -34,8 +35,12 @@
                         </div>
 
                         
-                        <button type="submit" class="btn btn-default">Gravar</button>
-                        <button type="reset" class="btn btn-default">Limpar</button>
+                        <!-- Controles do formulario -->
+                        <div class="form-inline pull-right">
+                            <button class="btn btn-default btn-md">Cancelar</button>
+                            <button class="btn btn-default btn-md">Limpar</button>
+                            <button class="btn btn-primary btn-md">Salvar</button>
+                        </div>
                     </form>
                 </div>
             </div>
