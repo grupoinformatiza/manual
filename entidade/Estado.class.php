@@ -9,7 +9,12 @@ use Exception;
         private $sigla;
         private $codigoibge;
 
-  
+        public function __construct($codigo, $nome, $sigla, $codigoIbge) {
+                $this->Codigo = $codigo;
+                $this->Nome = $nome;
+                $this->Sigla = $sigla;
+                $this->Codigoibge = $codigoIbge;
+        }
 
         public function __toString() {
                 return $this->Sigla . ' - ' . $this->Nome;

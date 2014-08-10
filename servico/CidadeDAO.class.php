@@ -31,16 +31,7 @@ class CidadeDAO{
     }
     
     public static function carregarCidade($codigoCidade){
-        if(trim($codigoCidade) == '')
-            throw new Exception("Código da cidade não foi preenchido");
-        
-        $sql =  "SELECT * FROM cidade WHERE cid_codigo = :codigo";
-        $con = \Suporte\PdoFactory::getConexao();
-        $st  = $con->prepare($sql);
-        $st->bindValue(':codigo', $codigoCidade);
-        $st->execute();
-        $cid = $st->fetchObject();
-        
+                
     }
     
 }
