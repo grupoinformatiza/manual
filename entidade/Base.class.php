@@ -1,4 +1,6 @@
 <?php
+namespace Entidade;
+use Exception;
     /**
      * Classe com métodos __get e __set para facilitar o acesso de propriedades 
      * e com código pois todas as entidades terão este campo
@@ -39,12 +41,11 @@
         }
 
         public function setCodigo($_codigo) {
-                if ($_codigo > 0){
-                        $this->codigo = $_codigo;
-                }
-
-                $message = sprintf('Código tem de ser maior que 0!', get_class($this));
-                throw new Exception($message);
+                if ($_codigo <= 0)
+                    throw new Exception("Codigo tem que ser maior que 0");
+                
+                $this->codigo = $_codigo;
+                
         }
 
     }

@@ -1,4 +1,10 @@
 <!DOCTYPE HTML>
+<?php
+    require_once '../../config.php';
+    use \Servico\EstadoDAO;
+    
+    $estados  = EstadoDAO::listarEstados();
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -38,6 +44,9 @@
                                     <label for="cmbEstado">Estado</label>
                                     <select class="form-control input-md" id="cmbEstado" name="cmbEstado">
                                         <option value="">-- Selecione --</option>
+                                        <?php foreach($estados as $est) : ?>
+                                        <option value="<?php echo $est->getCodigo(); ?>"><?php echo $est; ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
 
