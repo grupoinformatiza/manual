@@ -7,14 +7,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-          <a class="navbar-brand" href="index.php"><img src="/imagens/informatiza_pequeno.png"> Informatiza</a>
+          <a class="navbar-brand" href="/ger/index.php"><img src="/imagens/informatiza_pequeno.png"> Informatiza</a>
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="index.php">Home</a></li>
-          <li><a href="manut_usuario.php">Usuário</a></li>
-          <li><a href="manut_tutorial.php">Tutorial</a></li>
-          <li><a href="manut_topico.php">Tópico</a></li>
+          <li class="active"><a href="/ger/usuario/lista_usuario.php">Usuário</a></li>
+          <li><a href="/ger/tutorial/lista_tutorial.php">Tutorial</a></li>
+          <li><a href="/ger/topico/lista_topico.php">Tópico</a></li>
           <li><a href="rel_estatistica.php">Estatística</a></li>
         </ul>
       </div><!--/.nav-collapse -->

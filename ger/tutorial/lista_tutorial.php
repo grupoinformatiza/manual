@@ -3,29 +3,28 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Usuários</title>
+        <title>Cadastrar Tutorial</title>
         <link rel="stylesheet" href="../../libs/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="../layout/default.css">
     </head>
     <body role="document">
         <?php require_once '../layout/cabecalho.php';?>
-        
         <div class="container">
         
             <div class="page-header">
-                <h1>Usuários</h1>
+                <h1>Tutoriais</h1>
             </div>
-            <div class="alert alert-danger">Usuário não encontrado</div>
+            <div class="alert alert-danger">Tutorial não encontrado</div>
             <!-- Linha para novo e busca -->
             <div class="row">
                 <div class="col-md-1">
-                    <a href="manut_usuario.php?acao=novo" class="btn btn-success btn-md">
+                    <a href="manut_tutorial.php?acao=novo" class="btn btn-success btn-md">
                         <span class="glyphicon glyphicon-plus"></span> Novo
                     </a>
                 </div>
                 <div class="col-md-4">
                     <div class="input-group">
-                        <input type="text" name="txtPesquisarUsuario" id="txtPesquisarUsuario" class="form-control input-md" placeholder="Procurar usuários..."/>
+                        <input type="text" name="txtPesquisarTutorial" id="txtPesquisarTutorial" class="form-control input-md" placeholder="Procurar tutoriais..."/>
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-search"></span>
                         </span>
@@ -41,23 +40,20 @@
                                 <tr>
                                     <td>Código</td>
                                     <td>Nome</td>
-                                    <td>E-mail</td>
+                                    <td>Tipo</td>
                                     <td></td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>001</td>
-                                    <td>Ana Paula Suaiden</td>
-                                    <td>a.p.suaiden</td>
-                                    <td class="text-right">
-                                        
-                                        
-                                        
-                                        <a href="manut_usuario.php?acao=editar&codigo=1" class="btn btn-warning btn-xs">
+                                    <td>Samba</td>
+                                    <td>Administrador</td>
+                                    <td class="text-right">                                                                              
+                                        <a href="manut_tutorial.php?acao=editar&codigo=1" class="btn btn-warning btn-xs">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
-                                        <a href="manut_usuario.php?acao=deletar&codigo=1" class="btn btn-danger btn-xs">
+                                        <a href="manut_tutorial.php?acao=deletar&codigo=1" class="btn btn-danger btn-xs">
                                             <span class="glyphicon glyphicon-remove"></span>
                                         </a>
 

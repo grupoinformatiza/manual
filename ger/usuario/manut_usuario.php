@@ -13,8 +13,9 @@
         <div class="container">
         
             <div class="page-header">
-                <h1>Usuários</h1>
-            </div>            
+                <h1>Usuário</h1>
+            </div>         
+            <div class="alert alert-danger">Preencha todos os campos</div>
             <!-- Linha para o formulario de cadastro -->
             <div class="row">
                 <div class="col-md-12">
