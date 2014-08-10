@@ -1,7 +1,7 @@
 <?php
 
 namespace Entidade;
-use \Exception;
+use Exception;
     class Usuario extends Base {
         private $nome;
         private $dataNascimento;
@@ -24,16 +24,15 @@ use \Exception;
         }
        
         public function setCidade(Cidade $_cidade){
-            if($_cidade != '')
-                $this->cidade = $_cidade;
-            throw new Exception("Cidade tem que ser preenchida");
+            if($_cidade == "")
+                throw new Exception("Cidade deve ser preenchido");
+            $this->cidade = $_cidade;
         }
         
         public function setNome($_nome) {
-                if ($_nome <> ""){
-                        $this->nome = $_nome;
-                }
-
+                if ($_nome == "")
+                    throw new Exception("Nome deve ser preenchido");
+                $this->nome = $_nome;
                 $message = "Nome tem que ser diferente de $_nome!";
                 throw new Exception($message);
         }
@@ -43,9 +42,10 @@ use \Exception;
         }
         
         public function setDataNascimento($_dataNascimento){
-            if ($_dataNascimento <> ""){
-                $this->dataNascimento = $_dataNascimento;
-            }
+            if ($_dataNascimento == "")
+                throw new Exception("Data de nascimento deve ser preenchido");
+            $this->dataNascimento = $_dataNascimento;
+            
             
             $message = "Data de nascimento deve ser diferente de $_dataNascimento!";
             
@@ -57,8 +57,9 @@ use \Exception;
         }
         
         public function setSexo($_sexo){
-            if ($_sexo <> ""){
-                $this->sexo = $_sexo;
+            if ($_sexo == ""){
+                throw new Exception("Sexo deve ser selecionado");
+            $this->sexo = $_sexo;
             }
             
             $message = "Sexo deve ser diferente de $_sexo!";
@@ -71,9 +72,10 @@ use \Exception;
         }
         
          public function setEmail($_email){
-            if ($_email <> ""){
-                $this->email = $_email;
-            }
+            if ($_email == "")
+                throw new Exception("Email deve ser preenchido");
+            $this->email = $_email;
+            
             
             $message = "Email deve ser diferente de $_email!";
             
@@ -85,9 +87,10 @@ use \Exception;
         }
         
         public function setLogin($_login){
-            if ($_login <> ""){
-                $this->login = $_login;
-            }
+            if ($_login == "")
+                throw new Exception("Nome deve ser preenchido");
+            $this->login = $_login;
+            
             
             $message = "Login deve ser diferente de $_login!";
             
@@ -99,9 +102,10 @@ use \Exception;
         }
         
         public function setSenha($_senha){
-            if ($_senha <> ""){
-                $this->senha = $_senha;
-            }
+            if ($_senha == "")
+                throw new Exception("Nome deve ser preenchido");
+            $this->senha = $_senha;
+            
             
             $message = "Senha deve ser diferente de $_senha!";
             

@@ -6,9 +6,7 @@ use Exception;
      */
     class Estado extends Base {
         private $nome;
-
         private $sigla;
-
         private $codigoibge;
 
         public function __construct($codigo, $nome, $sigla, $codigoIbge) {
