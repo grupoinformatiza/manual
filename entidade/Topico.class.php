@@ -8,27 +8,27 @@
 namespace Entidade;
 use Exception;
     class Topico extends Base{
-        private $tipo;
+        private $titulo;
         private $conteudo;
         private $tutorial;
         
         private function __construct($_codigo, $_tipo, $_conteudo, $_tutorial) {
             $this->Codigo = $_codigo;
-            $this->Tipo = $_tipo;
+            $this->Titulo = $_tipo;
             $this->Conteudo = $_conteudo;
             $this->Tutorial = $_tutorial;
         }
         
         
-        public function setTipo($_tipo) {
+        public function setTitulo($_tipo) {
                 if ($_tipo == "")
-                    throw new Exception("Tipo deve ser preenchido");
-                $this->tipo = $_tipo;
+                    throw new Exception("Título deve ser preenchido");
+                $this->titulo = $_titulo;
                 
         }
         
-        public function getTipo(){
-            return $this->tipo;
+        public function getTitulo(){
+            return $this->titulo;
         }
         
         public function setConteudo($_conteudo) {
