@@ -16,12 +16,10 @@ use Exception;
         }
         
         public function setNome($_nome) {
-                if ($_nome <> ""){
-                        $this->nome = $_nome;                        
-                }
-
-                $message = "Nome deve ser diferente de $_nome!";
-                throw new Exception($message);
+                if ($_nome == "")
+                    throw new Exception("Nome deve ser preenchido");
+                $this->nome = $_nome;                        
+                
         }
         
         public function getNome() {
@@ -29,24 +27,24 @@ use Exception;
         }
         
         public function setEstado(Estado $_estado) {
-                if ($_estado <> "")
-                        $this->estado = $_estado;
+                if ($_estado == "")
+                    throw new Exception("Estado deve ser preenchido");
+                $this->estado = $_estado;
 
-                $message = "Estado tem de ser diferente de $_estado!";
-                throw new Exception($message);
         }
         
         public function getEstado() {
                 return $this->estado;
         }
         
+        
         public function setCodigoibge($_codigoibge) {
-                if ($_codigoibge > 0){
-                        $this->codigoibge = $_codigoibge;
-                }
-
-                $message = "Código do IBGE deve ser maior que 0!";
-                throw new Exception($message);
+                if ($_codigoibge == "")
+                    throw new Exception("Código do IBGE deve ser preenchido");
+                if ($_codigoibge <= 0)
+                    throw new Exception("Código do IBGE deve ser maior que 0!");
+                $this->codigoibge = $_codigoibge;
+                
         }
         
         public function getCodigoibge(){
