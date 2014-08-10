@@ -1,10 +1,30 @@
-<!DOCTYPE HTML>
 <?php
     require_once '../../config.php';
-    use \Servico\EstadoDAO;
+    use Servico\EstadoDAO;
+    use Servico\CidadeDAO;
     
-    $estados  = EstadoDAO::listarEstados();
+    if(isset($_POST['acao'])){
+        switch($_POST['acao']){
+            case 'carregarCidades':
+                
+                $cidades = CidadeDAO::listarCidades($_POST['estado']);
+                
+                //Montando o combo de cidades
+                $opt = "";
+                foreach($cidades as $cid){
+                    $opt .= "<option value='$cid->Codigo'>$cid</option>";
+                }
+                
+                die($opt);
+                
+                break;
+        }
+    }
+    
+    $estados = EstadoDAO::listarEstados();
 ?>
+
+<!DOCTYPE HTML>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -51,8 +71,8 @@
                                 </div>
 
                                 <div class="col-md-4 form-group">
-                                    <label for="cmdCidade">Cidade</label>
-                                    <select class="form-control input-md" id="cmdCidade" name="cmdCidade">
+                                    <label for="cmbCidade">Cidade</label>
+                                    <select class="form-control input-md" id="cmbCidade" name="cmbCidade">
                                         <option value="">-- Selecione um Estado --</option>
                                     </select>
                                 </div>
@@ -100,4 +120,5 @@
     </body>
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="manut_usuario.js"></script>
 </html>

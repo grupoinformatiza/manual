@@ -3,12 +3,13 @@
 namespace Servico;
 use Suporte\PdoFactory;
 use PDO;
+use Exception;
 class EstadoDAO{
     
     
     public static function listarEstados(){
         
-        $sql = "SELECT est_codigo, est_nome, est_sigla, est_ibge "
+        $sql = "SELECT est_codigo codigo, est_nome nome, est_sigla sigla, est_ibge codigoibge "
                 . "FROM estado";
         
         $cnn = PdoFactory::getConexao();
@@ -16,10 +17,27 @@ class EstadoDAO{
         $st = $cnn->prepare($sql);
         $st->execute();
          
-        while($est = $st->fetchObject()){
-            $ret[] = new \Entidade\Estado($est->est_codigo,$est->est_nome,$est->est_sigla,$est->est_ibge);
-        }
-        return $ret;
+        
+        return $st->fetchAll(PDO::FETCH_CLASS,"\Entidade\Estado");
+    }
+    
+    public static function carregarEstado($codigoEstado){
+        if(trim($codigoEstado) == '')
+            throw new Exception("Código do estado não foi preenchido. Não será possível carrega-lo");
+        
+        $sql = "SELECT est_codigo codigo, est_nome nome, est_sigla sigla, est_ibge codigoibge "
+                . "FROM estado "
+                . "WHERE est_codigo = :cod";
+        
+        $cnn = PdoFactory::getConexao();
+        
+        $st = $cnn->prepare($sql);
+        $st->bindValue(':cod', $codigoEstado, PDO::PARAM_INT);
+        $st->execute();
+         
+        $est = $st->fetchObject("\Entidade\Estado");
+        return $est;
+        
     }
     
 }

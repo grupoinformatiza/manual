@@ -1,6 +1,6 @@
 <?php
 namespace Entidade;
-use Exception;
+use \Exception;
     /**
      * Classe com métodos __get e __set para facilitar o acesso de propriedades 
      * e com código pois todas as entidades terão este campo
