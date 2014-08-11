@@ -1,4 +1,5 @@
 <?php
+
     require_once '../../config.php';
     use Servico\EstadoDAO;
     use Servico\CidadeDAO;

@@ -1,3 +1,4 @@
+<?php define('ROOT_PATH', '../'); ?>
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -8,14 +9,14 @@
         <link rel="stylesheet" href="layout/default.css">
     </head>
     <body role="document">
+        
         <?php require_once 'layout/cabecalho.php';?>
         <div class="container">
-        
             <div class="page-header">
                 <h1>Bem-vindo, administrador</h1>
             </div>
             <div class="col-md-8 col-md-offset-2 imagem">
-                <img src="/imagens/equipe_informatiza.jpg" class="img-responsive img-rounded">
+                <img src="../imagens/equipe_informatiza.jpg" class="img-responsive img-rounded">
             </div>
         </div> 
     </body>

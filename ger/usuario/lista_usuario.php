@@ -1,4 +1,5 @@
 <?php
+
     require_once '../../config.php';
     $usuarios = Servico\UsuarioDAO::listar();
 ?>

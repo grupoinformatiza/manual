@@ -1,4 +1,5 @@
 <?php
+define('ROOT_PATH','../../');
 //Habilitando carregamento automatico de classes
 //set_include_path("../../");
 spl_autoload_register(

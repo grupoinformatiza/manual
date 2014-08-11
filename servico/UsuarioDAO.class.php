@@ -1,8 +1,9 @@
 <?php
-
 namespace Servico;
 use PDO;
 use Exception;
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 class UsuarioDAO{
     
     
@@ -32,7 +33,7 @@ class UsuarioDAO{
         $sql = "SELECT usu_codigo Codigo,usu_nome Nome,usu_email Email FROM usuario";
         $st  = $con->prepare($sql);
         $st->execute();
-        return $st->fetchAll(PDO::FETCH_CLASS,"\Entidade\Usuario");
+        return $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Usuario");
         
     }
     

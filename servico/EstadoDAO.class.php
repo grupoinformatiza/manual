@@ -18,7 +18,7 @@ class EstadoDAO{
         $st->execute();
          
         
-        return $st->fetchAll(PDO::FETCH_CLASS,"\Entidade\Estado");
+        return $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Estado");
     }
     
     public static function carregarEstado($codigoEstado){
@@ -35,7 +35,7 @@ class EstadoDAO{
         $st->bindValue(':cod', $codigoEstado, PDO::PARAM_INT);
         $st->execute();
          
-        $est = $st->fetchObject("\Entidade\Estado");
+        $est = $st->fetchObject("Entidade\Estado");
         return $est;
         
     }
