@@ -6,17 +6,13 @@
     if(isset($_POST['acao'])){
         switch($_POST['acao']){
             case 'carregarCidades':
-                
                 $cidades = CidadeDAO::listarCidades($_POST['estado']);
-                
                 //Montando o combo de cidades
                 $opt = "";
                 foreach($cidades as $cid){
                     $opt .= "<option value='$cid->Codigo'>$cid</option>";
                 }
-                
-                die($opt);
-                
+                die($opt); //Retornando as opções para o javascript
                 break;
             case 'gravar':
                 
@@ -30,7 +26,7 @@
                     $usuario->Email = $_POST['txtEmail'];
                     $usuario->Login = $_POST['txtLogin'];
                     Servico\UsuarioDAO::gravar($usuario);
-                    $sucesso = "Usuário gravado com sucesso!";
+                    $sucesso = "Usuário gravado com sucesso! <a href='lista_usuario.php'class='alert-link'>Voltar para a lista</a>";
                 } catch (Exception $ex) {
                     $erro = $ex->getMessage();
                 }
@@ -41,7 +37,6 @@
     
     $estados = EstadoDAO::listarEstados();
 ?>
-
 <!DOCTYPE HTML>
 <html>
     <head>

@@ -14,7 +14,7 @@ use Exception;
         private $imagem;
                      
         public function setNome($_nome){
-            if ($nome == "")
+            if ($_nome == "")
                 throw new Exception("Nome deve ser preenchido");
             $this->nome = $_nome;
 

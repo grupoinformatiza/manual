@@ -50,16 +50,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php  foreach($usuarios as $usu) : ?>
+                                <?php foreach($usuarios as $usu) : ?>
                                 <tr>
                                     <td><?php echo $usu->Codigo; ?></td>
                                     <td><?php echo $usu->Nome; ?></td>
                                     <td><?php echo $usu->Email; ?></td>
                                     <td class="text-right">  
-                                        <a href="manut_usuario.php?acao=editar&codigo=1" class="btn btn-warning btn-xs">
+                                        <a href="lista_usuario.php?acao=editar&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-warning btn-xs">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
-                                        <a href="manut_usuario.php?acao=deletar&codigo=1" class="btn btn-danger btn-xs">
+                                        <a href="lista_usuario.php?acao=deletar&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-danger btn-xs">
                                             <span class="glyphicon glyphicon-remove"></span>
                                         </a>
                                     </td>
