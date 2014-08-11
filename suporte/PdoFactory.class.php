@@ -7,7 +7,9 @@ class PdoFactory {
     
     
     public static function getConexao(){
-        return new PDO("pgsql:host=127.0.0.1;dbname=manual", "postgres", "oklahoma1");
+        $cn = new PDO("pgsql:host=127.0.0.1;dbname=manual", "postgres", "oklahoma1");
+        $cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $cn; 
     }
     
     

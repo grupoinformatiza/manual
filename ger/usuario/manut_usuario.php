@@ -22,8 +22,13 @@
                 
                 try{
                     $cidade  = CidadeDAO::carregarCidade($_POST['cmbCidade']);
-                    $usuario = new Entidade\Usuario('',$_POST['txtNome'],$_POST['txtDtNasc'],$cidade,$_POST['cmbSexo'],
-                            $_POST['txtEmail'],$_POST['txtLogin']);
+                    $usuario = new Entidade\Usuario();
+                    $usuario->Nome = $_POST['txtNome'];
+                    $usuario->DataNascimento = $_POST['txtDtNasc'];
+                    $usuario->Cidade = $cidade;
+                    $usuario->Sexo = $_POST['cmbSexo'];
+                    $usuario->Email = $_POST['txtEmail'];
+                    $usuario->Login = $_POST['txtLogin'];
                     Servico\UsuarioDAO::gravar($usuario);
                     $sucesso = "Usuário gravado com sucesso!";
                 } catch (Exception $ex) {

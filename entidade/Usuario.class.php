@@ -10,21 +10,7 @@ use Exception;
         private $email;
         private $login;
         private $senha;
-        
-        
-        public function __construct($_codigo = '',$_nome,$_dataNascimento,$_cidade,$_sexo, $_email, $_login, $_senha = '') {
-            if(trim($_codigo) != '')
-                $this->Codigo = $_codigo;
-            $this->Nome = $_nome;
-            $this->DataNascimento = $_dataNascimento;
-            $this->Sexo = $_sexo;
-            $this->Email = $_email;
-            $this->Login = $_login;
-            if(trim($_senha) != '')
-                $this->Senha = $_senha;
-            $this->Cidade = $_cidade;
-        }
-       
+               
         public function setCidade(Cidade $_cidade){
             if($_cidade == "")
                 throw new Exception("Cidade deve ser preenchido");
@@ -58,11 +44,10 @@ use Exception;
         }
         
         public function setSexo($_sexo){
-            if ($_sexo == ""){
+            if ($_sexo == "")
                 throw new Exception("Sexo deve ser selecionado");
-            $this->sexo = $_sexo;
-            }
             
+            $this->sexo = $_sexo;
         }  
         
         public function getSexo(){
