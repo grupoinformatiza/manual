@@ -12,14 +12,7 @@ use Exception;
         private $nome;
         private $tipo;
         private $imagem;
-        
-        public function __construct($_codigo, $_nome, $_tipo, $_imagem) {
-            $this->codigo = $_codigo;
-            $this->nome = $_nome;
-            $this->tipo = $_tipo;
-            $this->imagem = $_imagem;
-        }
-        
+                     
         public function setNome($_nome){
             if ($nome == "")
                 throw new Exception("Nome deve ser preenchido");

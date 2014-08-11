@@ -6,7 +6,7 @@ use Exception;
 class TopicoDAO{
     
     
-    public static function gravar(\Entidades\Topico $topico){
+    public static function gravar(\Entidade\Topico $topico){
              
         $con = \Suporte\PdoFactory::getConexao();
         

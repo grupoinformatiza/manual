@@ -1,3 +1,25 @@
+<?php
+    require_once '../../config.php';
+    
+    if(isset($_POST['acao'])){
+        switch($_POST['acao']){
+            case 'gravar':
+                
+                try{
+                    $tutorial = new Entidade\Tutorial();
+                    $tutorial->Nome = $_POST['txtNome'];
+                    $tutorial->Tipo = $_POST['cmbTipo'];                    
+                    Servico\TutorialDAO::gravar($tutorial);
+                    $sucesso = "Tutorial gravado com sucesso!";
+                } catch (Exception $ex) {
+                    $erro = $ex->getMessage();
+                }
+                
+                break;
+        }
+    }
+?>
+
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -14,7 +36,8 @@
                 <h1>Tutorial</h1>
             </div>
             <div class="alert alert-danger">Preencha todos os campos</div>
-            <form name="frmManutTutorial" id="frmManutTutorial" class="form" action="manut_tutorial.php?acao=gravar" method="post">
+            <form name="frmManutTutorial" id="frmManutTutorial" class="form" action="manut_tutorial.php" method="post">
+                <input type="hidden" name="acao" value="gravar" />
                 <div class="panel panel-info">
                     <div class="panel-body">
                         <div class="form-group">

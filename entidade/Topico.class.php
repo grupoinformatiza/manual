@@ -11,14 +11,7 @@ use Exception;
         private $titulo;
         private $conteudo;
         private $tutorial;
-        
-        private function __construct($_codigo, $_tipo, $_conteudo, $_tutorial) {
-            $this->Codigo = $_codigo;
-            $this->Titulo = $_tipo;
-            $this->Conteudo = $_conteudo;
-            $this->Tutorial = $_tutorial;
-        }
-        
+                     
         
         public function setTitulo($_tipo) {
                 if ($_tipo == "")

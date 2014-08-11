@@ -1,3 +1,25 @@
+<?php
+    require_once '../../config.php';
+    
+    if(isset($_POST['acao'])){
+        switch($_POST['acao']){
+            case 'gravar':
+                
+                try{
+                    $topico = new Entidade\Topico();
+                    $topico->Nome = $_POST['txtTitulo'];
+                    $topico->Tipo = $_POST['txtConteudo'];
+                    $topico->Tipo = $_POST['cmbTutorial']; 
+                    Servico\TopicoDAO::gravar($topico);
+                    $sucesso = "Tópico gravado com sucesso!";
+                } catch (Exception $ex) {
+                    $erro = $ex->getMessage();
+                }
+                
+                break;
+        }
+    }
+?>
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -14,7 +36,8 @@
                 <h1>Tópico</h1>
             </div>
             <div class="alert alert-danger">Preencha todos os campos</div>
-            <form name="frmManutTopico" id="frmManutTopico" class="form" action="manut_topico.php?acao=gravar" method="post">
+            <form name="frmManutTopico" id="frmManutTopico" class="form" action="manut_topico.php" method="post">
+                <input type="hidden" name="acao" value="gravar" />
                 <div class="panel panel-info">
                     <div class="panel-body">
                         <div class="form-group">

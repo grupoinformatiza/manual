@@ -6,7 +6,7 @@ use Exception;
 class TutorialDAO{
     
     
-    public static function gravar(\Entidades\Tutorial $tutorial){
+    public static function gravar(\Entidade\Tutorial $tutorial){
              
         $con = \Suporte\PdoFactory::getConexao();
         
