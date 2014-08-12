@@ -57,10 +57,10 @@
                                     <td><?php echo $usu->Nome; ?></td>
                                     <td><?php echo $usu->Email; ?></td>
                                     <td class="text-right">  
-                                        <a href="lista_usuario.php?acao=editar&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-warning btn-xs">
+                                        <a href="manut_usuario.php?acao=editar&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-warning btn-xs">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
-                                        <a href="lista_usuario.php?acao=deletar&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-danger btn-xs">
+                                        <a href="lista_usuario.php?acao=deletar&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-danger btn-xs"  data-toggle="modal" data-target="#confirmDelete">
                                             <span class="glyphicon glyphicon-remove"></span>
                                         </a>
                                     </td>
@@ -89,4 +89,16 @@
     </body>
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
+    
+    <script type="text/javascript">
+    
+    $(function(){
+       $('#confirmDelete').on('show.bs.modal',function(e){
+           //e.relatedTarget.
+           $('.btn-delete').attr('href',$(e.relatedTarget).attr('href'));
+       });
+    });
+            
+    </script>
+    
 </html>
