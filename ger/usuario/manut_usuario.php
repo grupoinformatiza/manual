@@ -4,15 +4,12 @@
     use Servico\EstadoDAO;
     use Servico\CidadeDAO;
     
+    
+    
     if(isset($_POST['acao'])){
         switch($_POST['acao']){
             case 'carregarCidades':
-                $cidades = CidadeDAO::listarCidades($_POST['estado']);
-                //Montando o combo de cidades
-                $opt = "";
-                foreach($cidades as $cid){
-                    $opt .= "<option value='$cid->Codigo'>$cid</option>";
-                }
+                $opt = CidadeDAO::getComboCidade($_POST['estado']);
                 die($opt); //Retornando as opções para o javascript
                 break;
             case 'gravar':
@@ -20,6 +17,10 @@
                 try{
                     $cidade  = CidadeDAO::carregarCidade($_POST['cmbCidade']);
                     $usuario = new Entidade\Usuario();
+                    
+                    if(isset($_POST['codigo']))
+                        $usuario->Codigo = $_POST['codigo'];
+                    
                     $usuario->Nome = $_POST['txtNome'];
                     $usuario->DataNascimento = $_POST['txtDtNasc'];
                     $usuario->Cidade = $cidade;
@@ -29,6 +30,37 @@
                     Servico\UsuarioDAO::gravar($usuario);
                     $sucesso = "Usuário gravado com sucesso! <a href='lista_usuario.php'class='alert-link'>Voltar para a lista</a>";
                 } catch (Exception $ex) {
+                    $erro = $ex->getMessage();
+                }
+                
+                break;
+        }
+    }
+    
+    $nome = null;
+    $sexo = null;
+    $login = null;
+    $email = null;
+    $dtNasc = null;
+    $estUsu = null;
+    $cidades = null;
+    
+    if(isset($_GET['acao'])){        
+        switch($_GET['acao']){
+            case 'editar':
+                try{
+                    $codigo = $_GET['codigo'];
+                
+                    $usuario = \Servico\UsuarioDAO::getUsuario($codigo);
+                    
+                    $nome = $usuario->Nome;
+                    $sexo = $usuario->Sexo;
+                    $login = $usuario->Login;
+                    $email = $usuario->Email;
+                    $dtNasc = $usuario->DataNascimento;
+                    $estUsu = $usuario->Cidade->Estado->Codigo;
+                    $cidades = CidadeDAO::getComboCidade($estUsu,$usuario->Cidade->Codigo);
+                }catch(Exception $ex){
                     $erro = $ex->getMessage();
                 }
                 
@@ -75,18 +107,19 @@
                 <div class="col-md-12">
                     <form name="frmManutUsuario" id="frmManutUsuario" method="post" action="manut_usuario.php" class="form">
                         <input type="hidden" name="acao" value="gravar" />
+                        <input type="hidden" name="codigo" value="<?php echo $_GET['codigo']; ?>" />
                         <fieldset class="panel panel-info">
                             <div class="panel-heading">Dados Pessoais</div>
 
                             <div class="panel-body">
                                 <div class="col-md-8 form-group">
                                     <label for="txtNome">Nome</label>
-                                    <input type="text" name="txtNome" id="txtNome" class="form-control input-md" />
+                                    <input type="text" name="txtNome" id="txtNome" class="form-control input-md" value="<?php echo $nome;?>" />
                                 </div>
 
                                 <div class="col-md-4 form-group">
                                     <label for="txtDtNasc">Data de Nascimento</label>
-                                    <input type="date" name="txtDtNasc" id="txtDtNasc" class="form-control input-md"/>
+                                    <input type="date" name="txtDtNasc" id="txtDtNasc" class="form-control input-md" value="<?php echo $dtNasc; ?>"/>
                                 </div>
 
                                 <div class="col-md-4 form-group">
@@ -94,7 +127,7 @@
                                     <select class="form-control input-md" id="cmbEstado" name="cmbEstado">
                                         <option value="">-- Selecione --</option>
                                         <?php foreach($estados as $est) : ?>
-                                        <option value="<?php echo $est->getCodigo(); ?>"><?php echo $est; ?></option>
+                                        <option value="<?php echo $est->Codigo; ?>"  <?php echo (($est->Codigo == $estUsu) ? "selected='selected'" : "") ?>><?php echo $est; ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -102,15 +135,15 @@
                                 <div class="col-md-4 form-group">
                                     <label for="cmbCidade">Cidade</label>
                                     <select class="form-control input-md" id="cmbCidade" name="cmbCidade">
-                                        <option value="">-- Selecione um Estado --</option>
+                                        <?php echo $cidades; ?>
                                     </select>
                                 </div>
 
                                 <div class="col-md-4 form-group">
                                     <label for="cmbSexo">Sexo</label>
                                     <select class="form-control input-md" id="cmbSexo" name="cmbSexo">
-                                        <option value="M">Masculino</option>
-                                        <option value="F">Feminino</option>
+                                        <option value="M" <?php echo (($sexo == "M") ? "selected='selected'" : "") ?>>Masculino</option>
+                                        <option value="F" <?php echo (($sexo == "F") ? "selected='selected'" : "") ?>>Feminino</option>
                                     </select>
                                 </div>
                             </div>
@@ -121,13 +154,13 @@
                             <div class="panel-body">
                                 <div class="col-md-6 form-group">
                                     <label for="txtEmail">Email</label>
-                                    <input type="text" name="txtEmail" id="txtEmail" class="form-control input-md" />
+                                    <input type="text" name="txtEmail" id="txtEmail" class="form-control input-md" value="<?php echo $email; ?>" />
                                     <p class="help-block">Será enviada uma confirmação de cadastro para este email.</p>
                                 </div>
 
                                 <div class="col-md-6 form-group">
                                     <label for="txtLogin">Login</label>
-                                    <input type="text" name="txtLogin" id="txtLogin" class="form-control input-md" />
+                                    <input type="text" name="txtLogin" id="txtLogin" class="form-control input-md" value="<?php echo $login; ?>" />
                                 </div>
                             </div>
                         </fieldset> <!-- /fieldset dados para acesso -->

@@ -35,7 +35,10 @@ use Exception;
         public function setDataNascimento($_dataNascimento){
             if ($_dataNascimento == "")
                 throw new Exception("Data de nascimento deve ser preenchido");
-            $this->dataNascimento = $_dataNascimento;
+            
+            $data = new \DateTime($_dataNascimento);
+            
+            $this->dataNascimento = $data->format('d/m/Y');
             
         }  
         

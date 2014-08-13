@@ -60,7 +60,7 @@
                                         <a href="manut_usuario.php?acao=editar&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-warning btn-xs">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
-                                        <a href="lista_usuario.php?acao=deletar&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-danger btn-xs"  data-toggle="modal" data-target="#confirmDelete">
+                                        <a href="lista_usuario.php?acao=deletar&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-danger btn-xs btn-deletar"  data-toggle="modal" data-target="#confirmDelete">
                                             <span class="glyphicon glyphicon-remove"></span>
                                         </a>
                                     </td>
@@ -94,8 +94,7 @@
     
     $(function(){
        $('#confirmDelete').on('show.bs.modal',function(e){
-           //e.relatedTarget.
-           $('.btn-delete').attr('href',$(e.relatedTarget).attr('href'));
+           $(this).find('btn-danger').attr('href',$(e.relatedTarget).attr('href'));
        });
     });
             

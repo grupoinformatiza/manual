@@ -53,5 +53,15 @@ class CidadeDAO{
         return $cidade;
     }
     
+    public static function getComboCidade($codigoEstado,$cidadeSelecionada = ''){
+        $cidades = CidadeDAO::listarCidades($codigoEstado);
+        //Montando o combo de cidades
+        $opt = "";
+        foreach($cidades as $cid){
+            $opt .= "<option value='$cid->Codigo' ".(($cid->Codigo == $cidadeSelecionada)?"selected='selected'":"").">$cid</option>";
+        }
+        return $opt;
+    }
+    
 }
 
