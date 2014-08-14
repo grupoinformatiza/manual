@@ -23,12 +23,12 @@
             <div class="alert alert-danger">Usuário não encontrado</div>
             <!-- Linha para novo e busca -->
             <div class="row">
-                <div class="col-md-1">
+                <div class="col-md-1 form-group">
                     <a href="manut_usuario.php?acao=novo" class="btn btn-success btn-md">
                         <span class="glyphicon glyphicon-plus"></span> Novo
                     </a>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 form-group">
                     <div class="input-group">
                         <input type="text" name="txtPesquisarUsuario" id="txtPesquisarUsuario" class="form-control input-md" placeholder="Procurar usuários..."/>
                         <span class="input-group-addon">
