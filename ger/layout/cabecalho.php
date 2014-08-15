@@ -34,7 +34,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-danger btn-delete">Deletar</button>
+        <a type="button" class="btn btn-danger">Deletar</a>
       </div>
     </div>
   </div>

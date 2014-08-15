@@ -18,7 +18,7 @@
                     $cidade  = CidadeDAO::carregarCidade($_POST['cmbCidade']);
                     $usuario = new Entidade\Usuario();
                     
-                    if(isset($_POST['codigo']))
+                    if(isset($_POST['codigo']) && $_POST['codigo'] != 0)
                         $usuario->Codigo = $_POST['codigo'];
                     
                     $usuario->Nome = $_POST['txtNome'];
@@ -65,6 +65,17 @@
                 }
                 
                 break;
+            case 'deletar':
+                
+                $codigo = $_GET['codigo'];
+                
+                try{
+                    
+                } catch (Exception $ex) {
+                    $erro = $ex->getMessage();
+                }
+                
+                break;
         }
     }
     
@@ -107,7 +118,7 @@
                 <div class="col-md-12">
                     <form name="frmManutUsuario" id="frmManutUsuario" method="post" action="manut_usuario.php" class="form">
                         <input type="hidden" name="acao" value="gravar" />
-                        <input type="hidden" name="codigo" value="<?php echo $_GET['codigo']; ?>" />
+                        <input type="hidden" name="codigo" value="<?php echo (int)$_GET['codigo']; ?>" />
                         <fieldset class="panel panel-info">
                             <div class="panel-heading">Dados Pessoais</div>
 

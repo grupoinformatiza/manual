@@ -74,5 +74,19 @@ class UsuarioDAO{
         return $usuario;
     }
     
+    public static function deletarUsuario($codigoUsuario){
+        $cod = (int)$codigoUsuario;
+        if($cod <= 0)
+            throw new Exception("Código Inválido");
+        
+        $con = \Suporte\PdoFactory::getConexao();
+        $sql = "UPDATE usuario SET usu_deletado = True WHERE usu_codigo = :cod";
+        $st  = $con->prepare($sql);
+        $st->bindValue(':cod', $cod, PDO::PARAM_INT);
+        $st->execute();
+        if(!$st)
+            throw new Exception("Não foi possível deletar o usuário!");
+    }
+    
 }
 
