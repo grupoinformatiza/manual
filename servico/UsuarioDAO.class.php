@@ -46,7 +46,7 @@ class UsuarioDAO{
     
     public static function listar(){
         $con = \Suporte\PdoFactory::getConexao();
-        $sql = "SELECT usu_codigo Codigo,usu_nome Nome,usu_email Email FROM usuario";
+        $sql = "SELECT usu_codigo Codigo,usu_nome Nome,usu_email Email FROM usuario WHERE usu_deletado = False";
         $st  = $con->prepare($sql);
         $st->execute();
         return $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Usuario");

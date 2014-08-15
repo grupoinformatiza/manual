@@ -1,6 +1,24 @@
 <?php
 
     require_once '../../config.php';
+    
+    
+    if(isset($_GET['acao'])){
+        switch($_GET['acao']){
+            case 'deletar':
+                
+                $codigo = $_GET['codigo'];
+                
+                try{
+                    Servico\UsuarioDAO::deletarUsuario($codigo);
+                    $sucesso = "Usuário deletado com sucesso";
+                } catch (Exception $ex) {
+                    $erro = $ex->getMessage();
+                }
+                
+                break;
+        }
+    }
     $usuarios = Servico\UsuarioDAO::listar();
 ?>
 <!DOCTYPE HTML>
@@ -20,7 +38,19 @@
             <div class="page-header">
                 <h1>Usuários</h1>
             </div>
-            <div class="alert alert-danger">Usuário não encontrado</div>
+            
+            <?php if(isset($erro)) : ?>
+            
+            <div class="alert alert-danger"><?php echo $erro ?></div>
+            
+            <?php endif ?>
+            
+            <?php if(isset($sucesso)) : ?>
+            
+            <div class="alert alert-success"><?php echo $sucesso ?></div>
+            
+            <?php endif ?>
+            
             <!-- Linha para novo e busca -->
             <div class="row">
                 <div class="col-md-1 form-group">
@@ -89,7 +119,7 @@
     </body>
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
-    
+    <script type="text/javascript" src="layout/default.js"></script>
     <script type="text/javascript">
     
     
@@ -104,7 +134,10 @@
            $('#confirmDelete').modal();
            
        });
+       
     });
+    
+    
             
     </script>
     

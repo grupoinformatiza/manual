@@ -66,17 +66,7 @@
                 }
                 
                 break;
-            case 'deletar':
-                
-                $codigo = $_GET['codigo'];
-                
-                try{
-                    
-                } catch (Exception $ex) {
-                    $erro = $ex->getMessage();
-                }
-                
-                break;
+            
         }
     }
     
@@ -195,4 +185,5 @@
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="manut_usuario.js"></script>
+    <script type="text/javascript" src="layout/default.js"></script>
 </html>
