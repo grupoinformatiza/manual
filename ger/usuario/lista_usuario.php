@@ -23,12 +23,12 @@
             <div class="alert alert-danger">Usuário não encontrado</div>
             <!-- Linha para novo e busca -->
             <div class="row">
-                <div class="col-md-1">
+                <div class="col-md-1 form-group">
                     <a href="manut_usuario.php?acao=novo" class="btn btn-success btn-md">
                         <span class="glyphicon glyphicon-plus"></span> Novo
                     </a>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 form-group">
                     <div class="input-group">
                         <input type="text" name="txtPesquisarUsuario" id="txtPesquisarUsuario" class="form-control input-md" placeholder="Procurar usuários..."/>
                         <span class="input-group-addon">
@@ -60,7 +60,7 @@
                                         <a href="manut_usuario.php?acao=editar&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-warning btn-xs">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
-                                        <a href="lista_usuario.php?acao=deletar&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-danger btn-xs btn-deletar"  data-toggle="modal" data-target="#confirmDelete">
+                                        <a href="lista_usuario.php?acao=deletar&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-danger btn-xs btn-deletar">
                                             <span class="glyphicon glyphicon-remove"></span>
                                         </a>
                                     </td>
@@ -92,9 +92,17 @@
     
     <script type="text/javascript">
     
+    
+    
+    
     $(function(){
-       $('#confirmDelete').on('show.bs.modal',function(e){
-           $(this).find('btn-danger').attr('href',$(e.relatedTarget).attr('href'));
+       $('.btn-deletar').click(function(e){
+           e.preventDefault();           
+           
+           var link = $(this).attr('href');
+           $('#confirmDelete').find('.btn-danger').attr('href',link);
+           $('#confirmDelete').modal();
+           
        });
     });
             

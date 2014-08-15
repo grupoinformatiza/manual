@@ -26,7 +26,10 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+        </button>
         <h4 class="modal-title" id="confirmDeleteLabel">Informatiza - Confirmação</h4>
       </div>
       <div class="modal-body">
@@ -34,7 +37,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-danger btn-delete">Deletar</button>
+        <a type="button" class="btn btn-danger">Deletar</a>
       </div>
     </div>
   </div>

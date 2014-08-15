@@ -7,10 +7,6 @@ body{
     border-bottom: 1px solid #3771C8;
 }
 
-.table-responsive {
-    padding-top : 20px
-       
-}
 .table thead tr {
     font-weight: bold;
 }
