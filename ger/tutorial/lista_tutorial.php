@@ -20,12 +20,12 @@ require_once '../../config.php';
             <div class="alert alert-danger">Tutorial não encontrado</div>
             <!-- Linha para novo e busca -->
             <div class="row">
-                <div class="col-md-1">
+                <div class="col-md-1 form-group">
                     <a href="manut_tutorial.php?acao=novo" class="btn btn-success btn-md">
                         <span class="glyphicon glyphicon-plus"></span> Novo
                     </a>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 form-group">
                     <div class="input-group">
                         <input type="text" name="txtPesquisarTutorial" id="txtPesquisarTutorial" class="form-control input-md" placeholder="Procurar tutoriais..."/>
                         <span class="input-group-addon">
