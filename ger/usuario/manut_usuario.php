@@ -18,7 +18,7 @@
                     $cidade  = CidadeDAO::carregarCidade($_POST['cmbCidade']);
                     $usuario = new Entidade\Usuario();
                     
-                    if(isset($_POST['codigo']))
+                    if(isset($_POST['codigo']) && $_POST['codigo'] !=0)
                         $usuario->Codigo = $_POST['codigo'];
                     
                     $usuario->Nome = $_POST['txtNome'];

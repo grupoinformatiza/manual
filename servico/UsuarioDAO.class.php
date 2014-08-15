@@ -11,7 +11,9 @@ class UsuarioDAO{
              
         $con = \Suporte\PdoFactory::getConexao();
         
+        
         if($usuario->Codigo != ''){
+            self::validaLogin($usuario->Usuario, $usuario->Codigo);
             $sql = "UPDATE usuario "
                     . "SET usu_nome = :nome,"
                     . "usu_nasc = :nasc,"
@@ -22,6 +24,7 @@ class UsuarioDAO{
                     . "usu_senha = :senha "
                     . "WHERE usu_codigo = :codigo";
         }else{
+            self::validaLogin($usuario->Usuario);
             $sql = "INSERT INTO usuario (usu_nome,usu_nasc,usu_sexo,usu_email,"
                     . "cid_codigo,usu_login,usu_senha) "
                     . "VALUES (:nome,:nasc,:sexo,:email,"
@@ -72,6 +75,32 @@ class UsuarioDAO{
         $usuario->Cidade = CidadeDAO::carregarCidade($u->cid_codigo);
         
         return $usuario;
+    }
+    
+    public static function validaLogin($login, $cod_usuario=0){
+        
+        $con = \Suporte\PdoFactory::getConexao();
+        
+        /* Verificação se o campo login está sendo alterado durante 
+                uma edição */
+        
+        if($cod_usuario != 0)
+            $sql = "SELECT USU_CODIGO FROM USUARIO WHERE LOGIN = :login and USU_CODIGO <> :cod_usuario";
+        else       
+            $sql = "SELECT USU_CODIGO FROM USUARIO WHERE LOGIN = :login";
+        $st = $con->prepare($sql);
+        $st->bindValue(':login', $login);
+        if($cod_usuario != 0)
+            $st->bindValue(':cod_usuario', cod_usuario);
+        
+        $st->execute();
+        
+        $u = $st->fetchObject();
+        
+        if($u)
+            throw new Exception("Usuário indisponível.");
+        
+        return true;
     }
     
 }

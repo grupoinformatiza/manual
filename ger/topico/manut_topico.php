@@ -7,9 +7,9 @@
                 
                 try{
                     $topico = new Entidade\Topico();
-                    $topico->Nome = $_POST['txtTitulo'];
-                    $topico->Tipo = $_POST['txtConteudo'];
-                    $topico->Tipo = $_POST['cmbTutorial']; 
+                    $topico->Titulo = $_POST['txtTitulo'];
+                    $topico->Conteudo = $_POST['txtConteudo'];
+                    $topico->Tutorial = $_POST['cmbTutorial']; 
                     Servico\TopicoDAO::gravar($topico);
                     $sucesso = "Tópico gravado com sucesso!";
                 } catch (Exception $ex) {
@@ -35,7 +35,15 @@
             <div class="page-header">
                 <h1>Tópico</h1>
             </div>
-            <div class="alert alert-danger">Preencha todos os campos</div>
+            
+            <?php if(isset($erro)) : ?>
+                <div class="alert alert-danger"><?php echo $erro ?></div>
+            <?php endif ?>
+            
+            <?php if(isset($sucesso)) : ?>
+                <div class="alert alert-success"><?php echo $sucesso ?></div>
+            <?php endif ?>
+           
             <form name="frmManutTopico" id="frmManutTopico" class="form" action="manut_topico.php" method="post">
                 <input type="hidden" name="acao" value="gravar" />
                 <div class="panel panel-info">

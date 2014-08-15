@@ -7,14 +7,16 @@
  */
 namespace Entidade;
 use Exception;
+
+
     class Topico extends Base{
         private $titulo;
         private $conteudo;
         private $tutorial;
                      
         
-        public function setTitulo($_tipo) {
-                if ($_tipo == "")
+        public function setTitulo($_titulo) {
+                if ($_titulo == "")
                     throw new Exception("Título deve ser preenchido");
                 $this->titulo = $_titulo;
                 
