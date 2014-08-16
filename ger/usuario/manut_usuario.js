@@ -1,11 +1,6 @@
 $(function(){
     $('#cmbEstado').change(carregarCidades);
-    $('#formulario').submit(validarFormulario);
 });
-
-function validarFormulario(e){
-    
-}
 
 function carregarCidades(){
     var est = $('#cmbEstado').val();

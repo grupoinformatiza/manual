@@ -40,17 +40,7 @@
                 <h1>Usuários</h1>
             </div>
             
-            <?php if(isset($erro)) : ?>
-            
-            <div class="alert alert-danger"><?php echo $erro ?></div>
-            
-            <?php endif ?>
-            
-            <?php if(isset($sucesso)) : ?>
-            
-            <div class="alert alert-success"><?php echo $sucesso ?></div>
-            
-            <?php endif ?>
+            <?php require_once '../layout/mensagens.php'; ?>
             
             <!-- Linha para novo e busca -->
             <div class="row">

@@ -11,7 +11,7 @@ class UsuarioDAO{
         
         
         if($usuario->Codigo != ''){
-            self::validaLogin($usuario->Usuario, $usuario->Codigo);
+            self::validaLogin($usuario->Login, $usuario->Codigo);
             $sql = "UPDATE usuario "
                     . "SET usu_nome = :nome,"
                     . "usu_nasc = :nasc,"
@@ -22,7 +22,7 @@ class UsuarioDAO{
                     . "usu_senha = :senha "
                     . "WHERE usu_codigo = :codigo";
         }else{
-            self::validaLogin($usuario->Usuario);
+            self::validaLogin($usuario->Login);
             $sql = "INSERT INTO usuario (usu_nome,usu_nasc,usu_sexo,usu_email,"
                     . "cid_codigo,usu_login,usu_senha) "
                     . "VALUES (:nome,:nasc,:sexo,:email,"
@@ -84,13 +84,13 @@ class UsuarioDAO{
                 uma edição */
         
         if($cod_usuario != 0)
-            $sql = "SELECT USU_CODIGO FROM USUARIO WHERE LOGIN = :login and USU_CODIGO <> :cod_usuario";
+            $sql = "SELECT USU_CODIGO FROM USUARIO WHERE usu_login = :login and usu_deletado = false and USU_CODIGO <> :cod_usuario";
         else       
-            $sql = "SELECT USU_CODIGO FROM USUARIO WHERE LOGIN = :login";
+            $sql = "SELECT USU_CODIGO FROM USUARIO WHERE usu_login = :login and usu_deletado = false";
         $st = $con->prepare($sql);
         $st->bindValue(':login', $login);
         if($cod_usuario != 0)
-            $st->bindValue(':cod_usuario', cod_usuario);
+            $st->bindValue(':cod_usuario', $cod_usuario);
         
         $st->execute();
         
@@ -108,12 +108,12 @@ class UsuarioDAO{
             throw new Exception("Código Inválido");
         
         $con = \Suporte\PdoFactory::getConexao();
-        $sql = "UPDATE usuario SET usu_deletado = True WHERE usu_codigo = :cod";
+        $sql = "UPDATE usuario SET usu_deletado = True WHERE usu_codigo = :cod AND usu_deletado = False";
         $st  = $con->prepare($sql);
         $st->bindValue(':cod', $cod, PDO::PARAM_INT);
         $st->execute();
-        if(!$st)
-            throw new Exception("Não foi possível deletar o usuário!");
+        if(!$st->rowCount())
+            throw new Exception("Usuário não encontrado. Não foi possível deletar.");
 
     }
     

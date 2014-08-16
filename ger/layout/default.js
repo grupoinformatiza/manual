@@ -5,14 +5,18 @@ $(function(){
 
         var link = $(this).attr('href');
         $('#confirmDelete').find('.btn-danger').attr('href',link);
-        $('#confirmDelete').modal();
+        $('#confirmDelete').modal({
+            keyboard:true
+        });
 
     });
     
+    $('#confirmDelete').on('shown.bs.modal', function () {
+        $('#btnConfirma').focus();
+    })
     
+    $('.alert').addClass('in');
     setTimeout(function(){
-        $('.alert-success').fadeOut("slow",function(){
-            $(this).remove();
-        })
+        $('.alert-success').alert('close');
     },2500);
 });
