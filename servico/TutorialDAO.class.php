@@ -51,5 +51,18 @@ class TutorialDAO{
                 
         return $tutorial;
     }
+     public static function deletarTutorial($codigoUsuario){
+        $cod = (int)$codigoTutorial;
+        if($cod <= 0)
+            throw new Exception("Código Inválido");
+        
+        $con = \Suporte\PdoFactory::getConexao();
+        $sql = "UPDATE tutorial SET tut_deletado = True WHERE tut_codigo = :cod";
+        $st  = $con->prepare($sql);
+        $st->bindValue(':cod', $cod, PDO::PARAM_INT);
+        $st->execute();
+        if(!$st)
+            throw new Exception("Não foi possível deletar o tutorial!");
+    }
     
 }

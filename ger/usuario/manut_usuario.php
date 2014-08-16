@@ -29,7 +29,8 @@
                     $usuario->Email = $_POST['txtEmail'];
                     $usuario->Login = $_POST['txtLogin'];
                     Servico\UsuarioDAO::gravar($usuario);
-                    $sucesso = "Usuário gravado com sucesso! <a href='lista_usuario.php'class='alert-link'>Voltar para a lista</a>";
+                    $sucesso = urlencode("Usuário gravado com sucesso!");
+                    header("Location: lista_usuario.php?msg=".$sucesso);
                 } catch (Exception $ex) {
                     $erro = $ex->getMessage();
                 }
@@ -185,5 +186,5 @@
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="manut_usuario.js"></script>
-    <script type="text/javascript" src="layout/default.js"></script>
+    <script type="text/javascript" src="../layout/default.js"></script>
 </html>

@@ -52,4 +52,18 @@ class TopicoDAO{
                 
         return $topico;
     }
+     public static function deletarTopico($codigoTopico){
+        $cod = (int)$codigoTopico;
+        if($cod <= 0)
+            throw new Exception("Código Inválido");
+        
+        $con = \Suporte\PdoFactory::getConexao();
+        $sql = "UPDATE topico SET top_deletado = True WHERE top_codigo = :cod";
+        $st  = $con->prepare($sql);
+        $st->bindValue(':cod', $cod, PDO::PARAM_INT);
+        $st->execute();
+        if(!$st)
+            throw new Exception("Não foi possível deletar o tópico!");
+    }
+    
 }

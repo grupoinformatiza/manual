@@ -2,6 +2,7 @@
 
     require_once '../../config.php';
     
+    $sucesso = (isset($_GET['msg']))?urldecode($_GET['msg']):null;
     
     if(isset($_GET['acao'])){
         switch($_GET['acao']){
@@ -119,26 +120,5 @@
     </body>
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="layout/default.js"></script>
-    <script type="text/javascript">
-    
-    
-    
-    
-    $(function(){
-       $('.btn-deletar').click(function(e){
-           e.preventDefault();           
-           
-           var link = $(this).attr('href');
-           $('#confirmDelete').find('.btn-danger').attr('href',link);
-           $('#confirmDelete').modal();
-           
-       });
-       
-    });
-    
-    
-            
-    </script>
-    
+    <script type="text/javascript" src="../layout/default.js"></script>    
 </html>
