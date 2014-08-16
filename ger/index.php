@@ -1,4 +1,7 @@
-<?php define('ROOT_PATH', '../'); ?>
+<?php  
+    define('ROOT_PATH', '../');
+    require_once '../config.php';
+?>
 <!DOCTYPE HTML>
 <html>
     <head>
