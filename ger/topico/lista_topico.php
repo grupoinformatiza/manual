@@ -18,7 +18,9 @@ require_once '../../config.php';
             <div class="page-header">
                 <h1>Tópicos</h1>
             </div>
-            <div class="alert alert-danger">Tópico não encontrado</div>
+            
+            <?php require_once '../layout/mensagens.php'; ?>
+            
             <!-- Linha para novo e busca -->
             <div class="row">
                 <div class="col-md-1 form-group">

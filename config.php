@@ -9,7 +9,7 @@ spl_autoload_register(
     }
  );
 
-
+$sucesso = (isset($_GET['msg']))?urldecode($_GET['msg']):null;
 
 
 

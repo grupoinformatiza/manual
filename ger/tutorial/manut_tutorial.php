@@ -8,9 +8,14 @@
                 try{
                     $tutorial = new Entidade\Tutorial();
                     $tutorial->Nome = $_POST['txtNome'];
-                    $tutorial->Tipo = $_POST['cmbTipo'];                    
+                    $tutorial->Tipo = $_POST['cmbTipo'];   
+                    
+                    if(isset($_FILES['filImagem']))
+                        $tutorial->Imagem = $_FILES['filImagem'];
+                                        
                     Servico\TutorialDAO::gravar($tutorial);
-                    $sucesso = "Tutorial gravado com sucesso!";
+                    $sucesso = urlencode("Tutorial gravado com sucesso!");
+                    header("Location: lista_tutorial.php?msg=$sucesso");
                 } catch (Exception $ex) {
                     $erro = $ex->getMessage();
                 }
@@ -18,7 +23,6 @@
                 break;
         }
     }
-    
     
     
 ?>
@@ -31,6 +35,7 @@
         <title>Cadastrar Tutorial</title>
         <link rel="stylesheet" href="../../libs/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="../layout/default.css">
+        <link rel="stylesheet" href="manut_tutorial.css">
     </head>
     <body role="document">
         <?php require_once '../layout/cabecalho.php';?>
@@ -39,26 +44,16 @@
                 <h1>Tutorial</h1>
             </div>
             
-            <?php if(isset($erro)) : ?>
-            
-            <div class="alert alert-danger"><?php echo $erro ?></div>
-            
-            <?php endif ?>
-            
-            <?php if(isset($sucesso)) : ?>
-            
-            <div class="alert alert-success"><?php echo $sucesso ?></div>
-            
-            <?php endif ?>
+            <?php require_once '../layout/mensagens.php'; ?>
             
             
-            <form name="frmManutTutorial" id="frmManutTutorial" class="form" action="manut_tutorial.php" method="post">
+            <form name="frmManutTutorial" id="frmManutTutorial" class="form" action="manut_tutorial.php" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="acao" value="gravar" />
                 <div class="panel panel-info">
                     <div class="panel-body">
                         <div class="form-group">
                             <label for="txtNome">Nome</label>
-                            <input type="text" name="txtNome" id="txtNome" class="form-control input-md"/>
+                            <input type="text" name="txtNome" id="txtNome" autofocus="true" class="form-control input-md"/>
                         </div>
                         
                         <div class="form-group">
@@ -70,8 +65,23 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="cmbTipo">Imagem ilustrativa</label>
+                            <span class="btn btn-default btn-md btn-file">
+                                Enviar imagem ilustrativa...
+                                <input type="file" id="filImagem" name="filImagem" accept="image/*" />
+                            </span>
                         </div>
+                        <div class="form-group hidden img-preview">
+                            <div class="thumbnail">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-success">
+                                        <span class="sr-only progress-bar-label"></span>
+                                    </div>
+                                </div>
+                                
+                                <img src="" id="preview">
+                            </div>
+                            <p class="help-block">Pré visualização da imagem (Só será enviada quando clicar em salvar)</p>
+                        </div>    
                     </div> <!-- /painel body(corpo do painel) -->
                 </div> <!-- fim do painel -->
                 <!-- Controles do formulario -->
@@ -89,4 +99,6 @@
     </body>
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../layout/default.js"></script>
+    <script type="text/javascript" src="manut_tutorial.js"></script>
 </html>

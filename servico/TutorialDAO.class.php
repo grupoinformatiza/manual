@@ -7,7 +7,9 @@ class TutorialDAO{
     
     
     public static function gravar(\Entidade\Tutorial $tutorial){
-             
+        
+        $imagem = self::enviarImagem($tutorial);
+        
         $con = \Suporte\PdoFactory::getConexao();
         
         $sql = "INSERT INTO tutorial (tut_nome,tut_tipo,tut_imagem) "
@@ -16,14 +18,27 @@ class TutorialDAO{
         $st = $con->prepare($sql);
         $st->bindValue(':nome', $tutorial->Nome);
         $st->bindValue(':tipo', $tutorial->Tipo);
-        $st->bindValue(':imagem', $tutorial->Imagem);
-
+        $st->bindvalue(':imagem',$imagem);
         
         $st->execute();
-       
+        
         
     }
-     public static function listar(){
+    
+    public static function enviarImagem(\Entidade\Tutorial $tutorial){
+        
+        if(!is_null($tutorial->Imagem)){
+            
+            $upl = new \Suporte\Upload($tutorial->imagem,$tutorial->Nome);
+            $upl->setDiretorio(ROOT_PATH.'imagens/capa_tutoriais/');
+            
+            $nome = $upl->processar();
+            return $nome;
+        }
+        
+    }
+    
+    public static function listar(){
         $con = \Suporte\PdoFactory::getConexao();
         $sql = "SELECT tut_codigo Codigo,tut_nome Nome,tut_tipo Tipo FROM tutorial";
         $st  = $con->prepare($sql);

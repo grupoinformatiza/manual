@@ -17,7 +17,9 @@ require_once '../../config.php';
             <div class="page-header">
                 <h1>Tutoriais</h1>
             </div>
-            <div class="alert alert-danger">Tutorial não encontrado</div>
+            
+            <?php require_once '../layout/mensagens.php'; ?>
+            
             <!-- Linha para novo e busca -->
             <div class="row">
                 <div class="col-md-1 form-group">
@@ -85,4 +87,5 @@ require_once '../../config.php';
     </body>
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../layout/default.js"></script>
 </html>

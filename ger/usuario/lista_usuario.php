@@ -2,7 +2,6 @@
 
     require_once '../../config.php';
     
-    $sucesso = (isset($_GET['msg']))?urldecode($_GET['msg']):null;
     
     if(isset($_GET['acao'])){
         switch($_GET['acao']){

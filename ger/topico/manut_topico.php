@@ -36,13 +36,7 @@
                 <h1>Tópico</h1>
             </div>
             
-            <?php if(isset($erro)) : ?>
-                <div class="alert alert-danger"><?php echo $erro ?></div>
-            <?php endif ?>
-            
-            <?php if(isset($sucesso)) : ?>
-                <div class="alert alert-success"><?php echo $sucesso ?></div>
-            <?php endif ?>
+            <?php require_once '../layout/mensagens.php'; ?>
            
             <form name="frmManutTopico" id="frmManutTopico" class="form" action="manut_topico.php" method="post">
                 <input type="hidden" name="acao" value="gravar" />
