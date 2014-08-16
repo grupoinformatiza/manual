@@ -4,8 +4,6 @@
     use Servico\EstadoDAO;
     use Servico\CidadeDAO;
     
-    
-    
     if(isset($_POST['acao'])){
         switch($_POST['acao']){
             case 'carregarCidades':
@@ -106,7 +104,7 @@
                             <div class="panel-body">
                                 <div class="col-md-8 form-group">
                                     <label for="txtNome">Nome</label>
-                                    <input type="text" name="txtNome" id="txtNome" class="form-control input-md" value="<?php echo $nome;?>" />
+                                    <input type="text" name="txtNome" id="txtNome" class="form-control input-md" autofocus="true" value="<?php echo $nome;?>" />
                                 </div>
 
                                 <div class="col-md-4 form-group">

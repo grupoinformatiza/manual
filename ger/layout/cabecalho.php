@@ -20,7 +20,6 @@
     </div>
 </div>
 
-
 <!-- Modal -->
 <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -28,7 +27,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">
             <span aria-hidden="true">&times;</span>
-            <span class="sr-only">Close</span>
+            <span class="sr-only">Fechar</span>
         </button>
         <h4 class="modal-title" id="confirmDeleteLabel">Informatiza - Confirmação</h4>
       </div>
