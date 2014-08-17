@@ -11,9 +11,9 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-            <li <?php \Suporte\ViewHelper::getMenuAtivo('usuario'); ?>><a href="<?php echo ROOT_PATH ?>ger/usuario/lista_usuario.php">Usuário</a></li>
-            <li <?php \Suporte\ViewHelper::getMenuAtivo('tutorial'); ?>><a href="<?php echo ROOT_PATH ?>ger/tutorial/lista_tutorial.php">Tutorial</a></li>
-            <li <?php \Suporte\ViewHelper::getMenuAtivo('topico'); ?>><a href="<?php echo ROOT_PATH ?>ger/topico/lista_topico.php">Tópico</a></li>
+            <li <?php Suporte\ViewHelper::getMenuAtivo('usuario'); ?>><a href="<?php echo ROOT_PATH ?>ger/usuario/lista_usuario.php">Usuário</a></li>
+            <li <?php Suporte\ViewHelper::getMenuAtivo('tutorial'); ?>><a href="<?php echo ROOT_PATH ?>ger/tutorial/lista_tutorial.php">Tutorial</a></li>
+            <li <?php Suporte\ViewHelper::getMenuAtivo('topico'); ?>><a href="<?php echo ROOT_PATH ?>ger/topico/lista_topico.php">Tópico</a></li>
           <!--<li><a href="rel_estatistica.php">Estatística</a></li>-->
         </ul>
       </div><!--/.nav-collapse -->
