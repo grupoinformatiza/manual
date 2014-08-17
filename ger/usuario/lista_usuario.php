@@ -17,9 +17,23 @@
                 }
                 
                 break;
+            case 'pesquisa':
+                
+                $nome = $_GET['txtPesquisarUsuario'];
+                
+                try{
+                    $pgControllerUsu = \Servico\UsuarioDAO::listarPorNome($nome);
+                } catch (Exception $ex) {
+                    $erro = $ex->getMessage();
+                }
+                
+                
+                break;
+            
         }
     }
-    $usuarios = Servico\UsuarioDAO::listar();
+    if(!isset($pgControllerUsu))
+        $pgControllerUsu = \Servico\UsuarioDAO::listar();
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -48,18 +62,25 @@
                         <span class="glyphicon glyphicon-plus"></span> Novo
                     </a>
                 </div>
-                <div class="col-md-4 form-group">
-                    <div class="input-group">
-                        <input type="text" name="txtPesquisarUsuario" id="txtPesquisarUsuario" class="form-control input-md" placeholder="Procurar usuários..."/>
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </span>
-                    </div>
-                </div>        
+                <form method="get" name="frmBuscarUsuario" id="frmBuscarUsuario" action="lista_usuario.php">
+                    <input type="hidden" name="acao" value="pesquisa" />
+                    <div class="col-md-4 form-group">
+                        <div class="input-group">
+                            <input type="text" name="txtPesquisarUsuario" id="txtPesquisarUsuario" class="form-control input-md" placeholder="Procurar usuários..."/>
+                            <span class="input-group-btn">
+                                <button class="btn btn-md btn-default" type="submit">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                        </div>
+
+                    </div>        
+                </form>
             </div>
             <!-- Linha para tabela -->
             <div class="row">
                 <div class="col-md-12">
+                    <?php $pgControllerUsu->pag->printResultBar(); ?>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead> 
@@ -71,7 +92,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($usuarios as $usu) : ?>
+                                <?php foreach($pgControllerUsu->res as $usu) : ?>
                                 <tr>
                                     <td><?php echo $usu->Codigo; ?></td>
                                     <td><?php echo $usu->Nome; ?></td>
@@ -91,19 +112,10 @@
                     </div> <!-- table responsive -->
                 </div> <!-- col que envolve tabela -->
             </div> <!--/row (fim da linha para a tabela de cadastro)-->
-            <div class="row">
-                <div class="col-md-4 col-md-offset-4 text-center">
-                     <ul class="pagination">
-                        <li><a href="#">&laquo;</a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                      </ul>
-                </div>
-            </div>
+            
+            <!-- Linha da paginação -->
+            <?php $pgControllerUsu->pag->printNavigationBar(); ?>
+            
         </div> <!-- container -->
         
     </body>

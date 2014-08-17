@@ -29,7 +29,7 @@ class TutorialDAO{
         
         if(!is_null($tutorial->Imagem)){
             
-            $upl = new \Suporte\Upload($tutorial->imagem,$tutorial->Nome);
+            $upl = new \Suporte\Upload($tutorial->imagem,$tutorial->Nome.' '.$tutorial->Tipo);
             $upl->setDiretorio(ROOT_PATH.'imagens/capa_tutoriais/');
             
             $nome = $upl->processar();

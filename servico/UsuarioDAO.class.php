@@ -42,13 +42,42 @@ class UsuarioDAO{
         $st->execute();    
     }
     
+   
+    public static function listarPorNome($nome){
+        if(is_null($nome))
+            throw new Exception("Preencha corretamente o nome");
+        $con = \Suporte\PdoFactory::getConexao();
+        $sql = "SELECT usu_codigo Codigo,usu_nome Nome,usu_email Email FROM usuario WHERE usu_deletado = False AND usu_nome LIKE :nome";
+        
+        $paginacao = \Suporte\ViewHelper::prepararPaginacao($con,$sql,array(':nome'=>'%'.$nome.'%'));
+       
+        $st = $con->prepare($paginacao->getSQL());
+        $st->bindValue(':nome','%'.$nome.'%');
+        $st->execute();
+        
+        $ret = new \stdClass();
+        
+        $ret->res = $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Usuario");
+        $ret->pag = $paginacao;
+        return $ret;
+    }
+    
     public static function listar(){
         $con = \Suporte\PdoFactory::getConexao();
         $sql = "SELECT usu_codigo Codigo,usu_nome Nome,usu_email Email FROM usuario WHERE usu_deletado = False";
-        $st  = $con->prepare($sql);
-        $st->execute();
-        return $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Usuario");
-    }
+        
+        $paginacao = \Suporte\ViewHelper::prepararPaginacao($con,$sql);
+        
+        $st = $con->query($paginacao->getSQL());
+        
+        $ret = new \stdClass();
+        
+        $ret->res = $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Usuario");
+        $ret->pag = $paginacao;
+        return $ret;
+        
+    }  
+ 
     
     public static function getUsuario($codUsuario){
         

@@ -36,10 +36,11 @@ use Exception;
             if ($_dataNascimento == "")
                 throw new Exception("Data de nascimento deve ser preenchido");
             
-            $data = new \DateTime($_dataNascimento);
+            $data = \DateTime::createFromFormat('d/m/Y', $_dataNascimento);
+            if(!$data)
+                $data = \DateTime::createFromFormat('Y-m-d', $_dataNascimento);
             
             $this->dataNascimento = $data->format('d/m/Y');
-            
         }  
         
         public function getDataNascimento(){
