@@ -19,6 +19,7 @@
                 break;
         }
     }
+    $tutoriais = Servico\TutorialDAO::listarTutoriais();
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -57,6 +58,9 @@
                             <label for="cmbTutorial">Tutorial</label>
                             <select class="form-control input-md" id="cmbTutorial" name="cmbTutorial">
                                 <option value="1">Carregar os tutoriais existentes</option>
+                                <?php foreach($tutoriais as $tut) : ?>
+                                    <option value="<?php echo $tut->Codigo; ?>" ><?php echo $tut->Nome; ?></option>
+                                <?php endforeach; ?>                                
                             </select>
                         </div>
                     </div> <!-- /painel body(corpo do painel) -->

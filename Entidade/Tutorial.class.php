@@ -38,7 +38,7 @@ use Exception;
         
         public function getImagem(){
             return $this->imagem;
-        }
+        }       
         
         }
 
