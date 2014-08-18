@@ -23,7 +23,7 @@ class TopicoDAO{
         
     }
     
-        public static function listar(){
+        public static function listar($titulo,$tutorial){
         $con = \Suporte\PdoFactory::getConexao();
         $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial FROM topico";
         $st  = $con->prepare($sql);

@@ -49,6 +49,9 @@ class UsuarioDAO{
         $con = \Suporte\PdoFactory::getConexao();
         $sql = "SELECT usu_codigo Codigo,usu_nome Nome,usu_email Email FROM usuario WHERE usu_deletado = False AND usu_nome LIKE :nome";
         
+        
+        
+        
         $paginacao = \Suporte\ViewHelper::prepararPaginacao($con,$sql,array(':nome'=>'%'.$nome.'%'));
        
         $st = $con->prepare($paginacao->getSQL());
