@@ -43,18 +43,13 @@
                 <input type="hidden" name="acao" value="gravar" />
                 <div class="panel panel-info">
                     <div class="panel-body">
-                        <div class="form-group">
+                        <div class="col-md-9 form-group">
                             <label for="txtTitulo">Título</label>
                             <input type="text" name="txtTitulo" id="txtTitulo" class="form-control input-md"/>
                         </div>
-
-                        <div class="form-group">
-                            <label for="txtConteudo">Conteúdo</label>
-                            <input type="text" name="txtConteudo" id="txtConteudo" class="form-control"/>
-                        </div>
                         
                         <!-- Combo carregado com os tutoriais disponíveis -->
-                        <div class="form-group">
+                        <div class="col-md-3 form-group">
                             <label for="cmbTutorial">Tutorial</label>
                             <select class="form-control input-md" id="cmbTutorial" name="cmbTutorial">
                                 <option value="1">-- Selecione --</option>
@@ -62,6 +57,11 @@
                                     <option value="<?php echo $tut->Codigo; ?>" ><?php echo $tut->Nome; ?></option>
                                 <?php endforeach; ?>                                
                             </select>
+                        </div>
+                        
+                        <div class="col-md-12 form-group">
+                            <label for="txtConteudo">Conteúdo</label>
+                            <textarea type="text" name="txtConteudo" id="txtConteudo" class="form-control"></textarea>
                         </div>
                     </div> <!-- /painel body(corpo do painel) -->
                 </div> <!-- fim do painel -->
