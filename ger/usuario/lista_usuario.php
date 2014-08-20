@@ -84,10 +84,10 @@
                         <table class="table table-striped">
                             <thead> 
                                 <tr>
-                                    <td>Código</td>
-                                    <td>Nome</td>
-                                    <td>E-mail</td>
-                                    <td></td>
+                                    <td class="col-sm-1">Código</td>
+                                    <td class="col-sm-5">Nome</td>
+                                    <td class="col-sm-5">E-mail</td>
+                                    <td class="col-sm-1"></td>
                                 </tr>
                             </thead>
                             <tbody>

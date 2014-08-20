@@ -3,8 +3,7 @@ namespace Servico;
 use PDO;
 use Exception;
 class UsuarioDAO{
-    
-    
+   
     public static function gravar(\Entidade\Usuario $usuario){
              
         $con = \Suporte\PdoFactory::getConexao();
@@ -18,8 +17,7 @@ class UsuarioDAO{
                     . "usu_sexo = :sexo,"
                     . "usu_email = :email,"
                     . "cid_codigo = :cidade,"
-                    . "usu_login = :login,"
-                    . "usu_senha = :senha "
+                    . "usu_login = :login "
                     . "WHERE usu_codigo = :codigo";
         }else{
             self::validaLogin($usuario->Login);
@@ -37,7 +35,8 @@ class UsuarioDAO{
         $st->bindValue(':email', $usuario->Email);
         $st->bindValue(':cidade', $usuario->Cidade->Codigo);
         $st->bindValue(':login', $usuario->Login);
-        $st->bindValue(':senha', md5(time()));
+        if($usuario->Codigo == '')
+            $st->bindValue(':senha', md5($usuario->Senha));
         
         $st->execute();    
     }
@@ -80,8 +79,7 @@ class UsuarioDAO{
         return $ret;
         
     }  
- 
-    
+
     public static function getUsuario($codUsuario){
         
         $con = \Suporte\PdoFactory::getConexao();
