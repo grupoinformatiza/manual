@@ -1,5 +1,9 @@
 <?php
 require_once '../../config.php';
+    if(!isset($pgControllerUsu))
+        $tutoriais = Servico\TutorialDAO::listar();
+    
+      
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -28,20 +32,26 @@ require_once '../../config.php';
                         <span class="glyphicon glyphicon-plus"></span> Novo
                     </a>
                 </div>
-                <div class="input col-md-4 form-group">
-                    <div class="input-group">
-                        <input type="text" name="txtPesquisarTopico" id="txtPesquisarTopico" class="form-control input-md" placeholder="Procurar tópicos..."/>
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </span>
-                    </div>                   
-                    
-                </div> 
-                <div class="col-md-4 form-group">
-                    <select class="form-control input-md" id="cmbTutorial" name="cmbTutorial">
-                        <option value="1">Selecionar tutoriais</option>
-                    </select>
-                </div>
+                
+                <form method="get" name="frmBuscarTopico" id="frmBuscarTopico" action="lista_topico.php">                                    
+                    <div class="input col-md-4 form-group">
+                        <div class="input-group">
+                            <input type="text" name="txtPesquisarTopico" id="txtPesquisarTopico" class="form-control input-md" placeholder="Procurar tópicos..."/>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </span>
+                        </div>                   
+
+                    </div> 
+                    <div class="col-md-4 form-group">
+                        <select class="form-control input-md" id="cmbTutorial" name="cmbTutorial">
+                            <option value="1">-- Selecione --</option>
+                            <?php foreach($tutoriais as $tut) : ?>
+                                <option value="<?php echo $tut->Codigo; ?>" ><?php echo $tut->Nome; ?></option>
+                            <?php endforeach; ?>                         
+                        </select>
+                    </div>
+                </form>
             </div> <!--/row(fim da linha para busca e novo)-->
             <!-- Linha para tabela -->
             <div class="row">
@@ -92,5 +102,6 @@ require_once '../../config.php';
     </body>
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../layout/default.js"></script>  
 </html>
 

@@ -57,7 +57,7 @@
                         <div class="form-group">
                             <label for="cmbTutorial">Tutorial</label>
                             <select class="form-control input-md" id="cmbTutorial" name="cmbTutorial">
-                                <option value="1">Carregar os tutoriais existentes</option>
+                                <option value="1">-- Selecione --</option>
                                 <?php foreach($tutoriais as $tut) : ?>
                                     <option value="<?php echo $tut->Codigo; ?>" ><?php echo $tut->Nome; ?></option>
                                 <?php endforeach; ?>                                
@@ -79,5 +79,6 @@
     </body>
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../layout/default.js"></script>
 </html>
 

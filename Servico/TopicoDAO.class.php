@@ -19,14 +19,20 @@ class TopicoDAO{
         $st->bindValue(':tutorial', $topico->Tutorial);
         
         $st->execute();
-       
-        
+              
     }
     
-        public static function listar($titulo,$tutorial){
+        public static function listar($titulo,$tutorial=0){
         $con = \Suporte\PdoFactory::getConexao();
-        $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial FROM topico";
+        
+        if($tutorial != 0)
+            $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial FROM topico where tut_codigo=:tutorial";
+        else
+            $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial FROM topico";
         $st  = $con->prepare($sql);
+        if($tutorial != 0)
+           $st->bindValue(':tutorial', $tutorial);
+        
         $st->execute();
         return $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Topico");
     }

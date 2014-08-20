@@ -40,7 +40,7 @@ class TutorialDAO{
     
     public static function listar(){
         $con = \Suporte\PdoFactory::getConexao();
-        $sql = "SELECT tut_codigo Codigo,tut_nome Nome,tut_tipo Tipo FROM tutorial";
+        $sql = "SELECT tut_codigo Codigo,tut_nome Nome,tut_tipo Tipo FROM tutorial where tut_deletado=false";
         $st  = $con->prepare($sql);
         $st->execute();
         return $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Tutorial");
