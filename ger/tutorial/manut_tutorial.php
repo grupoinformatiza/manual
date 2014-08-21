@@ -9,7 +9,7 @@
                     $tutorial = new Entidade\Tutorial();
                     $tutorial->Nome = $_POST['txtNome'];
                     $tutorial->Tipo = $_POST['cmbTipo'];   
-                    
+                                        
                     if(isset($_FILES['filImagem']))
                         $tutorial->Imagem = $_FILES['filImagem'];
                                         
@@ -23,8 +23,28 @@
                 break;
         }
     }
-    
-    
+    $nome = null;
+    $tipo = null;
+        
+    if(isset($_GET['acao'])){        
+        switch($_GET['acao']){
+            case 'editar':
+                try{
+                    $codigo = $_GET['codigo'];
+                
+                    $tutorial = \Servico\TutorialDAO::getTutorial($codigo);
+                    
+                    $nome = $tutorial->Nome;
+                    $tipo = $tutorial->Tipo;
+                    
+                }catch(Exception $ex){
+                    $erro = $ex->getMessage();
+                }
+                
+                break;            
+        }
+    }
+      
 ?>
 
 <!DOCTYPE HTML>
@@ -53,14 +73,14 @@
                     <div class="panel-body">
                         <div class="form-group">
                             <label for="txtNome">Nome</label>
-                            <input type="text" name="txtNome" id="txtNome" autofocus="true" class="form-control input-md"/>
+                            <input type="text" name="txtNome" id="txtNome" autofocus="true" class="form-control input-md" value="<?php echo $nome;?>"/>
                         </div>
                         
                         <div class="form-group">
                             <label for="cmbTipo">Tipo do tutorial</label>
                             <select class="form-control input-md" id="cmbTipo" name="cmbTipo">
-                                <option value="1">Usuário</option>
-                                <option value="2">Administrador</option>
+                                <option value="1" <?php echo (($tipo == 1) ? "selected='selected'" : "") ?>>Usuário</option>
+                                <option value="2" <?php echo (($tipo == 2) ? "selected='selected'" : "") ?>>Administrador</option>
                             </select>
                         </div>
 

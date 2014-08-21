@@ -40,10 +40,18 @@ class TutorialDAO{
     
     public static function listar(){
         $con = \Suporte\PdoFactory::getConexao();
-        $sql = "SELECT tut_codigo Codigo,tut_nome Nome,tut_tipo Tipo FROM tutorial";
-        $st  = $con->prepare($sql);
-        $st->execute();
-        return $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Tutorial");
+        $sql = "SELECT tut_codigo Codigo,tut_nome Nome,tut_tipo Tipo FROM tutorial WHERE tut_deletado = False";
+        
+        $paginacao = \Suporte\ViewHelper::prepararPaginacao($con,$sql);
+        
+        $st  = $con->query($paginacao->getSQL());
+        $ret = new \stdClass();
+        
+        $ret->res = $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Tutorial");
+        $ret->pag = $paginacao;
+        
+        return $ret;
+ 
     }
     
     public static function getTutorial($codTutorial){
