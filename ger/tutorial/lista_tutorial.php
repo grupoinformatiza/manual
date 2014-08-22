@@ -66,9 +66,11 @@ require_once '../../config.php';
                     <div class="col-md-4 form-group">
                         <div class="input-group">
                             <input type="text" name="txtPesquisarTutorial" id="txtPesquisarTutorial" class="form-control input-md" placeholder="Procurar tutoriais..."/>
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </span>
+                            <div class="input-group-btn">
+                                <button class="btn btn-md btn-default" type="submit">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </form> 

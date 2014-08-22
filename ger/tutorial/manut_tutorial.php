@@ -98,7 +98,7 @@
                         </div>
                         <div class="form-group img-preview">
                             <div class="thumbnail">
-                                <div class="progress">
+                                <div class="progress hidden">
                                     <div class="progress-bar progress-bar-success">
                                         <span class="sr-only progress-bar-label"></span>
                                     </div>
