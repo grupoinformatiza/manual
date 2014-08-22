@@ -145,7 +145,7 @@
                                 <div class="col-md-6 form-group">
                                     <label for="txtEmail">Email</label>
                                     <input type="text" name="txtEmail" id="txtEmail" class="form-control input-md" value="<?php echo $email; ?>" />
-                                    <p class="help-block">Será enviada uma confirmação de cadastro para este email.</p>
+                                    
                                 </div>
 
                                 <div class="col-md-6 form-group">
