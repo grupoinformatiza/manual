@@ -8,7 +8,9 @@
           <span class="icon-bar"></span>
         </button>
           <a class="navbar-brand" href="<?php echo ROOT_PATH ?>ger/index.php"><img src="<?php echo ROOT_PATH ?>imagens/informatiza_pequeno.png"> Informatiza</a>
+          
       </div>
+     <p class="navbar-text pull-right">Logado como Raphael Garnica</p>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
             <li <?php Suporte\ViewHelper::getMenuAtivo('usuario'); ?>><a href="<?php echo ROOT_PATH ?>ger/usuario/lista_usuario.php">Usuário</a></li>
