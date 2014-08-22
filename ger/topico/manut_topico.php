@@ -29,6 +29,7 @@
         <title>Cadastrar Tópico</title>
         <link rel="stylesheet" href="../../libs/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="../layout/default.css">
+        <link rel="stylesheet" href="../../libs/editor/bootstrap-wysihtml5.css">
     </head>
     <body role="document">
         <?php require_once '../layout/cabecalho.php';?>
@@ -61,7 +62,7 @@
                         
                         <div class="col-md-12 form-group">
                             <label for="txtConteudo">Conteúdo</label>
-                            <textarea type="text" name="txtConteudo" id="txtConteudo" class="form-control"></textarea>
+                            <textarea type="text" rows="15" name="txtConteudo" id="txtConteudo" class="form-control"></textarea>
                         </div>
                     </div> <!-- /painel body(corpo do painel) -->
                 </div> <!-- fim do painel -->
@@ -80,5 +81,10 @@
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../layout/default.js"></script>
+    <script type="text/javascript" src="../../libs/editor/wysihtml5-0.3.0.js"></script>
+    <script type="text/javascript" src="../../libs/editor/bootstrap3-wysihtml5.js"></script>
+    <script type="text/javascript" src="../../libs/editor/bootstrap-wysihtml5.pt-BR.js"></script>
+    
+    <script type="text/javascript" src="manut_topico.js"></script>
 </html>
 

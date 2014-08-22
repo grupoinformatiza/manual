@@ -86,8 +86,8 @@
                                 <tr>
                                     <td class="col-sm-1">Código</td>
                                     <td class="col-sm-5">Nome</td>
-                                    <td class="col-sm-5">E-mail</td>
-                                    <td class="col-sm-1"></td>
+                                    <td class="col-sm-4">E-mail</td>
+                                    <td class="col-sm-2"></td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -97,10 +97,13 @@
                                     <td><?php echo $usu->Nome; ?></td>
                                     <td><?php echo $usu->Email; ?></td>
                                     <td class="text-right">  
-                                        <a href="manut_usuario.php?acao=editar&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-warning btn-xs">
+                                        <a title="Tornar Administrador" href="lista_usuario.php?acao=setadm&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-info btn-xs">
+                                            <span class="glyphicon glyphicon-user"></span>
+                                        </a>
+                                        <a title="Editar" href="manut_usuario.php?acao=editar&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-warning btn-xs">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
-                                        <a href="lista_usuario.php?acao=deletar&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-danger btn-xs btn-deletar">
+                                        <a title="Deletar" href="lista_usuario.php?acao=deletar&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-danger btn-xs btn-deletar">
                                             <span class="glyphicon glyphicon-remove"></span>
                                         </a>
                                     </td>
