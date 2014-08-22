@@ -1,6 +1,9 @@
 <?php
     require_once '../../config.php';
     
+    $titulo= null;
+    $IDtutorial= null;
+    $conteudo= null;
     if(isset($_POST['acao'])){
         switch($_POST['acao']){
             case 'gravar':
@@ -17,8 +20,31 @@
                 }
                 
                 break;
+            
+            
+                   
         }
     }
+    if(isset($_GET['acao'])){
+        switch($_GET['acao']){
+            case 'editar':                
+                try{
+                    $codigo = $_GET['codigo'];  
+                    
+                    $topico = \Servico\TopicoDAO::getTopico($codigo);
+                                  
+                    $titulo = $topico->Titulo;
+                    $conteudo = $topico->Conteudo;
+                    $IDtutorial = $topico->Tutorial->Codigo;
+                }catch(Exception $ex){
+                    $erro = $ex->getMessage();
+                }               
+                break;    
+        }
+    }
+   
+    $comboTutorial = Servico\TutorialDAO::listar();
+    $tutoriais = Servico\TutorialDAO::listarTutoriais();
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -28,6 +54,7 @@
         <title>Cadastrar Tópico</title>
         <link rel="stylesheet" href="../../libs/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="../layout/default.css">
+        <link rel="stylesheet" href="../../libs/editor/bootstrap-wysihtml5.css">
     </head>
     <body role="document">
         <?php require_once '../layout/cabecalho.php';?>
@@ -40,24 +67,28 @@
            
             <form name="frmManutTopico" id="frmManutTopico" class="form" action="manut_topico.php" method="post">
                 <input type="hidden" name="acao" value="gravar" />
+                <input type="hidden" name="codigo" value="<?php echo (int)$_GET['codigo']; ?>" />
                 <div class="panel panel-info">
                     <div class="panel-body">
-                        <div class="form-group">
+                        <div class="col-md-9 form-group">
                             <label for="txtTitulo">Título</label>
-                            <input type="text" name="txtTitulo" id="txtTitulo" class="form-control input-md"/>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="txtConteudo">Conteúdo</label>
-                            <input type="text" name="txtConteudo" id="txtConteudo" class="form-control"/>
+                            <input type="text" name="txtTitulo" id="txtTitulo" class="form-control input-md" autofocus="true" value="<?php echo $titulo;?>"/>
                         </div>
                         
                         <!-- Combo carregado com os tutoriais disponíveis -->
-                        <div class="form-group">
+                        <div class="col-md-3 form-group">
                             <label for="cmbTutorial">Tutorial</label>
                             <select class="form-control input-md" id="cmbTutorial" name="cmbTutorial">
-                                <option value="1">Carregar os tutoriais existentes</option>
+                                <option value="1">-- Selecione --</option>
+                                <?php foreach($tutoriais as $tut) : ?>
+                                <option value="<?php echo $tut->Codigo; ?>" <?php echo (($tut->Codigo == $IDtutorial) ? "selected='selected'" : "") ?>><?php echo $tut->Nome; ?></option>
+                                <?php endforeach; ?>                                
                             </select>
+                        </div>
+                        
+                        <div class="col-md-12 form-group">
+                            <label for="txtConteudo">Conteúdo</label>
+                            <textarea type="text" name="txtConteudo" id="txtConteudo" class="form-control" value="<?php echo $conteudo;?>"></textarea>
                         </div>
                     </div> <!-- /painel body(corpo do painel) -->
                 </div> <!-- fim do painel -->
@@ -75,5 +106,11 @@
     </body>
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../layout/default.js"></script>
+    <script type="text/javascript" src="../../libs/editor/wysihtml5-0.3.0.js"></script>
+    <script type="text/javascript" src="../../libs/editor/bootstrap3-wysihtml5.js"></script>
+    <script type="text/javascript" src="../../libs/editor/bootstrap-wysihtml5.pt-BR.js"></script>
+    
+    <script type="text/javascript" src="manut_topico.js"></script>
 </html>
 

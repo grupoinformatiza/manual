@@ -1,6 +1,17 @@
 $(function(){
     $('#cmbEstado').change(carregarCidades);
+    $('#frmManutUsuario').submit(validaUsuario);
 });
+
+function validaUsuario(e){
+    if($('#txtNome').val() == ''){
+        $('#txtNome').attr('placeholder','preencha o nome');
+        $('#txtNome').parent('.form-group').addClass('has-error');
+        e.preventDefault();
+    }else{
+        $('#txtNome').parent('.form-group').removeClass('has-error');
+    }
+}
 
 function carregarCidades(){
     var est = $('#cmbEstado').val();

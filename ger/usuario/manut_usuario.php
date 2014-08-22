@@ -19,6 +19,8 @@
 
                     if(isset($_POST['codigo']) && $_POST['codigo'] != 0)
                         $usuario->Codigo = $_POST['codigo'];
+                    else
+                        $usuario->Senha = $_POST['txtSenha'];
                     
                     $usuario->Nome = $_POST['txtNome'];
                     $usuario->DataNascimento = $_POST['txtDtNasc'];
@@ -26,6 +28,7 @@
                     $usuario->Sexo = $_POST['cmbSexo'];
                     $usuario->Email = $_POST['txtEmail'];
                     $usuario->Login = $_POST['txtLogin'];
+                    
                     Servico\UsuarioDAO::gravar($usuario);
                     $sucesso = urlencode("Usuário gravado com sucesso!");
                     header("Location: lista_usuario.php?msg=".$sucesso);
@@ -142,16 +145,22 @@
                         <fieldset class="panel panel-info">
                             <div class="panel-heading">Dados para Acesso</div>
                             <div class="panel-body">
-                                <div class="col-md-6 form-group">
+                                <div class="col-md-5 form-group">
                                     <label for="txtEmail">Email</label>
                                     <input type="text" name="txtEmail" id="txtEmail" class="form-control input-md" value="<?php echo $email; ?>" />
                                     
                                 </div>
 
-                                <div class="col-md-6 form-group">
+                                <div class="col-md-4 form-group">
                                     <label for="txtLogin">Login</label>
                                     <input type="text" name="txtLogin" id="txtLogin" class="form-control input-md" value="<?php echo $login; ?>" />
                                 </div>
+                                
+                                <div class="col-md-3 form-group">
+                                    <label for="txtSenha">Senha</label>
+                                    <input type="password" name="txtSenha" id="txtSenha" class="form-control input-md" />
+                                </div>
+                                
                             </div>
                         </fieldset> <!-- /fieldset dados para acesso -->
 

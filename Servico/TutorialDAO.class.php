@@ -119,4 +119,17 @@ class TutorialDAO{
             throw new Exception("Não foi possível deletar o tutorial!");
     }
     
+        
+    public static function listarTutoriais(){
+        $sql = "SELECT tut_codigo Codigo,tut_nome Nome,tut_tipo Tipo "
+            . "FROM tutorial where tut_deletado = FALSE";
+
+        $cnn = \Suporte\PdoFactory::getConexao();
+
+        $st = $cnn->prepare($sql);
+        $st->execute();
+
+        return $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Tutorial");
+    }     
+    
 }
