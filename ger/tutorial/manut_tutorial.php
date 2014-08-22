@@ -4,12 +4,15 @@
     if(isset($_POST['acao'])){
         switch($_POST['acao']){
             case 'gravar':
-                
-                try{
+                           
+                try{                                      
                     $tutorial = new Entidade\Tutorial();
                     $tutorial->Nome = $_POST['txtNome'];
                     $tutorial->Tipo = $_POST['cmbTipo'];   
-                                        
+                    
+                    
+                    if(isset($_POST['codigo']) && $_POST['codigo'] != 0)
+                        $tutorial->Codigo = $_POST['codigo'];
                     if(isset($_FILES['filImagem']))
                         $tutorial->Imagem = $_FILES['filImagem'];
                                         
@@ -25,6 +28,7 @@
     }
     $nome = null;
     $tipo = null;
+    $imagem = null;
         
     if(isset($_GET['acao'])){        
         switch($_GET['acao']){
@@ -36,6 +40,7 @@
                     
                     $nome = $tutorial->Nome;
                     $tipo = $tutorial->Tipo;
+                    $imagem = $tutorial->Imagem;
                     
                 }catch(Exception $ex){
                     $erro = $ex->getMessage();
@@ -69,6 +74,7 @@
             
             <form name="frmManutTutorial" id="frmManutTutorial" class="form" action="manut_tutorial.php" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="acao" value="gravar" />
+                <input type="hidden" name="codigo" value="<?php echo (int)$_GET['codigo']; ?>" />
                 <div class="panel panel-info">
                     <div class="panel-body">
                         <div class="form-group">
@@ -90,7 +96,7 @@
                                 <input type="file" id="filImagem" name="filImagem" accept="image/*" />
                             </span>
                         </div>
-                        <div class="form-group hidden img-preview">
+                        <div class="form-group img-preview">
                             <div class="thumbnail">
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-success">
@@ -98,7 +104,7 @@
                                     </div>
                                 </div>
                                 
-                                <img src="" id="preview">
+                                <img src="<?php echo $imagem;?>" id="preview">
                             </div>
                             <p class="help-block">Pré visualização da imagem (Só será enviada quando clicar em salvar)</p>
                         </div>    

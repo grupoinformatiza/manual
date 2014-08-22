@@ -94,10 +94,10 @@ require_once '../../config.php';
                                     <td><?php echo $tut->Nome; ?></td>
                                     <td><?php echo $tut->TipoDescricao; ?></td>
                                     <td class="text-right">                                                                              
-                                        <a href="manut_tutorial.php?acao=editar&codigo=1" class="btn btn-warning btn-xs">
+                                        <a href="manut_tutorial.php?acao=editar&codigo=<?php echo $tut->Codigo; ?>" class="btn btn-warning btn-xs">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
-                                        <a href="manut_tutorial.php?acao=deletar&codigo=1" class="btn btn-danger btn-xs">
+                                        <a href="lista_tutorial.php?acao=deletar&codigo=<?php echo $tut->Codigo; ?>" class="btn btn-danger btn-xs btn-deletar">
                                             <span class="glyphicon glyphicon-remove"></span>
                                         </a>
 
