@@ -1,9 +1,32 @@
 <?php
 require_once '../../config.php';
-    if(!isset($pgControllerUsu))
-        $tutoriais = Servico\TutorialDAO::listar();
+    if (isset($_GET['acao'])){        
+        switch($_GET['acao']){
+            case 'deletar':
+                $codigo = $_GET['codigo'];
+                try{
+                    Servico\TopicoDAO::deletarTopico($codigo);
+                    $sucesso = "Tópico deletado com sucesso";
+                } catch (Exception $ex) {
+                    $erro = $ex->getMessage();
+                }
+            break;
+            case 'pesquisa':
+                $titulo = $_GET['txtPesquisarTopico'];
+                try{
+                    $pgControllerTop = \Servico\TopicoDAO::listarPaginacao($titulo);
+                } catch (Exception $ex) {
+                    $erro = $ex->getMessage();
+                }     
+                break;
+                    
+        }        
+    }
+    //listando tutoriais para o campo de pesquisa por tutorial    
+    if(!isset($pgControllerTop))
+        $pgControllerTop = Servico\TopicoDAO::listarPaginacao();
+    $tutoriais = Servico\TutorialDAO::listar();
     
-      
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -33,12 +56,15 @@ require_once '../../config.php';
                     </a>
                 </div>
                 
-                <form method="get" name="frmBuscarTopico" id="frmBuscarTopico" action="lista_topico.php">                                    
-                    <div class="input col-md-4 form-group">
+                <form method="get" name="frmBuscarTopico" id="frmBuscarTopico" action="lista_topico.php">   
+                    <input type="hidden" name="acao" value="pesquisa" />
+                    <div class="col-md-4 form-group">
                         <div class="input-group">
                             <input type="text" name="txtPesquisarTopico" id="txtPesquisarTopico" class="form-control input-md" placeholder="Procurar tópicos..."/>
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-search"></span>
+                            <span class="input-group-btn">
+                                <button class="btn btn-md btn-default" type="submit">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
                             </span>
                         </div>                   
 
@@ -56,6 +82,7 @@ require_once '../../config.php';
             <!-- Linha para tabela -->
             <div class="row">
                 <div class="col-md-12">
+                    <?php $pgControllerTop->pag->printResultBar(); ?>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead> 
@@ -66,38 +93,27 @@ require_once '../../config.php';
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php foreach($pgControllerTop->res as $top) : ?>
                                 <tr>
-                                    <td>001</td>
-                                    <td>Introdução</td>
-                                    <td class="text-right">                                                                        
-                                        
-                                        <a href="manut_topico.php?acao=editar&codigo=1" class="btn btn-warning btn-xs">
+                                    <td><?php echo $top->Codigo; ?></td>
+                                    <td><?php echo $top->Titulo; ?></td>
+                                    <td class="text-right">                                                                                                                
+                                        <a href="manut_topico.php?acao=editar&codigo=<?php echo $top->Codigo; ?>" class="btn btn-warning btn-xs">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
-                                        <a href="manut_topico.php?acao=deletar&codigo=1" class="btn btn-danger btn-xs">
+                                        <a href="lista_topico.php?acao=deletar&codigo=<?php echo $top->Codigo; ?>" class="btn btn-danger btn-xs btn-deletar">
                                             <span class="glyphicon glyphicon-remove"></span>
                                         </a>
-
                                     </td>
                                 </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div> <!-- table responsive -->
                 </div> <!-- col que envolve tabela -->
             </div> <!--/row (fim da linha para a tabela de cadastro)-->
-            <div class="row">
-                <div class="col-md-4 col-md-offset-4 text-center">
-                     <ul class="pagination">
-                        <li><a href="#">&laquo;</a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                      </ul>
-                </div>
-            </div>
+            <!-- Linha da paginação -->
+            <?php $pgControllerTop->pag->printNavigationBar(); ?>            
         </div> <!-- container -->
     </body>
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
