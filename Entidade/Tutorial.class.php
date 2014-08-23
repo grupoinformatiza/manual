@@ -26,7 +26,9 @@ use Exception;
         }
         
         public function getTipoDescricao(){
-            return ($this->tipo == 1)?'Usuário':'Administrador';
+            if($this->Tipo == 1)
+                return "Usuário";
+            return "Administrador";
         }
         
         public function getTipo(){

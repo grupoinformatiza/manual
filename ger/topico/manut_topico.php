@@ -62,7 +62,11 @@
             <div class="page-header">
                 <h1>Tópico</h1>
             </div>
-            
+                <a href="lista_topico.php" class="btn btn-success btn-md">
+                    <span class="glyphicon glyphicon-arrow-left"></span>  Voltar
+                </a>
+            <br/>
+            <br>
             <?php require_once '../layout/mensagens.php'; ?>
            
             <form name="frmManutTopico" id="frmManutTopico" class="form" action="manut_topico.php" method="post">
@@ -79,7 +83,7 @@
                         <div class="col-md-3 form-group">
                             <label for="cmbTutorial">Tutorial</label>
                             <select class="form-control input-md" id="cmbTutorial" name="cmbTutorial">
-                                <option value="1">-- Selecione --</option>
+                                <option value="">-- Selecione --</option>
                                 <?php foreach($tutoriais as $tut) : ?>
                                 <option value="<?php echo $tut->Codigo; ?>" <?php echo (($tut->Codigo == $IDtutorial) ? "selected='selected'" : "") ?>><?php echo $tut->Nome; ?></option>
                                 <?php endforeach; ?>                                
@@ -88,7 +92,7 @@
                         
                         <div class="col-md-12 form-group">
                             <label for="txtConteudo">Conteúdo</label>
-                            <textarea type="text" name="txtConteudo" id="txtConteudo" class="form-control" value="<?php echo $conteudo;?>"></textarea>
+                            <textarea type="text" name="txtConteudo" id="txtConteudo" class="form-control"><?php echo $conteudo;?></textarea>
                         </div>
                     </div> <!-- /painel body(corpo do painel) -->
                 </div> <!-- fim do painel -->
