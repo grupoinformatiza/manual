@@ -8,7 +8,9 @@
           <span class="icon-bar"></span>
         </button>
           <a class="navbar-brand" href="<?php echo ROOT_PATH ?>ger/index.php"><img src="<?php echo ROOT_PATH ?>imagens/informatiza_pequeno.png"> Informatiza</a>
+          
       </div>
+     
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
             <li <?php Suporte\ViewHelper::getMenuAtivo('usuario'); ?>><a href="<?php echo ROOT_PATH ?>ger/usuario/lista_usuario.php">Usuário</a></li>
@@ -16,6 +18,12 @@
             <li <?php Suporte\ViewHelper::getMenuAtivo('topico'); ?>><a href="<?php echo ROOT_PATH ?>ger/topico/lista_topico.php">Tópico</a></li>
           <!--<li><a href="rel_estatistica.php">Estatística</a></li>-->
         </ul>
+        <p class="navbar-text pull-right">
+         Logado como Raphael Garnica&nbsp;
+         <a class="navbar-btn">
+             <span class="glyphicon glyphicon-log-out"></span> Sair
+         </a>
+        </p>
       </div><!--/.nav-collapse -->
     </div>
 </div>
