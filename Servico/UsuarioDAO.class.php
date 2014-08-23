@@ -34,7 +34,7 @@ class UsuarioDAO{
         $st->bindValue(':sexo', $usuario->Sexo);
         $st->bindValue(':email', $usuario->Email);
         $st->bindValue(':cidade', $usuario->Cidade->Codigo);
-        $st->bindValue(':login', $usuario->Login);
+        $st->bindValue(':login', strtoupper($usuario->Login));
         if($usuario->Codigo == '')
             $st->bindValue(':senha', md5($usuario->Senha));
         
@@ -43,10 +43,11 @@ class UsuarioDAO{
     
    
     public static function listarPorNome($nome){
+        $nome = strtoupper($nome);
         if(is_null($nome))
             throw new Exception("Preencha corretamente o nome");
         $con = \Suporte\PdoFactory::getConexao();
-        $sql = "SELECT usu_codigo Codigo,usu_nome Nome,usu_email Email FROM usuario WHERE usu_deletado = False AND usu_nome LIKE :nome";
+        $sql = "SELECT usu_codigo Codigo,usu_nome Nome,usu_email Email FROM usuario WHERE usu_deletado = False AND upper(usu_nome) LIKE :nome";
         
         
         
@@ -107,16 +108,16 @@ class UsuarioDAO{
     
 
     public static function validaLogin($login, $cod_usuario=0){
-        
+        $login = strtoupper($login);
         $con = \Suporte\PdoFactory::getConexao();
         
         /* Verificação se o campo login está sendo alterado durante 
                 uma edição */
         
         if($cod_usuario != 0)
-            $sql = "SELECT USU_CODIGO FROM USUARIO WHERE usu_login = :login and usu_deletado = false and USU_CODIGO <> :cod_usuario";
+            $sql = "SELECT USU_CODIGO FROM USUARIO WHERE upper(usu_login) = :login and usu_deletado = false and USU_CODIGO <> :cod_usuario";
         else       
-            $sql = "SELECT USU_CODIGO FROM USUARIO WHERE usu_login = :login and usu_deletado = false";
+            $sql = "SELECT USU_CODIGO FROM USUARIO WHERE upper(usu_login) = :login and usu_deletado = false";
         $st = $con->prepare($sql);
         $st->bindValue(':login', $login);
         if($cod_usuario != 0)

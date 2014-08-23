@@ -52,7 +52,7 @@ require_once '../../config.php';
                 <h1>Tutoriais</h1>
             </div>
             
-            <?php require_once '../layout/mensagens.php'; ?>
+            
             
             <!-- Linha para novo e busca -->
             <div class="row">
@@ -79,6 +79,7 @@ require_once '../../config.php';
             <div class="row">
                 <div class="col-md-12">
                     <?php $pgControllerTut->pag->printResultBar(); ?>
+                    <?php require_once '../layout/mensagens.php'; ?>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead> 

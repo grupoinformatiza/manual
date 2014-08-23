@@ -85,7 +85,7 @@
                             <select class="form-control input-md" id="cmbTutorial" name="cmbTutorial">
                                 <option value="">-- Selecione --</option>
                                 <?php foreach($tutoriais as $tut) : ?>
-                                <option value="<?php echo $tut->Codigo; ?>" <?php echo (($tut->Codigo == $IDtutorial) ? "selected='selected'" : "") ?>><?php echo $tut->Nome; ?></option>
+                                <option value="<?php echo $tut->Codigo; ?>" <?php echo (($tut->Codigo == $IDtutorial) ? "selected='selected'" : "") ?>><?php echo $tut->Nome . ' ('.$tut->TipoDescricao.')'  ?></option>
                                 <?php endforeach; ?>                                
                             </select>
                         </div>
