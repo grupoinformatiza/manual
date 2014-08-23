@@ -20,3 +20,21 @@ $(function(){
         $('.alert-success').alert('close');
     },2500);
 });
+
+function validarCampos(campos){
+    
+    var arrayCampos = campos.split(',');
+    var deuCerto = true;
+    for(var x in arrayCampos){
+        var campo = arrayCampos[x];
+        var c = $('#'+campo);
+        if(c.val() == ''){ //pesquisar se é um select
+            c.attr('placeholder','Preencha o campo...');
+            c.parent('.form-group').addClass('has-error');
+            deuCerto = false;
+        }else{
+            c.parent('.form-group').removeClass('has-error');
+        }
+    }
+    return deuCerto;
+}

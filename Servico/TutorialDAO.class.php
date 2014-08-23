@@ -50,10 +50,11 @@ class TutorialDAO{
     }
     
      public static function listarPorNome($nome){
+        $nome = strtoupper($nome); 
         if(is_null($nome))
             throw new Exception("Preencha corretamente o nome");
         $con = \Suporte\PdoFactory::getConexao();
-        $sql = "SELECT tut_codigo Codigo,tut_nome Nome,tut_imagem Imagem FROM tutorial WHERE tut_deletado = False AND tut_nome LIKE :nome";
+        $sql = "SELECT tut_codigo Codigo,tut_nome Nome,tut_imagem Imagem FROM tutorial WHERE tut_deletado = False AND upper(tut_nome) LIKE :nome";
                               
         $paginacao = \Suporte\ViewHelper::prepararPaginacao($con,$sql,array(':nome'=>'%'.$nome.'%'));
        
