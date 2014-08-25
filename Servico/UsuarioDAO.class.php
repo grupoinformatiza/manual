@@ -47,7 +47,7 @@ class UsuarioDAO{
         if(is_null($nome))
             throw new Exception("Preencha corretamente o nome");
         $con = \Suporte\PdoFactory::getConexao();
-        $sql = "SELECT usu_codigo Codigo,usu_nome Nome,usu_email Email FROM usuario WHERE usu_deletado = False AND upper(usu_nome) LIKE :nome";
+        $sql = "SELECT usu_codigo Codigo,usu_nome Nome,usu_email Email,usu_adm Adm FROM usuario WHERE usu_deletado = False AND upper(usu_nome) LIKE :nome";
         
         
         
@@ -67,7 +67,7 @@ class UsuarioDAO{
     
     public static function listar(){
         $con = \Suporte\PdoFactory::getConexao();
-        $sql = "SELECT usu_codigo Codigo,usu_nome Nome,usu_email Email FROM usuario WHERE usu_deletado = False";
+        $sql = "SELECT usu_codigo Codigo,usu_nome Nome,usu_email Email,usu_adm Adm FROM usuario WHERE usu_deletado = False";
         
         $paginacao = \Suporte\ViewHelper::prepararPaginacao($con,$sql);
         
