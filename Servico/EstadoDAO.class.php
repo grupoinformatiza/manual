@@ -9,7 +9,7 @@ class EstadoDAO{
     
     public static function listarEstados(){
         
-        $sql = "SELECT est_codigo codigo, est_nome nome, est_sigla sigla, est_ibge codigoibge "
+        $sql = "SELECT est_codigo codigo, est_nome nome, est_sigla sigla "
                 . "FROM estado";
         
         $cnn = PdoFactory::getConexao();
@@ -25,7 +25,7 @@ class EstadoDAO{
         if(trim($codigoEstado) == '')
             throw new Exception("Código do estado não foi preenchido. Não será possível carrega-lo");
         
-        $sql = "SELECT est_codigo codigo, est_nome nome, est_sigla sigla, est_ibge codigoibge "
+        $sql = "SELECT est_codigo codigo, est_nome nome, est_sigla sigla "
                 . "FROM estado "
                 . "WHERE est_codigo = :cod";
         

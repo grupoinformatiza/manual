@@ -12,7 +12,7 @@ class CidadeDAO{
         
         $cn = \Suporte\PdoFactory::getConexao();
         
-        $sql = "SELECT cid_codigo, cid_nome,cid_ibge "
+        $sql = "SELECT cid_codigo, cid_nome "
                 . "FROM cidade "
                 . "WHERE est_codigo = :estado";
         $st  = $cn->prepare($sql);
@@ -24,7 +24,7 @@ class CidadeDAO{
         $ret = array();
         
         while($cid = $st->fetchObject()){
-            $ret[] = new \Entidade\Cidade($cid->cid_codigo,$cid->cid_nome,$objEstado,$cid->cid_ibge);
+            $ret[] = new \Entidade\Cidade($cid->cid_codigo,$cid->cid_nome,$objEstado);
         }
         
         return $ret;
@@ -48,7 +48,7 @@ class CidadeDAO{
         
         $estado = EstadoDAO::carregarEstado($cid->est_codigo);
         
-        $cidade = new \Entidade\Cidade($cid->cid_codigo,$cid->cid_nome,$estado,$cid->cid_ibge);
+        $cidade = new \Entidade\Cidade($cid->cid_codigo,$cid->cid_nome,$estado);
         
         return $cidade;
     }

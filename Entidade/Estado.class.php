@@ -7,7 +7,6 @@ use Exception;
     class Estado extends Base {
         private $nome;
         private $sigla;
-        private $codigoibge;
 
 
         public function __toString() {
@@ -34,17 +33,5 @@ use Exception;
                 return $this->sigla;
         }
 
-        public function setCodigoibge($_codigoibge) {
-                if ($_codigoibge > 0){
-                        $this->codigoibge = $_codigoibge;
-                }else{
-
-                    $message = "Código do IBGE deve ser maior que 0!";
-                    throw new Exception($message);
-                }
-        }
         
-        public function getCodigoibge(){
-            return $this->codigoibge;
-        }
     }
