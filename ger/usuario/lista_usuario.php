@@ -30,11 +30,12 @@
                 break;
             case 'setadm':
                 
-                $codigo = $_GET['codigo'];
-                $adm = $_GET['adm'];
+              
                 
                 try{
-                    Servico\UsuarioDAO::deletarUsuario($codigo);
+                    $codigo = $_GET['codigo'];
+                    $usuario = Servico\UsuarioDAO::getUsuario($codigo);
+                    Servico\UsuarioDAO::trocaAdm($usuario);
                     $sucesso = "Usuário deletado com sucesso";
                 } catch (Exception $ex) {
                     $erro = $ex->getMessage();

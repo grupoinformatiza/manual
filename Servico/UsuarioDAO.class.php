@@ -149,7 +149,7 @@ class UsuarioDAO{
 
     }
     
-    public static function trocaAdm($codigoUsuario, $adm){
+    public static function trocaAdm($usuario){
         $cod = (int)$codigoUsuario;
         if($cod <= 0)
             throw new Exception("Código Inválido");
