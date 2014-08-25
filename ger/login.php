@@ -11,25 +11,28 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
+                    <?php require_once 'layout/mensagens.php'; ?>
                     <h1>Entrar</h1>
-                    <form>
-                        <div class="form-group">
+                    <form name="frmLogin" id="frmLogin" method="post" action="login.php">
+                        <div class="form-group has-feedback">
                             <label class="sr-only">Login</label>
-                            <input type="text" class="form-control input-lg" placeholder="Login"/>
+                            <span class="glyphicon form-control-feedback glyphicon-user"></span>
+                            <input type="text" class="form-control input-lg" placeholder="Login" autofocus="true"/>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group has-feedback">
                             <label class="sr-only">Senha</label>
+                            <span class="glyphicon form-control-feedback glyphicon-lock"></span>
                             <input type="password" class="form-control input-lg" placeholder="Senha"/>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-lg btn-info pull-right">Entrar</button>        
+                            <button type="submit" class="btn btn-lg btn-primary pull-right">OK</button>        
                         </div>
                     </form>
-                    <div class="alert alert-danger">Dados inválidos</div>
                 </div>
             <div/>
         </div>
     </body>
     <script type="text/javascript" src="../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../libs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="layout/default.js"></script>
 </html>
