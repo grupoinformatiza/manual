@@ -1,3 +1,13 @@
+<?php
+    if(isset($_POST['txtLogin'])){
+        try{
+            \Suporte\Autenticacao::autenticar($_POST['txtLogin'], $_POST['txtSenha']);
+        } catch (Exception $ex) {
+            $erro = $ex->getMessage();
+        }
+    }
+?>
+
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -15,14 +25,14 @@
                     <h1>Entrar</h1>
                     <form name="frmLogin" id="frmLogin" method="post" action="login.php">
                         <div class="form-group has-feedback">
-                            <label class="sr-only">Login</label>
+                            <label for="txtlogin" class="sr-only">Login</label>
                             <span class="glyphicon form-control-feedback glyphicon-user"></span>
-                            <input type="text" class="form-control input-lg" placeholder="Login" autofocus="true"/>
+                            <input type="text" class="form-control input-lg" placeholder="Login" autofocus="true" name="txtLogin" id="txtLogin"/>
                         </div>
                         <div class="form-group has-feedback">
-                            <label class="sr-only">Senha</label>
+                            <label for="txtLogin" class="sr-only">Senha</label>
                             <span class="glyphicon form-control-feedback glyphicon-lock"></span>
-                            <input type="password" class="form-control input-lg" placeholder="Senha"/>
+                            <input type="password" class="form-control input-lg" placeholder="Senha" id="txtSenha" id="txtSenha"/>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-lg btn-primary pull-right">OK</button>        
