@@ -92,7 +92,7 @@
                         
                         <div class="col-md-12 form-group">
                             <label for="txtConteudo">Conteúdo</label>
-                            <textarea type="text" name="txtConteudo" id="txtConteudo" class="form-control"><?php echo $conteudo;?></textarea>
+                            <textarea type="text" name="txtConteudo" id="txtConteudo" rows="13" class="form-control"><?php echo $conteudo;?></textarea>
                         </div>
                     </div> <!-- /painel body(corpo do painel) -->
                 </div> <!-- fim do painel -->
