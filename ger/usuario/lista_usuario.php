@@ -28,6 +28,19 @@
                 
                 
                 break;
+            case 'setadm':
+                
+                $codigo = $_GET['codigo'];
+                $adm = $_GET['adm'];
+                
+                try{
+                    Servico\UsuarioDAO::deletarUsuario($codigo);
+                    $sucesso = "Usuário deletado com sucesso";
+                } catch (Exception $ex) {
+                    $erro = $ex->getMessage();
+                }                
+                
+                break;
             
         }
     }
@@ -98,7 +111,7 @@
                                     <td><?php echo $usu->Nome; ?></td>
                                     <td><?php echo $usu->Email; ?></td>
                                     <td class="text-right">  
-                                        <a title="Tornar Administrador" href="lista_usuario.php?acao=setadm&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-info btn-xs">
+                                        <a title="Tornar Administrador" href="lista_usuario.php?acao=setadm&codigo&adm=<?php echo $usu->Codigo; $usu->Adm?>" class="btn btn-info btn-xs">
                                             <span class="glyphicon glyphicon-user"></span>
                                         </a>
                                         <a title="Editar" href="manut_usuario.php?acao=editar&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-warning btn-xs">

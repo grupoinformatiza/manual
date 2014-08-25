@@ -148,5 +148,27 @@ class UsuarioDAO{
 
     }
     
+    public static function trocaAdm($codigoUsuario, $adm){
+        $cod = (int)$codigoUsuario;
+        if($cod <= 0)
+            throw new Exception("Código Inválido");
+        
+        
+        
+        
+        $con = \Suporte\PdoFactory::getConexao();
+        
+
+        
+        
+        $sql = "UPDATE usuario SET usu_adm = True WHERE usu_codigo = :cod AND usu_deletado = False";
+        $st  = $con->prepare($sql);
+        $st->bindValue(':cod', $cod, PDO::PARAM_INT);
+        $st->execute();
+        if(!$st->rowCount())
+            throw new Exception("Usuário não encontrado. Não foi possível torna-lo administrador");
+
+    }    
+    
 }
 
