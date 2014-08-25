@@ -52,7 +52,7 @@
                 <h1>Usuários</h1>
             </div>
             
-            <?php require_once '../layout/mensagens.php'; ?>
+            
             
             <!-- Linha para novo e busca -->
             <div class="row">
@@ -80,6 +80,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <?php $pgControllerUsu->pag->printResultBar(); ?>
+                    <?php require_once '../layout/mensagens.php'; ?>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead> 

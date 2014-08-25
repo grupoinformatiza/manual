@@ -25,7 +25,7 @@ require_once '../../config.php';
     //listando tutoriais para o campo de pesquisa por tutorial    
     if(!isset($pgControllerTop))
         $pgControllerTop = Servico\TopicoDAO::listarPaginacao();
-    $tutoriais = Servico\TutorialDAO::listar();
+    $tutoriais = Servico\TutorialDAO::listarTutoriais();
     
 ?>
 <!DOCTYPE HTML>
@@ -46,7 +46,7 @@ require_once '../../config.php';
                 <h1>Tópicos</h1>
             </div>
             
-            <?php require_once '../layout/mensagens.php'; ?>
+            
             
             <!-- Linha para novo e busca -->
             <div class="row">
@@ -55,6 +55,8 @@ require_once '../../config.php';
                         <span class="glyphicon glyphicon-plus"></span> Novo
                     </a>
                 </div>
+             
+            
                 
                 <form method="get" name="frmBuscarTopico" id="frmBuscarTopico" action="lista_topico.php">   
                     <input type="hidden" name="acao" value="pesquisa" />
@@ -73,16 +75,18 @@ require_once '../../config.php';
                         <select class="form-control input-md" id="cmbTutorial" name="cmbTutorial">
                             <option value="1">-- Selecione --</option>
                             <?php foreach($tutoriais as $tut) : ?>
-                                <option value="<?php echo $tut->Codigo; ?>" ><?php echo $tut->Nome; ?></option>
+                                <option value="<?php echo $tut->Codigo; ?>" ><?php echo $tut->Nome . ' ('.$tut->TipoDescricao.')' ?></option>
                             <?php endforeach; ?>                         
                         </select>
                     </div>
                 </form>
             </div> <!--/row(fim da linha para busca e novo)-->
+            
             <!-- Linha para tabela -->
             <div class="row">
                 <div class="col-md-12">
                     <?php $pgControllerTop->pag->printResultBar(); ?>
+                    <?php require_once '../layout/mensagens.php'; ?>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead> 
