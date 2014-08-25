@@ -103,6 +103,7 @@ class UsuarioDAO{
         $usuario->DataNascimento = $u->usu_nasc;
         $usuario->Cidade = CidadeDAO::carregarCidade($u->cid_codigo);
         
+        
         return $usuario;
     }
     
