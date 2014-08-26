@@ -29,7 +29,7 @@
                         </div>
                     </form>
                 </div>
-            <div/>
+            </div>
         </div>
     </body>
     <script type="text/javascript" src="../libs/jquery-1.11.1.min.js" ></script>
