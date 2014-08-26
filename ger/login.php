@@ -7,6 +7,16 @@
             $erro = $ex->getMessage();
         }
     }
+    if(isset($_GET['acao']) && $_GET['acao']== 'sair'){
+        try{
+            Suporte\Autenticacao::sair();
+            $sucesso = "Logout efetuado com sucesso";
+        } catch (Exception $ex) {
+            $erro = $ex->getMessage();
+        }
+    }
+    if(isset($_GET['erro']))
+        $erro = $_GET['erro'];
 ?>
 
 <!DOCTYPE HTML>
@@ -45,5 +55,5 @@
     </body>
     <script type="text/javascript" src="../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../libs/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="layout/default.js"></script>
+    <script type="text/javascript" src="./layout/default.js"></script>
 </html>

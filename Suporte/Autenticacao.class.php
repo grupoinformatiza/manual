@@ -11,7 +11,7 @@ class Autenticacao{
         if(trim($senha) == '')
             throw new Exception("Preencha a senha");
         
-        $sql = "SELECT usu_codigo,usu_adm FROM usuario WHERE usu_login = :login AND usu_senha = :senha AND usu_deletado = False";
+        $sql = "SELECT usu_codigo,usu_adm FROM usuario WHERE usu_login = :login AND usu_senha = :senha";
         $conexao = PdoFactory::getConexao();
         
         $st = $conexao->prepare($sql);
@@ -37,14 +37,20 @@ class Autenticacao{
     }
     
     public static function sair(){
-        header("Location: login.php");
+        session_start();
+        session_destroy();
     }
     
     public static function paginaSegura(){
-        $logado = true;
+        session_start();
+        
+        $logado = false;
+        if(isset($_SESSION['web']['usuario']))
+            $logado = true;
+        
         if(!$logado){
             $msg = urlencode("Somente administradores podem acessar esta página.");
-            header("Location: login.php?erro=$msg");
+            header("Location: ".ROOT_PATH."ger/login.php?erro=$msg");
         }
     }
     

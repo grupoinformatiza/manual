@@ -28,6 +28,19 @@
                 
                 
                 break;
+            case 'setadm':
+                
+                
+                try{
+                    $codigo = $_GET['codigo'];
+                    $usuario = Servico\UsuarioDAO::getUsuario($codigo);
+                    Servico\UsuarioDAO::trocaAdm($usuario);
+                    $sucesso = "Usuário alterado com sucesso";
+                } catch (Exception $ex) {
+                    $erro = $ex->getMessage();
+                }                
+                
+                break;
             
         }
     }
@@ -98,7 +111,7 @@
                                     <td><?php echo $usu->Nome; ?></td>
                                     <td><?php echo $usu->Email; ?></td>
                                     <td class="text-right">  
-                                        <a title="Tornar Administrador" href="lista_usuario.php?acao=setadm&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-info btn-xs">
+                                        <a title="Tornar Administrador" href="lista_usuario.php?acao=setadm&codigo=<?php echo $usu->Codigo; ?>"  <?php echo (($usu->Adm) ? " class='btn btn-info btn-xs' " : " class='btn btn-default btn-xs'") ?>  >
                                             <span class="glyphicon glyphicon-user"></span>
                                         </a>
                                         <a title="Editar" href="manut_usuario.php?acao=editar&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-warning btn-xs">
