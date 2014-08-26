@@ -1,4 +1,5 @@
 <?php
+    require_once '../config.php';
     if(isset($_POST['txtLogin'])){
         try{
             \Suporte\Autenticacao::autenticar($_POST['txtLogin'], $_POST['txtSenha']);
@@ -32,7 +33,7 @@
                         <div class="form-group has-feedback">
                             <label for="txtLogin" class="sr-only">Senha</label>
                             <span class="glyphicon form-control-feedback glyphicon-lock"></span>
-                            <input type="password" class="form-control input-lg" placeholder="Senha" id="txtSenha" id="txtSenha"/>
+                            <input type="password" class="form-control input-lg" placeholder="Senha" id="txtSenha" name="txtSenha"/>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-lg btn-primary pull-right">OK</button>        

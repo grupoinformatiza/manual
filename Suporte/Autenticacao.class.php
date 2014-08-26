@@ -1,5 +1,6 @@
 <?php 
 namespace Suporte;
+use Exception;
 class Autenticacao{
     
     public static function autenticar($login,$senha){
@@ -10,12 +11,12 @@ class Autenticacao{
         if(trim($senha) == '')
             throw new Exception("Preencha a senha");
         
-        $sql = "SELECT usu_codigo,usu_adm FROM usuario WHERE usu_login = :login AND usu_senha = :senha";
+        $sql = "SELECT usu_codigo,usu_adm FROM usuario WHERE usu_login = :login AND usu_senha = :senha AND usu_deletado = False";
         $conexao = PdoFactory::getConexao();
         
         $st = $conexao->prepare($sql);
-        $st->bindValue(':login', $login);
-        $st->bindValue(':senha', $senha);
+        $st->bindValue(':login', strtoupper($login));
+        $st->bindValue(':senha', md5($senha));
         $st->execute();
         
         if($st->rowCount() == 0)
