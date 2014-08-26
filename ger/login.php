@@ -1,4 +1,5 @@
 <?php
+    require_once '../config.php';
     if(isset($_POST['txtLogin'])){
         try{
             \Suporte\Autenticacao::autenticar($_POST['txtLogin'], $_POST['txtSenha']);
@@ -6,6 +7,16 @@
             $erro = $ex->getMessage();
         }
     }
+    if(isset($_GET['acao']) && $_GET['acao']== 'sair'){
+        try{
+            Suporte\Autenticacao::sair();
+            $sucesso = "Logout efetuado com sucesso";
+        } catch (Exception $ex) {
+            $erro = $ex->getMessage();
+        }
+    }
+    if(isset($_GET['erro']))
+        $erro = $_GET['erro'];
 ?>
 
 <!DOCTYPE HTML>
@@ -32,7 +43,7 @@
                         <div class="form-group has-feedback">
                             <label for="txtLogin" class="sr-only">Senha</label>
                             <span class="glyphicon form-control-feedback glyphicon-lock"></span>
-                            <input type="password" class="form-control input-lg" placeholder="Senha" id="txtSenha" id="txtSenha"/>
+                            <input type="password" class="form-control input-lg" placeholder="Senha" id="txtSenha" name="txtSenha"/>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-lg btn-primary pull-right">OK</button>        
@@ -44,5 +55,5 @@
     </body>
     <script type="text/javascript" src="../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../libs/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="layout/default.js"></script>
+    <script type="text/javascript" src="./layout/default.js"></script>
 </html>

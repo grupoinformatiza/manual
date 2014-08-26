@@ -1,3 +1,4 @@
+<?php Suporte\Autenticacao::paginaSegura() ?>
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -19,10 +20,14 @@
           <!--<li><a href="rel_estatistica.php">Estatística</a></li>-->
         </ul>
         <p class="navbar-text pull-right">
-         Logado como Raphael Garnica&nbsp;
-         <a class="navbar-btn">
+         <?php
+            if(isset($_SESSION['web']['usuario'])): $usu = $_SESSION['web']['usuario'];
+         ?>
+         <?php echo $usu->Nome; ?>&nbsp;
+         <a class="navbar-btn" href="<?php echo ROOT_PATH ?>ger/login.php?acao=sair">
              <span class="glyphicon glyphicon-log-out"></span> Sair
          </a>
+         <?php endif; ?>
         </p>
       </div><!--/.nav-collapse -->
     </div>

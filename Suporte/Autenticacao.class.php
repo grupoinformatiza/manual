@@ -1,5 +1,6 @@
 <?php 
 namespace Suporte;
+use Exception;
 class Autenticacao{
     
     public static function autenticar($login,$senha){
@@ -14,8 +15,8 @@ class Autenticacao{
         $conexao = PdoFactory::getConexao();
         
         $st = $conexao->prepare($sql);
-        $st->bindValue(':login', $login);
-        $st->bindValue(':senha', $senha);
+        $st->bindValue(':login', strtoupper($login));
+        $st->bindValue(':senha', md5($senha));
         $st->execute();
         
         if($st->rowCount() == 0)
@@ -36,14 +37,20 @@ class Autenticacao{
     }
     
     public static function sair(){
-        header("Location: login.php");
+        session_start();
+        session_destroy();
     }
     
     public static function paginaSegura(){
-        $logado = true;
+        session_start();
+        
+        $logado = false;
+        if(isset($_SESSION['web']['usuario']))
+            $logado = true;
+        
         if(!$logado){
             $msg = urlencode("Somente administradores podem acessar esta página.");
-            header("Location: login.php?erro=$msg");
+            header("Location: ".ROOT_PATH."ger/login.php?erro=$msg");
         }
     }
     
