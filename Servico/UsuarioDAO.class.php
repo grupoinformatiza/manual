@@ -47,7 +47,7 @@ class UsuarioDAO{
         if(is_null($nome))
             throw new Exception("Preencha corretamente o nome");
         $con = \Suporte\PdoFactory::getConexao();
-        $sql = "SELECT usu_codigo Codigo,usu_nome Nome,usu_email Email FROM usuario WHERE usu_deletado = False AND upper(usu_nome) LIKE :nome";
+        $sql = "SELECT usu_codigo Codigo,usu_nome Nome,usu_email Email,usu_adm Adm FROM usuario WHERE usu_deletado = False AND upper(usu_nome) LIKE :nome";
         
         
         
@@ -67,7 +67,7 @@ class UsuarioDAO{
     
     public static function listar(){
         $con = \Suporte\PdoFactory::getConexao();
-        $sql = "SELECT usu_codigo Codigo,usu_nome Nome,usu_email Email FROM usuario WHERE usu_deletado = False";
+        $sql = "SELECT usu_codigo Codigo,usu_nome Nome,usu_email Email,usu_adm Adm FROM usuario WHERE usu_deletado = False";
         
         $paginacao = \Suporte\ViewHelper::prepararPaginacao($con,$sql);
         
@@ -102,6 +102,7 @@ class UsuarioDAO{
         $usuario->Login = $u->usu_login;
         $usuario->DataNascimento = $u->usu_nasc;
         $usuario->Cidade = CidadeDAO::carregarCidade($u->cid_codigo);
+        $usuario->Adm = $u->usu_adm;
         
         return $usuario;
     }
@@ -147,6 +148,25 @@ class UsuarioDAO{
             throw new Exception("Usuário não encontrado. Não foi possível deletar.");
 
     }
+    
+    public static function trocaAdm($usuario){
+        $cod = $usuario->Codigo;
+        if($cod <= 0)
+            throw new Exception("Código Inválido");
+        
+        if($usuario->Adm) //se o usuario ja é adm
+            $sql = "UPDATE usuario SET usu_adm = False WHERE usu_codigo = :cod AND usu_deletado = False";  
+        else //se o usuario não é adm 
+            $sql = "UPDATE usuario SET usu_adm = True WHERE usu_codigo = :cod AND usu_deletado = False";
+        
+        
+        $con = \Suporte\PdoFactory::getConexao();        
+        $st  = $con->prepare($sql);
+        $st->bindValue(':cod', $cod, PDO::PARAM_INT);
+        $st->execute();
+        if(!$st->rowCount())
+            throw new Exception("Usuário não encontrado. Não foi possível torna-lo administrador.");
+    }    
     
 }
 

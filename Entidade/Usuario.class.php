@@ -10,6 +10,7 @@ use Exception;
         private $email;
         private $login;
         private $senha;
+        private $adm;
                
         public function setCidade(Cidade $_cidade){
             if($_cidade == "")
@@ -22,10 +23,18 @@ use Exception;
         }
         
         public function setNome($_nome) {
-                if ($_nome == "")
-                    throw new Exception("Nome deve ser preenchido");
-                $this->nome = $_nome;
-               
+            if ($_nome == "")
+                throw new Exception("Nome deve ser preenchido");
+            $this->nome = $_nome;
+
+        }
+        
+        public function setAdm($_adm){
+            $this->adm = $_adm;
+        }
+        
+        public function getAdm(){
+            return $this->adm;
         }
         
         public function getNome(){
