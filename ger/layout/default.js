@@ -29,7 +29,7 @@ function validarCampos(campos){
         var campo = arrayCampos[x];
         var c = $('#'+campo);
         if(c.val() == ''){ //pesquisar se é um select
-            c.attr('placeholder','Campo obrigatório');
+            //c.attr('placeholder','Campo obrigatório'); Colocar ícone de X de erro
             c.parent('.form-group').addClass('has-error');
             deuCerto = false;
         }else{
