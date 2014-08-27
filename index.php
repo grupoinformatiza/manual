@@ -69,6 +69,7 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais();
                     </a>
                 </div>
                 <div class="collapse navbar-collapse">
+                    
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#">Sobre</a></li>
                         <li><a href="#">Desenvolvedor</a></li>

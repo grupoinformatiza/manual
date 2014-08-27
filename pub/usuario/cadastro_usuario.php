@@ -128,8 +128,8 @@
         </div> <!-- /container -->
         
     </body>
-    <script type="text/javascript" src="../libs/jquery-1.11.1.min.js" ></script>
-    <script type="text/javascript" src="../libs/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="ger/layout/default.js"></script>
+    <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
+    <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../ger/layout/default.js"></script>
 </html>
 

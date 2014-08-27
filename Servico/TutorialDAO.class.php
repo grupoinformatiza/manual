@@ -38,13 +38,15 @@ class TutorialDAO{
     
     public static function enviarImagem(\Entidade\Tutorial $tutorial){
         
-        if(!is_null($tutorial->Imagem)){
+        if(!is_null($tutorial->Imagem) && is_array($tutorial->Imagem)){
             
-            $upl = new \Suporte\Upload($tutorial->imagem,$tutorial->Nome.' '.$tutorial->Tipo);
+            $upl = new \Suporte\Upload($tutorial->Imagem,$tutorial->Nome.' '.$tutorial->Tipo);
             $upl->setDiretorio(ROOT_PATH.'imagens/capa_tutoriais/');
             
             $nome = $upl->processar();
             return $nome;
+        }else{
+            return $tutorial->Imagem;
         }
         
     }
