@@ -1,6 +1,47 @@
 <!DOCTYPE HTML>
 <?php 
 require "config.php";
+    
+    $top_titulo = null;
+    $top_conteudo = null;
+
+    if(isset($_GET['acao'])){
+        switch($_GET['acao']){
+          
+            case 'listartopico':                
+                try{
+                    $codigo = $_GET['cod'];  
+                    
+                    $topico = \Servico\TopicoDAO::listar('', $codigo);
+                                  
+                    $titulo = $topico->Titulo;
+                    $conteudo = $topico->Conteudo;
+                    $IDtutorial = $topico->Tutorial->Codigo;
+                }catch(Exception $ex){
+                    $erro = $ex->getMessage();
+                }               
+                break; 
+            
+            case 'exibirtopico':
+                try{
+                    $codigo = $_GET['cod'];
+                    $topico = \Servico\TopicoDAO::getTopico($codigo);  
+                    $top_titulo = $topico->Titulo;
+                    $top_conteudo = $topico->Conteudo;
+                } catch (Exception $ex) {
+                    
+                    $erro = $ex->getMessage();
+                    die($erro);
+                }
+                
+        }
+    }
+
+
+
+if(!isset($pgControllerTut))
+    $pgControllerTut = Servico\TutorialDAO::listarTutoriais();
+$tutoriais = Servico\TutorialDAO::listarTutoriais();
 ?>
 <html>
     <head>
@@ -39,14 +80,28 @@ require "config.php";
         <div class="container-fluid" role="main">
             <div class="row">
                 <div class="col-md-2 col-sm-2 col-xs-12 sidebar menulateral">
-                    <ul class="nav  nav-sidebar">
+                    <table class="table table-striped">
+                        <?php foreach($tutoriais as $tut) : ?>
+                            <tr>
+                                <td><a href="index.php?acao=listartopico&cod=<?php echo $tut->Codigo; ?>"> <?php echo $tut->Nome; ?> </a></td>
+                            </tr>
+                            <?php $topicos = \Servico\TopicoDAO::listarTop($tut->Codigo); ?>
+                            <?php foreach($topicos as $top) : ?>
+                                <tr>
+                                    <td><a href="index.php?acao=exibirtopico&cod=<?php echo $top->Codigo; ?>"><?php echo $top->Titulo; ?> </a></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    </table>
+                    
+                    <!--<ul class="nav  nav-sidebar">                       
                         <li class="nav-header">ownCloud<div class="pull-right">&#9650;</div></li>
                         <li class="active"><a href="index.php?topico=Introducao">Introdução</a></li>
                         <li><a href="index.php?topico=Criando">Criando conta</a></li>
                         <li><a href="index.php?topico=Enviando">Enviando arquivos</a></li>
                         <li class="nav-header">SAMBA4<div class="pull-right">&#9660;</div></li>
                         <li class="nav-header">Linux<div class="pull-right">&#9660;</div></li>
-                    </ul>                    
+                    </ul>-->                    
                 </div>
                 
                 <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main">
@@ -57,7 +112,8 @@ require "config.php";
                     </ol>
                     
                     <div class="jumbotron">
-                        <h1 id="tituloTopico">Título do Tópico</h1>
+                        <h1 id="tituloTopico"><?php echo $top_titulo ?></h1>
+                        <p><?php echo $top_conteudo ?></p> 
                     </div>
                     
                 </div>
