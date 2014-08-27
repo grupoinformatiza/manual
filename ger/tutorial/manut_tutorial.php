@@ -13,8 +13,7 @@
                     
                     if(isset($_POST['codigo']) && $_POST['codigo'] != 0)
                         $tutorial->Codigo = $_POST['codigo'];
-                    if(isset($_FILES['filImagem']))
-                        $tutorial->Imagem = $_FILES['filImagem'];
+                    $tutorial->Imagem = $_FILES['filImagem'];
                                         
                     Servico\TutorialDAO::gravar($tutorial);
                     $sucesso = urlencode("Tutorial gravado com sucesso!");

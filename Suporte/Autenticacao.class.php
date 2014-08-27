@@ -11,9 +11,8 @@ class Autenticacao{
         if(trim($senha) == '')
             throw new Exception("Preencha a senha");
         
-        $sql = "SELECT usu_codigo,usu_adm FROM usuario WHERE usu_login = :login AND usu_senha = :senha";
+        $sql = "SELECT usu_codigo,usu_adm FROM usuario WHERE usu_login = :login AND usu_senha = :senha AND usu_deletado = False";
         $conexao = PdoFactory::getConexao();
-        
         $st = $conexao->prepare($sql);
         $st->bindValue(':login', strtoupper($login));
         $st->bindValue(':senha', md5($senha));

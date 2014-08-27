@@ -38,7 +38,7 @@ class TutorialDAO{
     
     public static function enviarImagem(\Entidade\Tutorial $tutorial){
         
-        if(!is_null($tutorial->Imagem)&& !empty($tutorial->Imagem)){
+        if(!is_null($tutorial->Imagem)){
             
             $upl = new \Suporte\Upload($tutorial->imagem,$tutorial->Nome.' '.$tutorial->Tipo);
             $upl->setDiretorio(ROOT_PATH.'imagens/capa_tutoriais/');
