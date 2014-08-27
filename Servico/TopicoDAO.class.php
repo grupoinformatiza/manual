@@ -38,6 +38,15 @@ class TopicoDAO{
         return $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Topico");
     }
     
+    public static function listarTop($tutorial){
+        $con = \Suporte\PdoFactory::getConexao();
+        $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial FROM topico where tut_codigo=:tutorial and top_deletado = False";
+        $st  = $con->prepare($sql);
+        $st->bindValue(':tutorial', $tutorial);
+        $st->execute();
+        return $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Topico");
+    }
+    
     public static function listarPaginacao($titulo=''){
         $con = \Suporte\PdoFactory::getConexao();
         $titulo = strtoupper($titulo);
