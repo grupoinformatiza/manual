@@ -1,18 +1,17 @@
 <?php
     require_once '../../config.php';
     
-    $titulo= null;
-    $IDtutorial= null;
-    $conteudo= null;
     if(isset($_POST['acao'])){
         switch($_POST['acao']){
             case 'gravar':
                 
                 try{
                     $topico = new Entidade\Topico();
+                    if(isset($_POST['codigo']) && $_POST['codigo'] != 0)
+                        $topico->Codigo = $_POST['codigo'];
                     $topico->Titulo = $_POST['txtTitulo'];
                     $topico->Conteudo = $_POST['txtConteudo'];
-                    $topico->Tutorial = $_POST['cmbTutorial']; 
+                    $topico->Tutorial = $_POST['cmbTutorial'];
                     Servico\TopicoDAO::gravar($topico);
                     $sucesso = "Tópico gravado com sucesso!";
                 } catch (Exception $ex) {
@@ -25,6 +24,9 @@
                    
         }
     }
+    $titulo= null;
+    $IDtutorial= null;
+    $conteudo= null;
     if(isset($_GET['acao'])){
         switch($_GET['acao']){
             case 'editar':                

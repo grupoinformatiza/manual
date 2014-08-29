@@ -62,7 +62,7 @@
                     <form name="frmManutUsuario" id="frmManutUsuario" method="post" action="cadastro_usuario.php" class="form">
                         <input type="hidden" name="acao" value="gravar" />
                         <input type="hidden" name="codigo" />
-                            <fieldset class="panel panel-info">
+                            <fieldset class="panel panel-default">
                                 <div class="panel-body">
                                     <div class="col-lg-12 form-group">
                                         <label for="txtNome">Nome</label>
@@ -84,17 +84,16 @@
                                         <label for="txtEmail">Email</label>
                                         <input type="text" name="txtEmail" id="txtEmail" class="form-control input-lg" />         
                                     </div>
-                                    <div class="col-md-4 form-group">
+                                    <div class="col-md-3 form-group">
                                         <label for="cmbEstado">Estado</label>
                                         <select class="form-control input-lg" id="cmbEstado" name="cmbEstado">
-                                            <option value="">Selecione</option>
                                             <?php foreach($estados as $est) : ?>
-                                            <option value="<?php echo $est->Codigo; ?>"><?php echo $est; ?></option>
+                                            <option value="<?php echo $est->Codigo; ?>"><?php echo $est->Sigla; ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
 
-                                    <div class="col-lg-8 form-group">
+                                    <div class="col-lg-9 form-group">
                                         <label for="cmbCidade">Cidade</label>
                                         <select class="form-control input-lg" id="cmbCidade" name="cmbCidade">
                                             <option value="">-- Selecione --</option>
@@ -130,6 +129,7 @@
     </body>
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="cadastro_usuario.js"></script>
     <script type="text/javascript" src="../../ger/layout/default.js"></script>
 </html>
 
