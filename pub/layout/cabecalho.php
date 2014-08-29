@@ -16,16 +16,16 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                        <li><a href="#">Sobre</a></li>
+                        <li <?php Suporte\ViewHelper::getMenuAtivo('home'); ?>><a href="<?php echo ROOT_PATH ?>pub/index/index.php"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+                        <li <?php Suporte\ViewHelper::getMenuAtivo('sobre'); ?>><a href="<?php echo ROOT_PATH ?>">Sobre</a></li>
                     </ul>
                     <div class="navbar-right">
                         <a class="navbar-btn btn btn-success" href="../usuario/cadastro_usuario.php">Inscreva-se</a>
                     </div>
                     
                     <ul class="nav navbar-nav navbar-right" id="navbar-tipos">
-                        <li><a href="#">Desenvolvedor</a></li>
-                        <li class="active"><a href="#">Usuário</a></li>
+                        <li <?php Suporte\ViewHelper::getMenuAtivo('desenvolvedor'); ?>><a href="<?php echo ROOT_PATH ?>">Desenvolvedor</a></li>
+                        <li <?php Suporte\ViewHelper::getMenuAtivo('usuario'); ?>><a href="<?php echo ROOT_PATH ?>">Usuário</a></li>
                     </ul>
                     
                 </div>
