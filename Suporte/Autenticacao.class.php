@@ -27,8 +27,8 @@ class Autenticacao{
                 
         if(!$usuario->Adm)
             throw new Exception("Usuário não tem privilégios de administrador");
-        
-        session_start();
+        if (session_status() == PHP_SESSION_NONE)
+            session_start();
         $_SESSION['web']['usuario'] = $usuario;
         header("Location: index.php");
         
@@ -40,14 +40,15 @@ class Autenticacao{
         session_destroy();
     }
     
-    public static function paginaSegura(){
-        session_start();
-        
+    public static function checkLogin(){
         $logado = false;
         if(isset($_SESSION['web']['usuario']))
             $logado = true;
-        
-        if(!$logado){
+        return $logado;
+    }
+    
+    public static function paginaSegura(){
+        if(!self::checkLogin()){
             $msg = urlencode("Somente administradores podem acessar esta página.");
             header("Location: ".ROOT_PATH."ger/login.php?erro=$msg");
         }

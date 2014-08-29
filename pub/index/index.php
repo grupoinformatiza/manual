@@ -5,6 +5,7 @@ require "../../config.php";
     
     $top_titulo = null;
     $top_conteudo = null;
+    $top_codigo = null;
 
     if(isset($_GET['acao'])){
         switch($_GET['acao']){
@@ -29,6 +30,7 @@ require "../../config.php";
                     $topico = \Servico\TopicoDAO::getTopico($codigo);  
                     $top_titulo = $topico->Titulo;
                     $top_conteudo = $topico->Conteudo;
+                    $top_codigo = $codigo;
                 } catch (Exception $ex) {
                     
                     $erro = $ex->getMessage();
@@ -93,7 +95,12 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais();
                     
                         <h1 id="tituloTopico"><?php echo $top_titulo ?></h1>
                         <p><?php echo $top_conteudo ?></p> 
-        
+                        
+                        <?php  if(Suporte\Autenticacao::checkLogin()) : ?>
+                        <a class="btn btn-default btn-md pull-right" id="btnEditar" href="../../ger/topico/manut_topico.php?acao=editar&codigo=<?php echo $top_codigo; ?>" target="_blank">
+                            <span class="glyphicon glyphicon-edit"></span> Editar
+                        </a>
+                        <?php endif; ?>
                 </div>
             </div>
             
@@ -101,4 +108,5 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais();
     </body>
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
 </html>
