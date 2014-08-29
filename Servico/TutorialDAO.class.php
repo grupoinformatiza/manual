@@ -127,17 +127,17 @@ class TutorialDAO{
     public static function listarTutoriais($tipo=0){
         
         if($tipo!='')
-            $sql = "SELECT tut_codigo Codigo,tut_nome Nome,tut_tipo Tipo "
+            $sql = "SELECT tut_codigo Codigo,tut_nome Nome,tut_tipo Tipo, tut_imagem Imagem "
             . "FROM tutorial where tut_deletado = FALSE and tut_tipo=:tipo";        
         else
-            $sql = "SELECT tut_codigo Codigo,tut_nome Nome,tut_tipo Tipo "
+            $sql = "SELECT tut_codigo Codigo,tut_nome Nome,tut_tipo Tipo, tut_imagem Imagem "
             . "FROM tutorial where tut_deletado = FALSE";
         
         $cnn = \Suporte\PdoFactory::getConexao();
-        
-        if($tipo!='')
-            $st->bindValue(':tipo', $tipo, PDO::PARAM_STR);
         $st = $cnn->prepare($sql);
+        if($tipo!='')
+            $st->bindValue(':tipo', $tipo);
+        
         $st->execute();
 
         return $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Tutorial");
