@@ -57,6 +57,18 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais();
         <div class="container-fluid" role="main">
             <div class="row">
                 <div class="col-md-2 col-sm-2 col-xs-12 sidebar menulateral">
+                          
+                    <form class="form" role="search">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Procurar tópicos...">
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    
                     <ul class="nav nav-sidebar">
                         <?php foreach($tutoriais as $tut) : ?>
                             <li class="nav-header"><a href="index.php?acao=listartopico&cod=<?php echo $tut->Codigo; ?>"> <?php echo $tut->Nome; ?> </a></li>
