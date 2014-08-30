@@ -16,12 +16,14 @@ $tutoriais = \Servico\TutorialDAO::listarTutoriais($tipo);
     <center>
         <?php  require_once '../manual/pub/layout/cabecalho.php'; ?>
         <div class="container">
-            <h1> MANUAL ONLINE </h1>
-            <h2>Sistema de compartilhamento em nuvem</h2>
-            <h3>Colégio Técnico Industrial - BAURU/SP</h3>  
-            <br><br><br><br>
-        </div>
-        
+            <div class="col-xs-12">
+               <div class="jumbotron">
+               <h1> MANUAL ONLINE </h1>
+                <h2>Sistema de compartilhamento em nuvem</h2>
+                <h3>Colégio Técnico Industrial - BAURU/SP</h3> 
+                </div>                
+            </div>            
+        </div>    
         <div class="container marketing">
             
             <div class="row">

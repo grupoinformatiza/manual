@@ -48,10 +48,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Cadastrar Usuários</title>
         <link rel="stylesheet" href="../../libs/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="cadastro_usuario.css" />
         <link rel="stylesheet" href="../../default.css" />
     </head>
     <body role="document">
         <?php require_once '../layout/cabecalho.php';?>
+        
         <div class="container">
             <div class="row">          
                 <!-- Linha para o formulario de cadastro -->
@@ -87,6 +89,7 @@
                                     <div class="col-md-3 form-group">
                                         <label for="cmbEstado">Estado</label>
                                         <select class="form-control input-lg" id="cmbEstado" name="cmbEstado">
+                                            <option value=""> --</option>
                                             <?php foreach($estados as $est) : ?>
                                             <option value="<?php echo $est->Codigo; ?>"><?php echo $est->Sigla; ?></option>
                                             <?php endforeach; ?>
@@ -106,7 +109,7 @@
                                     </div>
                                     <div class="col-lg-6 form-group">
                                         <label for="txtSenha">Senha</label>
-                                        <input type="text" name="txtSenha" id="txtSenha" class="form-control input-lg"  />
+                                        <input type="password" name="txtSenha" id="txtSenha" class="form-control input-lg"  />
                                     </div>
                                 </div>    
                             </fieldset>
