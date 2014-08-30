@@ -28,13 +28,25 @@ function validarCampos(campos){
     for(var x in arrayCampos){
         var campo = arrayCampos[x];
         var c = $('#'+campo);
+        var frmGrp = c.parent('.form-group');
         if(c.val() == ''){ //pesquisar se é um select
-            c.attr('placeholder','Campo obrigatório');
-            c.parent('.form-group').addClass('has-error');
+            setErroCampo(c);
             deuCerto = false;
         }else{
-            c.parent('.form-group').removeClass('has-error');
+            removeErroCampo(c);
         }
     }
     return deuCerto;
+}
+
+function setErroCampo(campo){
+    campo.closest('.form-group').find('span').remove();
+    campo.closest('.form-group')
+        .addClass('has-error has-feedback')
+        .prepend('<span class="glyphicon glyphicon-exclamation-sign form-control-feedback"></span>');
+}
+function removeErroCampo(campo){
+    campo.closest('.form-group')
+        .removeClass('has-error has-feedback')
+        .find('span').remove();
 }

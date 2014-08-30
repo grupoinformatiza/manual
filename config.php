@@ -1,4 +1,5 @@
 <?php
+
 if(!defined('ROOT_PATH'))
     define('ROOT_PATH','../../');
 //Habilitando carregamento automatico de classes
@@ -10,6 +11,7 @@ spl_autoload_register(
  );
 
 $sucesso = (isset($_GET['msg']))?urldecode($_GET['msg']):null;
-
+if (session_status() == PHP_SESSION_NONE)
+            session_start();
 
 
