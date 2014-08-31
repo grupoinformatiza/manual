@@ -14,7 +14,8 @@ function handleTopicoClick(e){
     $.get(
         $(this).attr('href'),
         function(ret){
-            alert(ret);
+            $('#tituloTopico').html(ret.titulo);
+            $('#conteudoTopico').html(ret.conteudo);
         },
         'json'
     );

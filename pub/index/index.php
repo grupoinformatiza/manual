@@ -90,10 +90,10 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais();
                 
                 <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main">
                     <?php require_once '../../ger/layout/mensagens.php'; ?>
-                    <?php if(!is_null($top_titulo)) : ?>    
+                    
                         <h1 id="tituloTopico"><?php echo $top_titulo ?></h1>
-                        <p><?php echo $top_conteudo ?></p> 
-
+                        <p id="conteudoTopico"><?php echo $top_conteudo ?></p> 
+                    <?php if(!is_null($top_titulo)) : ?>    
                         <?php  if(Suporte\Autenticacao::checkLogin()) : ?>
                             <a class="btn btn-default btn-md pull-right" id="btnEditar" href="../../ger/topico/manut_topico.php?acao=editar&codigo=<?php echo $top_codigo; ?>" target="_blank">
                                 <span class="glyphicon glyphicon-edit"></span> Editar
