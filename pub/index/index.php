@@ -1,4 +1,3 @@
-<!DOCTYPE HTML>
 <?php 
 define('ROOT_PATH', '../../');
 require "../../config.php";
@@ -31,10 +30,16 @@ require "../../config.php";
                     $top_titulo = $topico->Titulo;
                     $top_conteudo = $topico->Conteudo;
                     $top_codigo = $codigo;
+                    //checando se for ajax
+                    if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+                        $ret['titulo'] = $top_titulo;
+                        $ret['conteudo'] = $top_conteudo;
+                        $ret['codigo'] = $top_codigo;
+                        die(json_encode($ret));
+                    }
                 } catch (Exception $ex) {
                     
                     $erro = $ex->getMessage();
-                    die($erro);
                 }
                 
         }
@@ -46,6 +51,7 @@ if(!isset($pgControllerTut))
     $pgControllerTut = Servico\TutorialDAO::listarTutoriais();
 $tutoriais = Servico\TutorialDAO::listarTutoriais();
 ?>
+<!DOCTYPE HTML>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -79,32 +85,45 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais();
                             <li><a href="index.php?acao=exibirtopico&cod=<?php echo $top->Codigo; ?>"><?php echo $top->Titulo; ?></a></li>
                             <?php endforeach; ?>
                         <?php endforeach; ?>
-                    </ul>
-                    
-                    <!--<ul class="nav  nav-sidebar">                       
-                        <li class="nav-header">ownCloud<div class="pull-right">&#9650;</div></li>
-                        <li class="active"><a href="index.php?topico=Introducao">Introdução</a></li>
-                        <li><a href="index.php?topico=Criando">Criando conta</a></li>
-                        <li><a href="index.php?topico=Enviando">Enviando arquivos</a></li>
-                        <li class="nav-header">SAMBA4<div class="pull-right">&#9660;</div></li>
-                        <li class="nav-header">Linux<div class="pull-right">&#9660;</div></li>
-                    </ul>-->                    
+                    </ul>                
                 </div>
                 
                 <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main">
-                    
+                    <?php require_once '../../ger/layout/mensagens.php'; ?>
+                    <?php if(!is_null($top_titulo)) : ?>    
                         <h1 id="tituloTopico"><?php echo $top_titulo ?></h1>
                         <p><?php echo $top_conteudo ?></p> 
-                        
+
                         <?php  if(Suporte\Autenticacao::checkLogin()) : ?>
-                        <a class="btn btn-default btn-md pull-right" id="btnEditar" href="../../ger/topico/manut_topico.php?acao=editar&codigo=<?php echo $top_codigo; ?>" target="_blank">
-                            <span class="glyphicon glyphicon-edit"></span> Editar
-                        </a>
+                            <a class="btn btn-default btn-md pull-right" id="btnEditar" href="../../ger/topico/manut_topico.php?acao=editar&codigo=<?php echo $top_codigo; ?>" target="_blank">
+                                <span class="glyphicon glyphicon-edit"></span> Editar
+                            </a>
                         <?php endif; ?>
+                    
+                    <?php endif; ?>
                 </div>
             </div>
             
         </div>
+        
+        
+        <div class="modal fade" id="editarTopico" tabindex="-1" role="dialog" aria-labelledby="editarTopicoLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Fechar</span>
+                        </button>
+                        <h4 class="modal-title" id="editarTopicoLabel">Editar Tópico</h4>
+                    </div>
+                    <div class="modal-body" id="contentEditarTopico">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     </body>
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>

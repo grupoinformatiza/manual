@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <?php 
+define("ROOT_PATH","");
 require "config.php";
 $tipo = '1';
 $tutoriais = \Servico\TutorialDAO::listarTutoriais($tipo);   
@@ -14,7 +15,7 @@ $tutoriais = \Servico\TutorialDAO::listarTutoriais($tipo);
     </head>
     <body role="document">
     <center>
-        <?php  require_once '../manual/pub/layout/cabecalho.php'; ?>
+        <?php  require_once 'pub/layout/cabecalho.php'; ?>
         <div class="container">
             <h1> MANUAL ONLINE </h1>
             <h2>Sistema de compartilhamento em nuvem</h2>
