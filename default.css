@@ -8,6 +8,13 @@ body{
     padding: 0;
 }
 
+.container .jumbotron{
+    margin-top: 50px;
+}
+
+
+
+
 #navbar-tipos{
     margin-right:10px;
 }
