@@ -1,4 +1,5 @@
 <?php
+
 if(!defined('ROOT_PATH'))
     define('ROOT_PATH','../../');
 //Habilitando carregamento automatico de classes
@@ -13,3 +14,4 @@ $sucesso = (isset($_GET['msg']))?urldecode($_GET['msg']):null;
 
 
 
+session_start();

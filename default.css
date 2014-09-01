@@ -1,9 +1,23 @@
 body{
-    padding-top:60px;
-    background-color: #eee;
+    padding-top:30px;
+    background-color: #f5f5f5;
+}
+#menulateral .form{
+    margin-left:0;
+    margin-right:0;
+    padding: 0;
+}
+
+.container .jumbotron{
+    margin-top: 50px;
 }
 
 
+
+
+#navbar-tipos{
+    margin-right:10px;
+}
 /*Escondendo o menu lateral. (para mobile)*/
 .sidebar{
     top: 51px;
@@ -11,7 +25,7 @@ body{
     left: 0;
     z-index: 1000;
     padding: 20px;
-    background-color: #f5f5f5;
+    background-color: #eee;
     border-right: 1px solid #eee;
 }
 /*Estilos da navegação lateral*/
@@ -20,17 +34,46 @@ body{
   margin-bottom: 20px;
   margin-left: -20px;
 }
+.nav-sidebar > li{
+    margin-left:27px;
+}
+.nav-sidebar > li.nav-header{
+    margin-left:0;
+}
+
 .nav-sidebar > li > a {
   padding-right: 10px;
   padding-left: 10px;
   padding-top:5px;
   padding-bottom:5px;
+  color:#666
 }
-.nav-header{
-  padding:10px ;
-  margin-bottom:5px;
-  color:#666;
+.nav-sidebar > li > a:hover{
+  color:#0B4293;
 }
+.nav-sidebar .nav-header a{
+  padding:10px;
+  background-color:#e5e5e5;
+  font-weight:bold;
+  color:#0B4293;
+}
+.nav-sidebar .nav-header a:hover{
+  background-color:#F5F5F5;
+}
+.has-feedback .form-control-feedback {
+    position: absolute;
+    display: block;
+    width: 34px;
+    height: 34px;
+    right:9px;
+    line-height: 34px;
+    text-align: center;
+}
+
+.has-feedback .form-control-feedback select{
+    right:20px;
+}
+
 .nav-sidebar > .active > a {
   color: #fff;
   background-color: #428bca;

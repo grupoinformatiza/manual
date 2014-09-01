@@ -13,8 +13,11 @@
                     
                     if(isset($_POST['codigo']) && $_POST['codigo'] != 0)
                         $tutorial->Codigo = $_POST['codigo'];
-                    if(isset($_FILES['filImagem']))
+                    
+                    if($_FILES['filImagem']['tmp_name'])
                         $tutorial->Imagem = $_FILES['filImagem'];
+                    else
+                        $tutorial->Imagem = $_POST['hdImagemAntiga'];
                                         
                     Servico\TutorialDAO::gravar($tutorial);
                     $sucesso = urlencode("Tutorial gravado com sucesso!");
@@ -103,7 +106,7 @@
                                         <span class="sr-only progress-bar-label"></span>
                                     </div>
                                 </div>
-                                
+                                <input type="hidden" name="hdImagemAntiga" value="<?php echo $imagem; ?>" />
                                 <img src="<?php echo $imagem;?>" id="preview">
                             </div>
                             <p class="help-block">Pré visualização da imagem (Só será enviada quando clicar em salvar)</p>

@@ -9,14 +9,21 @@ class TopicoDAO{
     public static function gravar(\Entidade\Topico $topico){
              
         $con = \Suporte\PdoFactory::getConexao();
-        
+        if($topico->Codigo != ''){
+            $sql = "UPDATE topico SET top_titulo=:titulo, top_conteudo=:conteudo,tut_codigo=:tutorial where "
+                    . "top_codigo=:codigo";
+        }
+        else{
         $sql = "INSERT INTO topico (top_titulo,top_conteudo,tut_codigo) "
                 . "VALUES (:titulo,:conteudo,:tutorial) ";
-        
+        }
         $st = $con->prepare($sql);
         $st->bindValue(':titulo', $topico->Titulo);
         $st->bindValue(':conteudo', $topico->Conteudo);
         $st->bindValue(':tutorial', $topico->Tutorial);
+        if($topico->Codigo != ''){
+            $st->bindValue(':codigo', $topico->Codigo);
+        }
         
         $st->execute();
               
@@ -29,11 +36,20 @@ class TopicoDAO{
         if($tutorial != 0)
             $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial FROM topico where tut_codigo=:tutorial and top_deletado = False";
         else
-            $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial FROM topico WHERE upper(top_titulo)=:titulo and top_deletado = False";
+            $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial FROM topico WHERE upper(top_titulo) like :titulo and top_deletado = False";
         $st  = $con->prepare($sql);
         if($tutorial != 0)
            $st->bindValue(':tutorial', $tutorial);
-        $st->bindValue(':titulo', $titulo);
+        $st->bindValue(':titulo','%'.$titulo.'%'); 
+        $st->execute();
+        return $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Topico");
+    }
+    
+    public static function listarTop($tutorial){
+        $con = \Suporte\PdoFactory::getConexao();
+        $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial FROM topico where tut_codigo=:tutorial and top_deletado = False";
+        $st  = $con->prepare($sql);
+        $st->bindValue(':tutorial', $tutorial);
         $st->execute();
         return $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Topico");
     }

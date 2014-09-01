@@ -23,7 +23,7 @@ class EstadoDAO{
     
     public static function carregarEstado($codigoEstado){
         if(trim($codigoEstado) == '')
-            throw new Exception("Código do estado não foi preenchido. Não será possível carrega-lo");
+            throw new Exception("Código do estado não foi preenchido. Não será possível carregá-lo");
         
         $sql = "SELECT est_codigo codigo, est_nome nome, est_sigla sigla "
                 . "FROM estado "

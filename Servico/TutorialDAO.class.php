@@ -38,13 +38,16 @@ class TutorialDAO{
     
     public static function enviarImagem(\Entidade\Tutorial $tutorial){
         
-        if(!is_null($tutorial->Imagem)&& !empty($tutorial->Imagem)){
-            
-            $upl = new \Suporte\Upload($tutorial->imagem,$tutorial->Nome.' '.$tutorial->Tipo);
+        if(!is_null($tutorial->Imagem) && is_array($tutorial->Imagem)){
+            if(!is_writable(ROOT_PATH.'imagens/capa_tutoriais/'))
+                chmod (ROOT_PATH.'imagens/capa_tutoriais/', '0777');
+            $upl = new \Suporte\Upload($tutorial->Imagem,$tutorial->Nome.' '.$tutorial->Tipo);
             $upl->setDiretorio(ROOT_PATH.'imagens/capa_tutoriais/');
             
             $nome = $upl->processar();
             return $nome;
+        }else{
+            return $tutorial->Imagem;
         }
         
     }
@@ -121,13 +124,20 @@ class TutorialDAO{
     }
     
         
-    public static function listarTutoriais(){
-        $sql = "SELECT tut_codigo Codigo,tut_nome Nome,tut_tipo Tipo "
+    public static function listarTutoriais($tipo=0){
+        
+        if($tipo!='')
+            $sql = "SELECT tut_codigo Codigo,tut_nome Nome,tut_tipo Tipo, tut_imagem Imagem "
+            . "FROM tutorial where tut_deletado = FALSE and tut_tipo=:tipo";        
+        else
+            $sql = "SELECT tut_codigo Codigo,tut_nome Nome,tut_tipo Tipo, tut_imagem Imagem "
             . "FROM tutorial where tut_deletado = FALSE";
-
+        
         $cnn = \Suporte\PdoFactory::getConexao();
-
         $st = $cnn->prepare($sql);
+        if($tipo!='')
+            $st->bindValue(':tipo', $tipo);
+        
         $st->execute();
 
         return $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Tutorial");
