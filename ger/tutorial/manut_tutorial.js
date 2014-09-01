@@ -1,7 +1,18 @@
 $(function(){
    $('#filImagem').change(trataArquivo); 
+   $('#frmManutTutorial').submit(validaTutorial);
 });
 
+function validaTutorial(e){
+    
+    if(!validarCampos('txtNome'))
+        e.preventDefault();
+    if ($('#filImagem').val() == '')
+    {
+        e.preventDefault();
+        alert("Insira uma imagem");
+    }
+}
 
 function trataArquivo(evt){
     if($('#filImagem').val() != ''){
