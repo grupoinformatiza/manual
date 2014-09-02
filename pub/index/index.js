@@ -8,7 +8,7 @@ $(document).ready(function(){
 
 function handleTopicoClick(e){
     e.preventDefault();
-    
+    $('.nav-sidebar').removeClass('active');
     $(this).closest('li').addClass('active');
     
     $.get(
@@ -19,6 +19,4 @@ function handleTopicoClick(e){
         },
         'json'
     );
-    
-    
 }

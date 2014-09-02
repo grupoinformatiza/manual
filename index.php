@@ -15,7 +15,6 @@ $tutoriais = \Servico\TutorialDAO::listarTutoriais($tipo);
     </head>
     <body role="document">
     <center>
-        <?php  require_once 'pub/layout/cabecalho.php'; ?>
         <div class="container">
             <div class="col-xs-12">
                <div class="jumbotron">

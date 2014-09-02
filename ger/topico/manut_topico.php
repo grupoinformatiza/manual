@@ -56,9 +56,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Cadastrar Tópico</title>
-        <link rel="stylesheet" href="../../libs/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../libs/bootstrap/css/bootstrap.min.css">       
+        <link rel="stylesheet" href="../../libs/summernote/font-awesome.min.css">
+        <link rel="stylesheet" href="../../libs/summernote/summernote.css">
         <link rel="stylesheet" href="../layout/default.css">
-        <link rel="stylesheet" href="../../libs/editor/bootstrap-wysihtml5.css">
+        
     </head>
     <body role="document">
         <?php require_once '../layout/cabecalho.php';?>
@@ -112,13 +114,12 @@
         
 
     </body>
+    
+    
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../libs/summernote/summernote.min.js"></script>
     <script type="text/javascript" src="../layout/default.js"></script>
-    <script type="text/javascript" src="../../libs/editor/wysihtml5-0.3.0.js"></script>
-    <script type="text/javascript" src="../../libs/editor/bootstrap3-wysihtml5.js"></script>
-    <script type="text/javascript" src="../../libs/editor/bootstrap-wysihtml5.pt-BR.js"></script>
-    
     <script type="text/javascript" src="manut_topico.js"></script>
 </html>
 
