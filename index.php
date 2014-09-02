@@ -41,7 +41,10 @@ $tutoriais = \Servico\TutorialDAO::listarTutoriais($tipo);
         </div>
         
         <br><br><br><br><br>
-        <p>Desenvolvido por: Grupo Informatiza / 2014</p>
+        
+        <div class="footer">
+           <p>Desenvolvido por: Grupo Informatiza / 2014</p> 
+        </div>
     </center>      
     </body>
     
