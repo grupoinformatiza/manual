@@ -27,8 +27,7 @@ class Autenticacao{
                 
         if(!$usuario->Adm)
             throw new Exception("Usuário não tem privilégios de administrador");
-        if (session_status() == PHP_SESSION_NONE)
-            session_start();
+        
         $_SESSION['web']['usuario'] = $usuario;
         header("Location: index.php");
         
@@ -36,7 +35,6 @@ class Autenticacao{
     }
     
     public static function sair(){
-        session_start();
         session_destroy();
     }
     

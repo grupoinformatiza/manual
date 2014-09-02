@@ -1,6 +1,7 @@
 $(function(){
     $('#cmbEstado').change(carregarCidades);
     $('#frmManutUsuario').submit(validaUsuario);
+    //$('#txtLogin').blur(
 });
 
 function validaUsuario(e){

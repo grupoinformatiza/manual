@@ -48,8 +48,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Cadastrar Usuários</title>
         <link rel="stylesheet" href="../../libs/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="cadastro_usuario.css" />
         <link rel="stylesheet" href="../../default.css" />
+        <link rel="stylesheet" href="cadastro_usuario.css" />
+        
     </head>
     <body role="document">
         <?php require_once '../layout/cabecalho.php';?>

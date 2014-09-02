@@ -38,6 +38,8 @@
                     $titulo = $topico->Titulo;
                     $conteudo = $topico->Conteudo;
                     $IDtutorial = $topico->Tutorial->Codigo;
+                    
+                    
                 }catch(Exception $ex){
                     $erro = $ex->getMessage();
                 }               

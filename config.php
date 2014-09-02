@@ -11,7 +11,7 @@ spl_autoload_register(
  );
 
 $sucesso = (isset($_GET['msg']))?urldecode($_GET['msg']):null;
-if (session_status() == PHP_SESSION_NONE)
-            session_start();
 
 
+
+session_start();

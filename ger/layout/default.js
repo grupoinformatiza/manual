@@ -23,19 +23,23 @@ $(function(){
 
 function validarCampos(campos){
     
+    var campo, primeiroCampo;
     var arrayCampos = campos.split(',');
     var deuCerto = true;
     for(var x in arrayCampos){
-        var campo = arrayCampos[x];
+        campo = arrayCampos[x];
         var c = $('#'+campo);
         var frmGrp = c.parent('.form-group');
         if(c.val() == ''){ //pesquisar se é um select
+            if (deuCerto == true)
+                primeiroCampo = c;
             setErroCampo(c);
             deuCerto = false;
         }else{
             removeErroCampo(c);
-        }
+        }       
     }
+    c.focus();
     return deuCerto;
 }
 
