@@ -1,5 +1,9 @@
 $(function(){
-    $('#txtConteudo').wysihtml5({locale:'pt-BR'});
+    $('#txtConteudo').summernote({
+        height: 200,
+        tabsize: 2,
+        styleWithSpan: false
+      });
     $('#frmManutTopico').submit(validaTopico);
 });
 
