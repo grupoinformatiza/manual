@@ -114,8 +114,8 @@
                                         <input type="password" name="txtSenha" id="txtSenha" class="form-control input-lg"  />
                                     </div>
                                     <div class="col-lg-6 col-xs-6 form-group">
-                                        <label for="txtSenha">Confirmar Senha</label>
-                                        <input type="password" name="txtSenha" id="txtSenha" class="form-control input-lg"  />
+                                        <label for="txtSenhaConf">Confirmar Senha</label>
+                                        <input type="password" name="txtSenhaConf" id="txtSenhaConf" class="form-control input-lg"  />
                                     </div>
                                 </div>    
                             </fieldset>
@@ -138,7 +138,10 @@
     </body>
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="cadastro_usuario.js"></script>
     <script type="text/javascript" src="../../ger/layout/default.js"></script>
+    <script type="text/javascript" src="../../ger/usuario/validacao_login.js"></script>
+    <script type="text/javascript" src="cadastro_usuario.js"></script>
+    
+    
 </html>
 

@@ -23,17 +23,25 @@
          <?php
             if(isset($_SESSION['web']['usuario'])): $usu = $_SESSION['web']['usuario'];
          ?>
-         <?php echo $usu->Nome; ?>&nbsp;
-         <a class="navbar-btn" href="<?php echo ROOT_PATH ?>ger/login.php?acao=sair">
-             <span class="glyphicon glyphicon-log-out"></span> Sair
-         </a>
+         
+         <div class="navbar-right">
+             <a class="navbar-btn btn btn-primary btn-sm" data-toggle="modal" data-target="#alterarDados">
+                 <span class="glyphicon glyphicon-cog"></span> Configurações
+             </a>   
+             <a class="navbar-btn btn btn-sm text-muted navbar-link" href="<?php echo ROOT_PATH ?>ger/login.php?acao=sair">
+                 <span class="glyphicon glyphicon-log-out"></span> Sair
+             </a>
+         </div>
+         <div class="navbar-right">
+             <p class="navbar-text"><?php echo $usu->Nome; ?></p>
+         </div> 
          <?php endif; ?>
         </p>
       </div><!--/.nav-collapse -->
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal Confirmação -->
 <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -54,3 +62,43 @@
     </div>
   </div>
 </div>
+
+<!-- Modal Dados -->
+<div class="modal fade" id="alterarDados" tabindex="-1" role="dialog" aria-labelledby="alterarDadosLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Fechar</span>
+        </button>
+        <h4 class="modal-title" id="alterarDadosLabel">Alteração de Dados</h4>
+      </div>
+      <form name="frmAlterarSenha" id="frmAlterarSenha" method="post" action="<?php echo ROOT_PATH ?>ger/usuario/manut_usuario.php">
+        <div class="modal-body">
+            <div id="erroPlaceholder"></div>
+                
+                <input type="hidden" name="acao" value="alterarSenha" />
+                <div class="form-group">
+                    <label for="txtAlSenhaAtual">Senha Atual</label>
+                    <input type="password" class="form-control input-md" name="txtAlSenhaAtual" id="txtAlSenhaAtual"  />
+                </div>    
+                <div class="form-group">
+                    <label for="txtAlNovaSenha">Nova Senha</label>
+                    <input type="password" class="form-control input-md" name="txtAlNovaSenha" id="txtAlNovaSenha" />
+                </div>    
+                <div class="form-group">
+                    <label for="txtAlNovaSenhaConf">Confirmação da Senha</label>
+                    <input type="password" class="form-control input-md" name="txtAlNovaSenhaConf" id="txtAlNovaSenhaConf" />
+                </div>    
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary" id="btnConfirma"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar Alterações</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

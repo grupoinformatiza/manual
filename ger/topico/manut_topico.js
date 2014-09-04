@@ -2,7 +2,8 @@ $(function(){
     $('#txtConteudo').summernote({
         height: 200,
         tabsize: 2,
-        styleWithSpan: false
+        styleWithSpan: false,
+        lang:'pt-BR'
       });
     $('#frmManutTopico').submit(validaTopico);
 });

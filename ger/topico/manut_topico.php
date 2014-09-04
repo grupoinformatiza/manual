@@ -64,7 +64,7 @@
     </head>
     <body role="document">
         <?php require_once '../layout/cabecalho.php';?>
-        <div class="container">
+        <div class="container">-->
             <div class="page-header">
                 <h1>Tópico</h1>
             </div>
@@ -75,7 +75,7 @@
             <br>
             <?php require_once '../layout/mensagens.php'; ?>
            
-            <form name="frmManutTopico" id="frmManutTopico" class="form" action="manut_topico.php" method="post">
+            <form name="frmManutTopico" id="frmManutTopico" class="form" action="../../ger/topico/manut_topico.php" method="post">
                 <input type="hidden" name="acao" value="gravar" />
                 <input type="hidden" name="codigo" value="<?php echo (int)$_GET['codigo']; ?>" />
                 <div class="panel panel-info">
@@ -119,6 +119,7 @@
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../libs/summernote/summernote.min.js"></script>
+    <script type="text/javascript" src="../../libs/lang/summernote-pt-BR.js"></script>
     <script type="text/javascript" src="../layout/default.js"></script>
     <script type="text/javascript" src="manut_topico.js"></script>
 </html>

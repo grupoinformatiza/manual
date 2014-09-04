@@ -3,20 +3,20 @@ $(document).ready(function(){
         $('.sidebar').toggleClass('active');
     });    
     $('.nav-sidebar li a').click(handleTopicoClick);
+    $('#btnEditar').click(handleEditarClick);
 });
 
+function handleEditarClick(e){
+    e.preventDefault();
+    $('#editarTopico').modal();
+}
 
 function handleTopicoClick(e){
     e.preventDefault();
-    $('.nav-sidebar').removeClass('active');
+    $('.nav-sidebar li').removeClass('active');
     $(this).closest('li').addClass('active');
+    $('.main').load($(this).attr('href')+' #topicoConteudo',function(){
+        $('#btnEditar').click(handleEditarClick);
+    });
     
-    $.get(
-        $(this).attr('href'),
-        function(ret){
-            $('#tituloTopico').html(ret.titulo);
-            $('#conteudoTopico').html(ret.conteudo);
-        },
-        'json'
-    );
 }

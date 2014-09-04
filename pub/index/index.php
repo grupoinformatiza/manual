@@ -30,13 +30,6 @@ require "../../config.php";
                     $top_titulo = $topico->Titulo;
                     $top_conteudo = $topico->Conteudo;
                     $top_codigo = $codigo;
-                    //checando se for ajax
-                    if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-                        $ret['titulo'] = $top_titulo;
-                        $ret['conteudo'] = $top_conteudo;
-                        $ret['codigo'] = $top_codigo;
-                        die(json_encode($ret));
-                    }
                 } catch (Exception $ex) {
                     
                     $erro = $ex->getMessage();
@@ -89,18 +82,20 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais();
                 </div>
                 
                 <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main">
-                    <?php require_once '../../ger/layout/mensagens.php'; ?>
-                    
+                    <div id="topicoConteudo">
+                        <?php require_once '../../ger/layout/mensagens.php'; ?>
+
                         <h1 id="tituloTopico"><?php echo $top_titulo ?></h1>
                         <p id="conteudoTopico"><?php echo $top_conteudo ?></p> 
-                    <?php if(!is_null($top_titulo)) : ?>    
-                        <?php  if(Suporte\Autenticacao::checkLogin()) : ?>
-                            <a class="btn btn-default btn-md pull-right" id="btnEditar" href="../../ger/topico/manut_topico.php?acao=editar&codigo=<?php echo $top_codigo; ?>" target="_blank">
-                                <span class="glyphicon glyphicon-edit"></span> Editar
-                            </a>
+                        <?php if(!is_null($top_titulo)) : ?>    
+                            <?php  if(Suporte\Autenticacao::checkLogin()) : ?>
+                                <a class="btn btn-default btn-md pull-right" id="btnEditar" href="../../ger/topico/manut_topico.php?acao=editar&codigo=<?php echo $top_codigo; ?>" target="_blank">
+                                    <span class="glyphicon glyphicon-edit"></span> Editar
+                                </a>
+                            <?php endif; ?>
+
                         <?php endif; ?>
-                    
-                    <?php endif; ?>
+                    </div>
                 </div>
             </div>
             
@@ -118,6 +113,10 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais();
                         <h4 class="modal-title" id="editarTopicoLabel">Editar Tópico</h4>
                     </div>
                     <div class="modal-body" id="contentEditarTopico">
+                        Os campos devem ser colocados aqui...<br />
+                        (Talvez de uma forma mais simplificada)
+                    </div>
+                    <div class="modal-footer">
                         
                     </div>
                 </div>

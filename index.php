@@ -16,13 +16,15 @@ $tutoriais = \Servico\TutorialDAO::listarTutoriais($tipo);
     <body role="document">
     <center>
         <div class="container">
-            <div class="col-xs-12">
-               <div class="jumbotron">
-               <h1> MANUAL ONLINE </h1>
-                <h2>Sistema de compartilhamento em nuvem</h2>
-                <h3>Colégio Técnico Industrial - BAURU/SP</h3> 
-                </div>                
-            </div>            
+            <div class="jumbotron">
+                <h1>Manual Online</h1>
+                <p>Este site foi desenvolvido para conter toda a documentação referente a um projeto no colégio CTI - UNESP</p>
+                <p>
+                    <a class="btn btn-lg btn-success" href="pub/index/index.php">
+                        Ver Tutoriais
+                    </a>
+                </p>
+            </div>                
         </div>    
         <div class="container marketing">
             

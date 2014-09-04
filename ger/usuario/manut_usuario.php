@@ -6,6 +6,16 @@
     
     if(isset($_POST['acao'])){
         switch($_POST['acao']){
+            case 'alterarSenha':
+                try{
+                    \Servico\UsuarioDAO::alterarSenha($_POST['txtAlSenhaAtual'], $_POST['txtAlNovaSenha']);
+                    $ret['status'] = true;
+                } catch (Exception $ex) {
+                    $ret['status'] = false;
+                    $ret['msg'] = $ex->getMessage();
+                }
+                die(json_encode($ret));
+            break;
             case 'carregarCidades':
                 $opt = CidadeDAO::getComboCidade($_POST['estado']);
                 die($opt); //Retornando as opções para o javascript
@@ -17,17 +27,18 @@
                     $usuario = new Entidade\Usuario();
                     
 
-                    if(isset($_POST['codigo']) && $_POST['codigo'] != 0)
+                    if(isset($_POST['codigo']) && $_POST['codigo'] != 0){
                         $usuario->Codigo = $_POST['codigo'];
-                    else
+                    }else{
                         $usuario->Senha = $_POST['txtSenha'];
-                    
+                         $usuario->Email = $_POST['txtEmail'];
+                        $usuario->Login = $_POST['txtLogin'];
+                    }
                     $usuario->Nome = $_POST['txtNome'];
                     $usuario->DataNascimento = $_POST['txtDtNasc'];
                     $usuario->Cidade = $cidade;
                     $usuario->Sexo = $_POST['cmbSexo'];
-                    $usuario->Email = $_POST['txtEmail'];
-                    $usuario->Login = $_POST['txtLogin'];
+                   
                     
                     Servico\UsuarioDAO::gravar($usuario);
                     $sucesso = urlencode("Usuário gravado com sucesso!");
@@ -36,6 +47,16 @@
                     $erro = $ex->getMessage();
                 }
                 
+                break;
+            case 'validarLogin':
+                
+                try{
+                    \Servico\UsuarioDAO::validaLogin($_POST['login']);
+                    $ret['loginExiste'] = false;
+                } catch (Exception $ex) {
+                    $ret['loginExiste'] = true;
+                }
+                die(json_encode($ret));
                 break;
         }
     }
@@ -141,28 +162,29 @@
                                 </div>
                             </div>
                         </fieldset> <!-- /fieldset dados pessoais -->
+                        <?php if(!isset($_GET['codigo'])) : ?>
+                            <fieldset class="panel panel-info">
+                                <div class="panel-heading">Dados para Acesso</div>
+                                <div class="panel-body">
+                                    <div class="col-md-5 form-group">
+                                        <label for="txtEmail">Email</label>
+                                        <input type="text" name="txtEmail" id="txtEmail" class="form-control input-md" value="<?php echo $email; ?>" />
 
-                        <fieldset class="panel panel-info">
-                            <div class="panel-heading">Dados para Acesso</div>
-                            <div class="panel-body">
-                                <div class="col-md-5 form-group">
-                                    <label for="txtEmail">Email</label>
-                                    <input type="text" name="txtEmail" id="txtEmail" class="form-control input-md" value="<?php echo $email; ?>" />
-                                    
-                                </div>
+                                    </div>
 
-                                <div class="col-md-4 form-group">
-                                    <label for="txtLogin">Login</label>
-                                    <input type="text" name="txtLogin" id="txtLogin" class="form-control input-md" value="<?php echo $login; ?>" />
+                                    <div class="col-md-4 form-group">
+                                        <label for="txtLogin">Login</label>
+                                        <input type="text" name="txtLogin" id="txtLogin" class="form-control input-md" value="<?php echo $login; ?>" />
+                                    </div>
+
+                                    <div class="col-md-3 form-group">
+                                        <label for="txtSenha">Senha</label>
+                                        <input type="password" name="txtSenha" id="txtSenha" class="form-control input-md" />
+                                    </div>
+
                                 </div>
-                                
-                                <div class="col-md-3 form-group">
-                                    <label for="txtSenha">Senha</label>
-                                    <input type="password" name="txtSenha" id="txtSenha" class="form-control input-md" />
-                                </div>
-                                
-                            </div>
-                        </fieldset> <!-- /fieldset dados para acesso -->
+                            </fieldset> <!-- /fieldset dados para acesso -->
+                        <?php endif; ?>
 
                         <!-- Controles do formulario -->
                         <div class="form-inline pull-right">
@@ -181,6 +203,9 @@
     </body>
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="manut_usuario.js"></script>
     <script type="text/javascript" src="../layout/default.js"></script>
+    <script type="text/javascript" src="validacao_login.js"></script>
+    <script type="text/javascript" src="manut_usuario.js"></script>
+    
+    
 </html>

@@ -8,13 +8,6 @@ body{
     padding: 0;
 }
 
-.container .jumbotron{
-    margin-top: 50px;
-}
-
-
-
-
 #navbar-tipos{
     margin-right:10px;
 }
@@ -79,7 +72,8 @@ body{
   background-color: #428bca;
 }
 .nav-sidebar > .active > a:hover {
-  color: #428bca;
+  color:#fff;
+  background-color: #428bca;
 }
 /*Estilo do conteudo principal */
 .main {
