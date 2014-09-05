@@ -15,9 +15,7 @@ class UsuarioDAO{
                     . "SET usu_nome = :nome,"
                     . "usu_nasc = :nasc,"
                     . "usu_sexo = :sexo,"
-                    . "usu_email = :email,"
-                    . "cid_codigo = :cidade,"
-                    . "usu_login = :login "
+                    . "cid_codigo = :cidade "
                     . "WHERE usu_codigo = :codigo";
         }else{
             self::validaLogin($usuario->Login);
@@ -32,16 +30,51 @@ class UsuarioDAO{
         $st->bindValue(':nome', $usuario->Nome);
         $st->bindValue(':nasc', $usuario->DataNascimento);
         $st->bindValue(':sexo', $usuario->Sexo);
-        $st->bindValue(':email', $usuario->Email);
+        
         $st->bindValue(':cidade', $usuario->Cidade->Codigo);
-        $st->bindValue(':login', strtoupper($usuario->Login));
-        if($usuario->Codigo == '')
+        if($usuario->Codigo == ''){
+            $st->bindValue(':email', $usuario->Email);
+            $st->bindValue(':login', strtoupper($usuario->Login));
             $st->bindValue(':senha', md5($usuario->Senha));
+        }
         
         $st->execute();    
     }
     
    
+    public static function alterarSenha($senhaAtual,$novaSenha){
+        if(trim($senhaAtual) == '')
+            throw new Exception("Preencha a senha atual");
+        if(trim($novaSenha) == '')
+            throw new Exception("Preencha a nova senha");
+        
+        $usuario = $_SESSION['web']['usuario'];
+        //Buscando a senha atual do usuário.
+        $sqlSenhaAtual = "SELECT usu_senha FROM usuario WHERE usu_codigo = :codigo";
+        $con = \Suporte\PdoFactory::getConexao();
+        $st = $con->prepare($sqlSenhaAtual);
+        
+        $st->bindValue(':codigo', $usuario->Codigo);
+        
+        $st->execute();
+        
+        $res = $st->fetchObject();
+        
+        $senhaAtual = md5($senhaAtual);
+        $novaSenha = md5($novaSenha);
+        if($senhaAtual != $res->usu_senha)
+            throw new Exception("Senha atual não confere");
+        
+        $sqlAlterar = "UPDATE usuario SET usu_senha = :senha WHERE usu_codigo = :codigo";
+        $stAlt = $con->prepare($sqlAlterar);
+        $stAlt->bindValue(':senha', $novaSenha);
+        $stAlt->bindValue(':codigo', $usuario->Codigo);
+        if(!$stAlt->execute())
+            throw new Exception("Erro alterando a senha");
+        
+                
+    }
+    
     public static function listarPorNome($nome){
         $nome = strtoupper($nome);
         if(is_null($nome))

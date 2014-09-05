@@ -87,7 +87,8 @@ body{
   background-color: #428bca;
 }
 .nav-sidebar > .active > a:hover {
-  color: #428bca;
+  color:#fff;
+  background-color: #428bca;
 }
 /*Estilo do conteudo principal */
 .main {

@@ -6,6 +6,7 @@ use Exception;
         private $nome;
         private $tipo;
         private $imagem;
+        private $ordem;
                      
         public function setNome($_nome){
             if ($_nome == "")
@@ -17,6 +18,17 @@ use Exception;
         public function getNome(){
             return $this->nome;
         }
+        
+        public function setOrdem($_ordem){
+            if ($_ordem == "")
+                throw new Exception("Ordem deve ser preenchida");
+            $this->ordem = $_ordem;
+
+        }
+        
+        public function getOrdem(){
+            return $this->ordem;
+        }        
         
         public function setTipo($_tipo){
             if ($_tipo == "")

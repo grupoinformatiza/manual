@@ -56,13 +56,15 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Cadastrar Tópico</title>
-        <link rel="stylesheet" href="../../libs/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../libs/bootstrap/css/bootstrap.min.css">       
+        <link rel="stylesheet" href="../../libs/summernote/font-awesome.min.css">
+        <link rel="stylesheet" href="../../libs/summernote/summernote.css">
         <link rel="stylesheet" href="../layout/default.css">
-        <link rel="stylesheet" href="../../libs/editor/bootstrap-wysihtml5.css">
+        
     </head>
     <body role="document">
         <?php require_once '../layout/cabecalho.php';?>
-        <div class="container">
+        <div class="container">-->
             <div class="page-header">
                 <h1>Tópico</h1>
             </div>
@@ -73,12 +75,12 @@
             <br>
             <?php require_once '../layout/mensagens.php'; ?>
            
-            <form name="frmManutTopico" id="frmManutTopico" class="form" action="manut_topico.php" method="post">
+            <form name="frmManutTopico" id="frmManutTopico" class="form" action="../../ger/topico/manut_topico.php" method="post">
                 <input type="hidden" name="acao" value="gravar" />
                 <input type="hidden" name="codigo" value="<?php echo (int)$_GET['codigo']; ?>" />
                 <div class="panel panel-info">
                     <div class="panel-body">
-                        <div class="col-md-9 form-group">
+                        <div class="col-md-7 form-group">
                             <label for="txtTitulo">Título</label>
                             <input type="text" name="txtTitulo" id="txtTitulo" class="form-control input-md" autofocus="true" value="<?php echo $titulo;?>"/>
                         </div>
@@ -92,6 +94,11 @@
                                 <option value="<?php echo $tut->Codigo; ?>" <?php echo (($tut->Codigo == $IDtutorial) ? "selected='selected'" : "") ?>><?php echo $tut->Nome . ' ('.$tut->TipoDescricao.')'  ?></option>
                                 <?php endforeach; ?>                                
                             </select>
+                        </div>
+
+                        <div class="col-md-2 form-group">
+                            <label for="txtOrdem">Ordem</label>
+                            <input type="text" name="txtOrdem" id="txtOrdem" class="form-control input-md" autofocus="true" value="<?php echo $ordem;?>"/>
                         </div>
                         
                         <div class="col-md-12 form-group">
@@ -112,13 +119,13 @@
         
 
     </body>
+    
+    
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../libs/summernote/summernote.min.js"></script>
+    <script type="text/javascript" src="../../libs/lang/summernote-pt-BR.js"></script>
     <script type="text/javascript" src="../layout/default.js"></script>
-    <script type="text/javascript" src="../../libs/editor/wysihtml5-0.3.0.js"></script>
-    <script type="text/javascript" src="../../libs/editor/bootstrap3-wysihtml5.js"></script>
-    <script type="text/javascript" src="../../libs/editor/bootstrap-wysihtml5.pt-BR.js"></script>
-    
     <script type="text/javascript" src="manut_topico.js"></script>
 </html>
 
