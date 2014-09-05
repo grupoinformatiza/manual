@@ -4,7 +4,25 @@ $(document).ready(function(){
     });    
     $('.nav-sidebar li a').click(handleTopicoClick);
     $('#btnEditar').click(handleEditarClick);
+    
+    $('.btn-config').click(abrirOrdemTopico);
+    
+    $('.nav-sidebar').sortable({
+        update: function(event, ui) {
+            alert($(this).sortable('serialize'));
+            $.post('/pub/index/index.php', $(this).sortable('serialize'))
+                .done(function(e) {
+                    alert(e)
+                });
+            
+        }
+    });
 });
+
+function abrirOrdemTopico(){
+    $(this).closest('a').find('.btn-group').removeClass('hidden');
+    $(this).addClass('hidden');
+}
 
 function handleEditarClick(e){
     e.preventDefault();
