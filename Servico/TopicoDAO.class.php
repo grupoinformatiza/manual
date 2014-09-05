@@ -10,17 +10,18 @@ class TopicoDAO{
              
         $con = \Suporte\PdoFactory::getConexao();
         if($topico->Codigo != ''){
-            $sql = "UPDATE topico SET top_titulo=:titulo, top_conteudo=:conteudo,tut_codigo=:tutorial where "
+            $sql = "UPDATE topico SET top_titulo=:titulo, top_conteudo=:conteudo,tut_codigo=:tutorial, top_ordem=:ordem where "
                     . "top_codigo=:codigo";
         }
         else{
-        $sql = "INSERT INTO topico (top_titulo,top_conteudo,tut_codigo) "
-                . "VALUES (:titulo,:conteudo,:tutorial) ";
+        $sql = "INSERT INTO topico (top_titulo,top_conteudo,tut_codigo,top_ordem) "
+                . "VALUES (:titulo,:conteudo,:tutorial, :ordem) ";
         }
         $st = $con->prepare($sql);
         $st->bindValue(':titulo', $topico->Titulo);
         $st->bindValue(':conteudo', $topico->Conteudo);
         $st->bindValue(':tutorial', $topico->Tutorial);
+        $st->bindValue(':ordem', $topico->Ordem);
         if($topico->Codigo != ''){
             $st->bindValue(':codigo', $topico->Codigo);
         }
@@ -34,9 +35,9 @@ class TopicoDAO{
         $con = \Suporte\PdoFactory::getConexao();
         
         if($tutorial != 0)
-            $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial FROM topico where tut_codigo=:tutorial and top_deletado = False";
+            $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial, top_ordem Ordem FROM topico where tut_codigo=:tutorial and top_deletado = False order by top_ordem";
         else
-            $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial FROM topico WHERE upper(top_titulo) like :titulo and top_deletado = False";
+            $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial, top_ordem Ordem FROM topico WHERE upper(top_titulo) like :titulo and top_deletado = False order by top_ordem";
         $st  = $con->prepare($sql);
         if($tutorial != 0)
            $st->bindValue(':tutorial', $tutorial);
@@ -47,7 +48,7 @@ class TopicoDAO{
     
     public static function listarTop($tutorial){
         $con = \Suporte\PdoFactory::getConexao();
-        $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial FROM topico where tut_codigo=:tutorial and top_deletado = False";
+        $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial, top_ordem Ordem FROM topico where tut_codigo=:tutorial and top_deletado = False order by top_ordem";
         $st  = $con->prepare($sql);
         $st->bindValue(':tutorial', $tutorial);
         $st->execute();
@@ -58,12 +59,12 @@ class TopicoDAO{
         $con = \Suporte\PdoFactory::getConexao();
         $titulo = strtoupper($titulo);
         if($titulo != ''){
-            $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial FROM topico WHERE upper(top_titulo) like :titulo and top_deletado = False";
+            $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial, top_ordem Ordem FROM topico WHERE upper(top_titulo) like :titulo and top_deletado = False";
             $paginacao = \Suporte\ViewHelper::prepararPaginacao($con,$sql,array(':titulo'=>'%'.$titulo.'%'));
             $st = $con->prepare($paginacao->getSQL());
         }
         else{
-            $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial FROM topico WHERE top_deletado = False";
+            $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial, top_ordem Ordem FROM topico WHERE top_deletado = False";
             $paginacao = \Suporte\ViewHelper::prepararPaginacao($con,$sql);
             $st = $con->query($paginacao->getSQL());
         }
@@ -96,6 +97,7 @@ class TopicoDAO{
         $topico->Codigo = $u->top_codigo;
         $topico->Titulo = $u->top_titulo;
         $topico->Conteudo = $u->top_conteudo;
+        $topico->Ordem = $u->top_ordem;
         $topico->Tutorial = TutorialDAO::getTutorial($u->tut_codigo);
                 
         return $topico;

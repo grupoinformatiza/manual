@@ -18,3 +18,24 @@ function validaTopico(e){
         alert("Insira uma imagem");
     }
 }
+
+function setarOrdem(){
+    var tut = $('#cmbTutorial').val();
+    
+    if(tut != ''){
+        $.post(
+            'manut_topico.php',
+            {acao:'setarOrdem',
+             ordem:tut
+            },
+            function(retorno){
+                if(retorno)
+                    $('#txtOrdem').html(retorno);
+            },
+            'html'
+        );
+    }else{
+        $('#txtOrdem').html("value='<?php echo $ordem; ?>'");
+    }
+    
+}
