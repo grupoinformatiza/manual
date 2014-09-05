@@ -6,22 +6,33 @@ $(document).ready(function(){
     $('#btnEditar').click(handleEditarClick);
     
     $('.btn-config').click(abrirOrdemTopico);
-    
-    $('.nav-sidebar').sortable({
-        update: function(event, ui) {
-            alert($(this).sortable('serialize'));
-            $.post('/pub/index/index.php', $(this).sortable('serialize'))
-                .done(function(e) {
-                    alert(e)
-                });
-            
-        }
-    });
+    $('.btn-canc').click(fecharOrdemTopico);
+//    $('.nav-sidebar').sortable({
+//        update: function(event, ui) {
+//            alert($(this).sortable('serialize'));
+//            $.post('/pub/index/index.php', $(this).sortable('serialize'))
+//                .done(function(e) {
+//                    alert(e)
+//                });
+//            
+//        }
+//    });
 });
 
 function abrirOrdemTopico(){
     $(this).closest('a').find('.btn-group').removeClass('hidden');
-    $(this).addClass('hidden');
+    $('.btn-config').addClass('hidden');
+    $(this).closest('ul').find('.nav-item span').removeClass('hidden');
+    if($(this).closest('ul').hasClass('ui-sortable'))
+        $(this).closest('ul').sortable('enable');
+    else
+        $(this).closest('ul').sortable();
+}
+function fecharOrdemTopico(){
+    $('.btn-config').removeClass('hidden');
+    $(this).closest('.btn-group').addClass('hidden');
+    $(this).closest('ul').find('.nav-item span').addClass('hidden');
+    $(this).closest('ul').sortable('disable');
 }
 
 function handleEditarClick(e){

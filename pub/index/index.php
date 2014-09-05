@@ -92,7 +92,7 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais();
                             <?php $topicos = \Servico\TopicoDAO::listarTop($tut->Codigo); ?>
                             
                             <?php foreach($topicos as $top) : ?>
-                                <li id="topico_<?php echo $tut->Codigo; ?>">
+                                <li class="nav-item" id="topico_<?php echo $tut->Codigo; ?>">
                                     <a href="index.php?acao=exibirtopico&cod=<?php echo $top->Codigo; ?>">
                                         <?php echo $top->Titulo; ?>
                                         <span class="glyphicon glyphicon-sort pull-right hidden"></span>
@@ -151,4 +151,5 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais();
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
     <script type="text/javascript" src="../../libs/ui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../../libs/ui/jquery.ui.touch-punch.min.js"></script>
 </html>
