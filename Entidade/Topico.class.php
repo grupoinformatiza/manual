@@ -13,6 +13,7 @@ use Exception;
         private $titulo;
         private $conteudo;
         private $tutorial;
+        private $ordem;
                      
         
         public function setTitulo($_titulo) {
@@ -22,9 +23,21 @@ use Exception;
                 
         }
         
+        public function setOrdem($_ordem){
+            if ($_ordem == "")
+                throw new Exception("Ordem deve ser preenchida");
+            $this->ordem = $_ordem;
+
+        }
+        
+        public function getOrdem(){
+            return $this->ordem;
+        } 
+        
         public function getTitulo(){
             return $this->titulo;
-        }
+        }        
+        
         
         public function setConteudo($_conteudo) {
                 if ($_conteudo == "")

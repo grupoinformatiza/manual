@@ -19,17 +19,7 @@ use Exception;
             return $this->nome;
         }
         
-        public function setOrdem($_ordem){
-            if ($_ordem == "")
-                throw new Exception("Ordem deve ser preenchida");
-            $this->ordem = $_ordem;
-
-        }
-        
-        public function getOrdem(){
-            return $this->ordem;
-        }        
-        
+               
         public function setTipo($_tipo){
             if ($_tipo == "")
                 throw new Exception("Tipo deve ser preenchido");    

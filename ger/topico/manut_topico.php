@@ -12,6 +12,7 @@
                     $topico->Titulo = $_POST['txtTitulo'];
                     $topico->Conteudo = $_POST['txtConteudo'];
                     $topico->Tutorial = $_POST['cmbTutorial'];
+                    $topico->Ordem = $_POST['txtOrdem'];
                     Servico\TopicoDAO::gravar($topico);
                     $sucesso = "Tópico gravado com sucesso!";
                 } catch (Exception $ex) {
@@ -27,6 +28,7 @@
     $titulo= null;
     $IDtutorial= null;
     $conteudo= null;
+    $ordem=null;
     if(isset($_GET['acao'])){
         switch($_GET['acao']){
             case 'editar':                
@@ -38,12 +40,16 @@
                     $titulo = $topico->Titulo;
                     $conteudo = $topico->Conteudo;
                     $IDtutorial = $topico->Tutorial->Codigo;
+                    $ordem = $topico->Ordem;
                     
                     
                 }catch(Exception $ex){
                     $erro = $ex->getMessage();
                 }               
-                break;    
+                break; 
+            case 'setarOrdem':
+                    $ultimoTop = Servico\TopicoDAO::listarTop($tut->Codigo);
+                break;
         }
     }
    
@@ -98,7 +104,7 @@
 
                         <div class="col-md-2 form-group">
                             <label for="txtOrdem">Ordem</label>
-                            <input type="text" name="txtOrdem" id="txtOrdem" class="form-control input-md" autofocus="true" value="<?php echo $ordem;?>"/>
+                            <input type="text" name="txtOrdem" id="txtOrdem" class="form-control input-md" value="<?php echo $ordem;?>"/>
                         </div>
                         
                         <div class="col-md-12 form-group">
