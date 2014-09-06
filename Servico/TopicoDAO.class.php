@@ -54,6 +54,18 @@ class TopicoDAO{
         $st->execute();
         return $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Topico");
     }
+
+    public static function getOrdem($tutorial){
+        $con = \Suporte\PdoFactory::getConexao();
+        $sql = "SELECT coalesce(max(top_ordem), 0)+1 as prox FROM topico where tut_codigo=:tutorial and top_deletado = False";
+        $st  = $con->prepare($sql);
+        $st->bindValue(':tutorial', $tutorial);
+        $st->execute();
+        
+        $tut = $st->fetchObject();
+        $prox = $tut->prox;
+        return $prox;        
+    }
     
     public static function listarPaginacao($titulo=''){
         $con = \Suporte\PdoFactory::getConexao();
