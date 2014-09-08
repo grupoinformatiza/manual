@@ -139,9 +139,6 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais();
                         Os campos devem ser colocados aqui...<br />
                         (Talvez de uma forma mais simplificada)
                     </div>
-                    <div class="modal-footer">
-                        
-                    </div>
                 </div>
             </div>
         </div>

@@ -37,7 +37,9 @@ function fecharOrdemTopico(){
 
 function handleEditarClick(e){
     e.preventDefault();
-    $('#editarTopico').modal();
+    $('#editarTopico').modal({
+        remote:"../../ger/topico/edicao_topico.php"
+    });
 }
 
 function handleTopicoClick(e){
