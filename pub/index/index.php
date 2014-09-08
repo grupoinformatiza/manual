@@ -128,17 +128,6 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais();
         <div class="modal fade" id="editarTopico" tabindex="-1" role="dialog" aria-labelledby="editarTopicoLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Fechar</span>
-                        </button>
-                        <h4 class="modal-title" id="editarTopicoLabel">Editar Tópico</h4>
-                    </div>
-                    <div class="modal-body" id="contentEditarTopico">
-                        Os campos devem ser colocados aqui...<br />
-                        (Talvez de uma forma mais simplificada)
-                    </div>
                 </div>
             </div>
         </div>

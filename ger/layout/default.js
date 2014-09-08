@@ -46,6 +46,7 @@ function validarCampos(campos){
     var campo, primeiroCampo;
     var arrayCampos = campos.split(',');
     var deuCerto = true;
+    var primeiroCampo = '';
     for(var x in arrayCampos){
         campo = arrayCampos[x];
         var c = $('#'+campo);
@@ -59,7 +60,8 @@ function validarCampos(campos){
             removeErroCampo(c);
         }       
     }
-    primeiroCampo.focus();
+    if(primeiroCampo != '')
+        primeiroCampo.focus();
     return deuCerto;
 }
 
