@@ -25,7 +25,7 @@ function carregarCidades(){
             },
             function(retorno){
                 if(retorno)
-                    $('#cmbCidade').html(retorno);
+                    $('#cmbTutorial').html(retorno);
             },
             'html'
         );

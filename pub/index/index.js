@@ -38,7 +38,7 @@ function fecharOrdemTopico(){
 function handleEditarClick(e){
     e.preventDefault();
     $('#editarTopico').modal({
-        remote:"../../ger/topico/edicao_topico.php"
+        remote:$(this).attr("href")
     });
 }
 
