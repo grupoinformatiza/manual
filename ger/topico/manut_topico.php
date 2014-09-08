@@ -3,8 +3,7 @@
     
     if(isset($_POST['acao'])){
         switch($_POST['acao']){
-            case 'gravar':
-                
+            case 'gravar':          
                 try{
                     $topico = new Entidade\Topico();
                     if(isset($_POST['codigo']) && $_POST['codigo'] != 0)
@@ -20,6 +19,22 @@
                 }
                 
                 break;
+            case 'setarOrdem':
+                $erro = "";
+                try{                
+                    $cod_tutorial = $_POST['ordem'];
+                    $proxOrdem = Servico\TopicoDAO::getOrdem($cod_tutorial);
+                    
+                } catch (Exception $ex) {
+                    $erro = $ex->getMessage();
+                }
+                
+                $ret = array(
+                    "ordem" => $proxOrdem,
+                    "mensagem" => $erro
+                );
+                die(json_encode($ret)); //json - tipo de dado 
+            break;
             
             
                    
@@ -47,9 +62,6 @@
                     $erro = $ex->getMessage();
                 }               
                 break; 
-            case 'setarOrdem':
-                    $ultimoTop = Servico\TopicoDAO::listarTop($tut->Codigo);
-                break;
         }
     }
    

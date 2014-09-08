@@ -6,6 +6,7 @@ $(function(){
         lang:'pt-BR'
       });
     $('#frmManutTopico').submit(validaTopico);
+    $('#cmbTutorial').change(setarOrdem);
 });
 
 function validaTopico(e){
@@ -28,14 +29,14 @@ function setarOrdem(){
             {acao:'setarOrdem',
              ordem:tut
             },
-            function(retorno){
+            function(retorno){ //valor do die
                 if(retorno)
-                    $('#txtOrdem').html(retorno);
+                    $('#txtOrdem').val(retorno.ordem);
             },
-            'html'
+            'json'
         );
     }else{
-        $('#txtOrdem').html("value='<?php echo $ordem; ?>'");
+        $('#txtOrdem').val("");
     }
     
 }

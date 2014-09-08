@@ -8,7 +8,7 @@ require "../../config.php";
     if(isset($_GET['acao'])){
         switch($_GET['acao']){
           
-            case 'listartopico':                
+            case 'listartutorial':                
                 try{
                     $codigo = $_GET['cod'];  
                     
@@ -73,7 +73,7 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais();
                     <ul class="nav nav-sidebar">
                         
                         <li class="nav-header">
-                            <a href="index.php?acao=listartopico&cod=<?php echo $tut->Codigo; ?>"> 
+                            <a href="index.php?acao=listartutorial&cod=<?php echo $tut->Codigo; ?>"> 
                                 <?php echo $tut->Nome; ?> 
                                 <button class="btn btn-primary pull-right btn-xs btn-config" title="Alterar Ordem dos Tópicos">
                                     <span class="glyphicon glyphicon-cog"></span>

@@ -30,21 +30,19 @@ $tutoriais = \Servico\TutorialDAO::listarTutoriais($tipo);
             
             <div class="row">
                 <?php $c=0; foreach($tutoriais as $tut) : if($c==3) break; ?>                
-                <div class="col-lg-4" >
+                <div class="col-lg-4 tutorial" >
                     <a href="/pub/index/">
                         <img class="img-circle"  src="<?php echo $tut->Imagem ?>" style="width: 140px; height: 140px;"><br>    
-                        <?php echo $tut->Nome?>
+                        <a href="pub/index/index.php?acao=listartutorial&cod=<?php echo $tut->Codigo; ?>">
+                            <h3><?php echo $tut->Nome?></h3></a>
                     </a>
                 </div>
                 <?php $c++; endforeach; ?> 
             </div>
                 
-        </div>
-        
-        <br><br><br><br><br>
-        
+        </div>            
         <div class="footer">
-           <p>Desenvolvido por: Grupo Informatiza / 2014</p> 
+           Desenvolvido por: Grupo Informatiza / 2014 
         </div>
     </center>      
     </body>
