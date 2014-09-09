@@ -112,7 +112,7 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais();
                         <p id="conteudoTopico"><?php echo $top_conteudo ?></p> 
                         <?php if(!is_null($top_titulo)) : ?>    
                             <?php  if(Suporte\Autenticacao::checkLogin()) : ?>
-                                <a class="btn btn-default btn-md pull-right" id="btnEditar" href="../../ger/topico/manut_topico.php?acao=editar&codigo=<?php echo $top_codigo; ?>" target="_blank">
+                        <a class="btn btn-default btn-md pull-right" id="btnEditar" href="../../ger/topico/edicao_topico.php?acao=editar&codigo=<?php echo $top_codigo; ?>" target="_blank">
                                     <span class="glyphicon glyphicon-edit"></span> Editar
                                 </a>
                             <?php endif; ?>

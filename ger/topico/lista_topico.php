@@ -22,6 +22,7 @@ require_once '../../config.php';
                     
         }        
     }
+    //fazer o get post pra carregar os topicos qdo mudar o combo
     //listando tutoriais para o campo de pesquisa por tutorial    
     if(!isset($pgControllerTop))
         $pgControllerTop = Servico\TopicoDAO::listarPaginacao();
