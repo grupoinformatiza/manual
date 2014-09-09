@@ -13,12 +13,16 @@
                     <a class="navbar-brand" href="#">
                         <img src="<?php echo ROOT_PATH ?>imagens/informatiza_pequeno.png"/> Informatiza
                     </a>
+                    
                 </div>
                 <div class="collapse navbar-collapse">
+                    
                     <ul class="nav navbar-nav">
                         <li <?php Suporte\ViewHelper::getMenuAtivo('index'); ?>><a href="<?php echo ROOT_PATH ?>pub/index/index.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                         <li <?php Suporte\ViewHelper::getMenuAtivo('sobre'); ?>><a href="<?php echo ROOT_PATH ?>">Sobre</a></li>
                     </ul>
+                    
+                    
                     <div class="navbar-right">
                         <a class="navbar-btn btn btn-success" href="<?php echo ROOT_PATH ?>pub/usuario/cadastro_usuario.php">Inscreva-se</a>
                     </div>

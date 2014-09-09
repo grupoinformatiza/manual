@@ -4,7 +4,16 @@ require "../../config.php";
     $top_titulo = null;
     $top_conteudo = null;
     $top_codigo = null;
-
+    if(isset($_GET['topico'])){ //ordenação de tópicos
+        try{
+            \Servico\TopicoDAO::ajustarOrdemTopico($_GET['topico']);
+            $ret['status'] = true;
+        } catch (Exception $ex) {
+            $ret['status'] = false;
+            $ret['erro']   = $ex->getMessage();
+        }
+        die(json_encode($ret));
+    }
     if(isset($_GET['acao'])){
         switch($_GET['acao']){
           
@@ -74,7 +83,9 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais();
                         
                         <li class="nav-header">
                             <a href="index.php?acao=listartutorial&cod=<?php echo $tut->Codigo; ?>"> 
-                                <?php echo $tut->Nome; ?> 
+                                <?php echo $tut->Nome; ?>
+                                
+                                <?php if(Suporte\Autenticacao::checkLogin()) : ?>
                                 <button class="btn btn-primary pull-right btn-xs btn-config" title="Alterar Ordem dos Tópicos">
                                     <span class="glyphicon glyphicon-cog"></span>
                                 </button>
@@ -86,13 +97,13 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais();
                                         <span class="glyphicon glyphicon-ok"></span>
                                     </button>
                                 </div>
-                                
+                                <?php endif; ?>
                             </a>
                         </li>
                             <?php $topicos = \Servico\TopicoDAO::listarTop($tut->Codigo); ?>
                             
                             <?php foreach($topicos as $top) : ?>
-                                <li class="nav-item" id="topico_<?php echo $tut->Codigo; ?>">
+                                <li class="nav-item" id="topico_<?php echo $top->Codigo; ?>">
                                     <a href="index.php?acao=exibirtopico&cod=<?php echo $top->Codigo; ?>">
                                         <?php echo $top->Titulo; ?>
                                         <span class="glyphicon glyphicon-sort pull-right hidden"></span>

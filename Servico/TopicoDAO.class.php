@@ -20,7 +20,7 @@ class TopicoDAO{
         $st = $con->prepare($sql);
         $st->bindValue(':titulo', $topico->Titulo);
         $st->bindValue(':conteudo', $topico->Conteudo);
-        $st->bindValue(':tutorial', $topico->Tutorial);
+        $st->bindValue(':tutorial', $topico->Tutorial->Codigo);
         $st->bindValue(':ordem', $topico->Ordem);
         if($topico->Codigo != ''){
             $st->bindValue(':codigo', $topico->Codigo);
@@ -126,6 +126,30 @@ class TopicoDAO{
         $st->execute();
         if(!$st->rowCount())
             throw new Exception("Não foi possível deletar o tópico!");
+    }
+    
+    public static function ajustarOrdemTopico($topicos){
+        if(!is_array($topicos))
+            throw new Exception("Parâmetro inválido para troca de ordens");
+        
+        $conexao = \Suporte\PdoFactory::getConexao();
+        
+        $sql = "UPDATE topico SET top_ordem = :ordem WHERE top_codigo = :codigo";
+        $st  = $conexao->prepare($sql);
+        try{
+            $conexao->beginTransaction();
+            
+            foreach($topicos as $ordem => $codigo){
+                $st->bindValue(':ordem', $ordem+1);
+                $st->bindValue(':codigo', $codigo);
+                $st->execute();
+            }
+            
+            $conexao->commit();
+        }catch(Exception $ex){
+            $conexao->rollBack();
+            throw new Exception($ex->getMessage());
+        }
     }
     
     

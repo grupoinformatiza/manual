@@ -8,19 +8,26 @@ $(document).ready(function(){
     $('.btn-config').click(abrirOrdemTopico);
     $('.btn-canc').click(fecharOrdemTopico);
     $('.btn-salva').click(salvarOrdemTopico);
-//    $('.nav-sidebar').sortable({
-//        update: function(event, ui) {
-//            alert($(this).sortable('serialize'));
-//            $.post('/pub/index/index.php', $(this).sortable('serialize'))
-//                .done(function(e) {
-//                    alert(e)
-//                });
-//            
-//        }
-//    });
+    $('#editarTopico').on('hidden.bs.modal', function() {
+        $(this).removeData('bs.modal');
+    });
+    $('#editarTopico').on('loaded.bs.modal', function (e) {
+        $('#txtConteudo').summernote({
+            toolbar:[
+                ['style',['style']],
+                ['style',['bold','italic','underline']],
+                ['insert',['picture','video','hr']],
+                ['layout',['ul','ol','paragraph']],
+                ['misc',['codeview']]
+            ],
+            lang:'pt-BR'
+        });
+        $('#frmEdicaoTopico').submit(handleFormSubmit);
+    });
 });
-
+var cache = '';
 function abrirOrdemTopico(){
+    cache = $(this).closest('ul').html();
     $(this).closest('a').find('.btn-group').removeClass('hidden');
     $('.btn-config').addClass('hidden');
     $(this).closest('ul').find('.nav-item span').removeClass('hidden');
@@ -30,13 +37,29 @@ function abrirOrdemTopico(){
         $(this).closest('ul').sortable();
 }
 function fecharOrdemTopico(){
+    $(this).closest('ul').html(cache);
     $('.btn-config').removeClass('hidden');
     $(this).closest('.btn-group').addClass('hidden');
     $(this).closest('ul').find('.nav-item span').addClass('hidden');
     $(this).closest('ul').sortable('disable');
 }
 function salvarOrdemTopico(){
-    
+    var nav = $(this).closest('.nav-sidebar');
+    $.get(
+        'index.php',
+        nav.sortable('serialize'),
+        function(ret){
+            if(ret.status){
+                nav.find('.nav-item span').addClass('hidden');
+                nav.sortable('disable');
+                nav.find('.btn-group').addClass('hidden');
+                $('.btn-config').removeClass('hidden');
+            }else{
+                alert(ret.erro);
+            }
+        },
+        'json'
+    );
 }
 
 function handleEditarClick(e){
@@ -44,6 +67,7 @@ function handleEditarClick(e){
     $('#editarTopico').modal({
         remote:$(this).attr("href")
     });
+    
 }
 
 function handleTopicoClick(e){

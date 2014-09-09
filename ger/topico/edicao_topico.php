@@ -13,11 +13,7 @@
                 }catch(Exception $ex){
                     $erro = $ex->getMessage();
                 }
-                break;
-            case 'salvar':
-                break;
-            case 'edicaoAvan':
-                break;            
+                break;        
         }
     }
     if (isset($_POST['acao'])){
@@ -26,23 +22,24 @@
                 try{
                     $topico = new Entidade\Topico();
                     if(isset($_POST['codigo']) && $_POST['codigo'] != 0)
-                        $topico->Codigo = $_POST['codigo'];
+                        $topico  = \Servico\TopicoDAO::getTopico($_POST['codigo']);
                     $topico->Titulo = $_POST['txtTitulo'];
                     $topico->Conteudo = $_POST['txtConteudo'];
                     Servico\TopicoDAO::gravar($topico);
-                    $sucesso = "Tópico gravado com sucesso!";
+                    $ret['status'] = true;
                 } catch (Exception $ex) {
-                    $erro = $ex->getMessage();
+                    $ret['erro'] = $ex->getMessage();
+                    $ret['status'] = false;
+                    
                 }
-                break;
-            case 'edicaoAvan':
-                break;            
+                die(json_encode($ret));
+                break;       
         }        
     }
     
 ?>
-
-
+<link rel="stylesheet" href="../../libs/summernote/font-awesome.min.css">
+<link rel="stylesheet" href="../../libs/summernote/summernote.css">
 <div class="modal-header">
     <h4 class="modal-title">Editar Tópico</h4>
 </div>
@@ -50,19 +47,23 @@
     <input type="hidden" name="acao" value="gravar" />
     <input type="hidden" name="codigo" value="<?php echo (int)$_GET['codigo']; ?>" />
     <div class="modal-body">
-            
+            <div class="msgPlaceholder"></div>
             <div class="form-group">
                 <label for="txtTitulo">Título</label>
-                <input type="text" name="txtTituloTopico" id="txtTituloTopico" class="form-control input-md" value="<?php echo $titulo; ?>"/> 
+                <input type="text" name="txtTitulo" id="txtTitulo" class="form-control input-md" value="<?php echo $titulo; ?>"/> 
             </div>
  
             <div class="form-group">
                 <label for="txtConteudo">Conteúdo</label>
-                <textarea type="text" name="txtConteudoTopico" id="txtConteudoTopico" rows="10" class="form-control input-md"> <?php echo $conteudo; ?> </textarea>
+                <textarea type="text" name="txtConteudo" id="txtConteudo" rows="10" class="form-control input-md"> <?php echo $conteudo; ?> </textarea>
             </div>        
 
     </div>
     <div class="modal-footer">
-        <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar Alterações</button>
+        <button type="submit" class="btn btn-default btn-md" data-dismiss="modal">Descartar Alterações</button>
+        <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
     </div>
 </form>
+<script type="text/javascript" src="../../libs/summernote/summernote.min.js"></script>
+<script type="text/javascript" src="../../libs/lang/summernote-pt-BR.js"></script>
+<script type="text/javascript" src="../../ger/topico/edicao_topico.js"></script>

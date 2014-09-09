@@ -47,8 +47,7 @@ class Autenticacao{
     
     public static function paginaSegura(){
         if(!self::checkLogin()){
-            $msg = urlencode("Somente administradores podem acessar esta página.");
-            header("Location: ".ROOT_PATH."ger/login.php?erro=$msg");
+            header("Location: ".ROOT_PATH."ger/login.php");
         }
     }
     
