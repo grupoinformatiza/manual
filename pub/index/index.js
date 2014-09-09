@@ -7,6 +7,7 @@ $(document).ready(function(){
     
     $('.btn-config').click(abrirOrdemTopico);
     $('.btn-canc').click(fecharOrdemTopico);
+    $('.btn-salva').click(salvarOrdemTopico);
 //    $('.nav-sidebar').sortable({
 //        update: function(event, ui) {
 //            alert($(this).sortable('serialize'));
@@ -33,6 +34,9 @@ function fecharOrdemTopico(){
     $(this).closest('.btn-group').addClass('hidden');
     $(this).closest('ul').find('.nav-item span').addClass('hidden');
     $(this).closest('ul').sortable('disable');
+}
+function salvarOrdemTopico(){
+    
 }
 
 function handleEditarClick(e){
