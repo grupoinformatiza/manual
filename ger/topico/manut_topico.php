@@ -10,7 +10,7 @@
                         $topico->Codigo = $_POST['codigo'];
                     $topico->Titulo = $_POST['txtTitulo'];
                     $topico->Conteudo = $_POST['txtConteudo'];
-                    $topico->Tutorial = $_POST['cmbTutorial'];
+                    $topico->Tutorial = Servico\TutorialDAO::getTutorial($_POST['cmbTutorial']);
                     $topico->Ordem = $_POST['txtOrdem'];
                     Servico\TopicoDAO::gravar($topico);
                     $sucesso = "Tópico gravado com sucesso!";
