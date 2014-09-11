@@ -14,23 +14,24 @@ $tutoriais = \Servico\TutorialDAO::listarTutoriais($tipo);
         <link rel="stylesheet" href="default.css" />
     </head>
     <body role="document">
-    <center>
-        <div class="container">
+    
+        <div class="container marketing">
             <div class="jumbotron">
+                <img src="imagens/capa.png" class="img-responsive pull-left"/>
                 <h1>Manual Online</h1>
                 <p>Este site foi desenvolvido para conter toda a documentação referente a um projeto no colégio CTI - UNESP</p>
                 <p>
-                    <a class="btn btn-lg btn-success" href="pub/index/index.php">
+                    <a class="btn btn-lg btn-primary" href="pub/index/index.php">
                         Ver Tutoriais
                     </a>
                 </p>
             </div>                
-        </div>    
-        <div class="container marketing">
+        
+        
             
             <div class="row">
                 <?php $c=0; foreach($tutoriais as $tut) : if($c==3) break; ?>                
-                <div class="col-lg-4 tutorial" >
+                <div class="col-lg-4 text-center tutorial" >
                     <a href="/pub/index/">
                         <img class="img-circle"  src="<?php echo $tut->Imagem ?>" style="width: 140px; height: 140px;"><br>    
                         <a href="pub/index/index.php?acao=listartutorial&cod=<?php echo $tut->Codigo; ?>">
@@ -41,10 +42,12 @@ $tutoriais = \Servico\TutorialDAO::listarTutoriais($tipo);
             </div>
                 
         </div>            
-        <div class="footer">
-           Desenvolvido por: Grupo Informatiza / 2014 
-        </div>
-    </center>      
+        <!--<div class="footer">
+            <div class="container">
+                <p class="text-muted">Desenvolvido por: Grupo Informatiza / 2014 </p>
+            </div>
+        </div>-->
+    
     </body>
     
     <script type="text/javascript" src="libs/jquery-1.11.1.min.js" ></script>
