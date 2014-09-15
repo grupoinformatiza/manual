@@ -116,7 +116,7 @@
 
                         <div class="col-md-2 form-group">
                             <label for="txtOrdem">Ordem</label>
-                            <input type="text" name="txtOrdem" id="txtOrdem" class="form-control input-md" value="<?php echo $ordem;?>"/>
+                            <input type="text" name="txtOrdem" id="txtOrdem" class="form-control input-md" value="<?php echo $ordem;?>" readonly="true"/>
                         </div>
                         
                         <div class="col-md-12 form-group">

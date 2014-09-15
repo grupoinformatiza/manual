@@ -54,7 +54,7 @@ class TopicoDAO{
         $st->execute();
         return $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Topico");
     }
-
+      
     public static function getOrdem($tutorial){
         $con = \Suporte\PdoFactory::getConexao();
         $sql = "SELECT coalesce(max(top_ordem), 0)+1 as prox FROM topico where tut_codigo=:tutorial and top_deletado = False";
@@ -152,5 +152,35 @@ class TopicoDAO{
         }
     }
     
-    
+    public static function listarPesquisa($pesquisa='',$tutorial=0){
+        $con = \Suporte\PdoFactory::getConexao();
+        $sql =  $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial, top_ordem Ordem FROM topico";
+        if(($pesquisa != '')&&($tutorial !=0)){
+            $sql = $sql . " where upper(top_titulo) like :pesquisa and tut_codigo = :tutorial and top_deletado=FALSE order by top_ordem";
+            $paginacao = \Suporte\ViewHelper::prepararPaginacao($con,$sql);
+            $st = $con->query($paginacao->getSQL());
+        }
+        else{
+            if($pesquisa != ''){
+                 $sql = $sql . " where upper(top_titulo) like :pesquisa and top_deletado=FALSE order by top_ordem";
+                 $paginacao = \Suporte\ViewHelper::prepararPaginacao($con,$sql);
+                 $st = $con->query($paginacao->getSQL());
+            }
+            if($tutorial != 0){
+                 $sql = $sql . " where tut_codigo = :tutorial and top_deletado=FALSE order by top_ordem";
+                 $paginacao = \Suporte\ViewHelper::prepararPaginacao($con,$sql);
+                 $st = $con->query($paginacao->getSQL());
+            }
+        }
+        
+        if($pesquisa != '')
+            $st->bindValue(':pesquisa','%'.$pesquisa.'%');
+        if($tutorial != 0)
+            $st->bindValue(':tutorial', $tutorial);
+        
+        $ret = new \stdClass();        
+        $ret->res = $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Topico");
+        $ret->pag = $paginacao;
+        return $ret;
+    }
 }

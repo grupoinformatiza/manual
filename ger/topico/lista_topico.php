@@ -13,8 +13,9 @@ require_once '../../config.php';
             break;
             case 'pesquisa':
                 $titulo = $_GET['txtPesquisarTopico'];
+                $tutorial = $_GET['cmbTutorial'];
                 try{
-                    $pgControllerTop = \Servico\TopicoDAO::listarPaginacao($titulo);
+                    $pgControllerTop = \Servico\TopicoDAO::listarPesquisa($titulo,$tutorial);
                 } catch (Exception $ex) {
                     $erro = $ex->getMessage();
                 }     
@@ -22,6 +23,8 @@ require_once '../../config.php';
                     
         }        
     }
+
+       
     //fazer o get post pra carregar os topicos qdo mudar o combo
     //listando tutoriais para o campo de pesquisa por tutorial    
     if(!isset($pgControllerTop))
@@ -124,5 +127,6 @@ require_once '../../config.php';
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../layout/default.js"></script>  
+    <script type="text/javascript" src="lista_topico.js"></script> 
 </html>
 
