@@ -127,9 +127,8 @@
                 </div> <!-- fim do painel -->
                 <!-- Controles do formulario -->
                 <div class="form-inline pull-right">
-                    <a class="btn btn-default btn-md" href="lista_topico.php">Cancelar</a>
-                    <button class="btn btn-default btn-md" type="reset">Limpar</button>
                     <button class="btn btn-primary btn-md" type="submit">Salvar</button>
+                    <a class="btn btn-default btn-md" href="lista_topico.php">Cancelar</a>
                 </div>
             </form>
         </div> <!-- /container -->

@@ -22,11 +22,11 @@ $tutoriais = \Servico\TutorialDAO::listarTutoriais($tipo);
                 <p>Este site foi desenvolvido para conter toda a documentação referente a um projeto no colégio CTI - UNESP</p>
                 <p>
                     <a class="btn btn-lg btn-primary" href="pub/index/index.php">
-                        Ver Tutoriais
+                        Ver tutoriais
                     </a>
                 </p>
             </div>                
-        
+            
         
             
             <div class="row">
@@ -42,11 +42,12 @@ $tutoriais = \Servico\TutorialDAO::listarTutoriais($tipo);
             </div>
                 
         </div>            
-        <!--<div class="footer">
+        
+        <div class="footer">
             <div class="container">
                 <p class="text-muted">Desenvolvido por: Grupo Informatiza / 2014 </p>
             </div>
-        </div>-->
+        </div>
     
     </body>
     

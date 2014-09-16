@@ -9,7 +9,7 @@
                     $codigo = $_GET['codigo'];
                     $topico = \Servico\TopicoDAO::getTopico($codigo);                                 
                     $titulo = $topico->Titulo;
-                    $conteudo = $topico->Conteudo;
+                    $conteudo = $topico->Conteudo; 
                 }catch(Exception $ex){
                     $erro = $ex->getMessage();
                 }
@@ -59,9 +59,9 @@
             </div>        
 
     </div>
-    <div class="modal-footer">
-        <button type="submit" class="btn btn-default btn-md" data-dismiss="modal">Descartar Alterações</button>
+    <div class="modal-footer">        
         <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
+        <button type="submit" class="btn btn-default btn-md" data-dismiss="modal">Descartar Alterações</button>
     </div>
 </form>
 <script type="text/javascript" src="../../libs/summernote/summernote.min.js"></script>
