@@ -154,30 +154,36 @@ class TopicoDAO{
     
     public static function listarPesquisa($pesquisa='',$tutorial=0){
         $con = \Suporte\PdoFactory::getConexao();
-        $sql =  $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial, top_ordem Ordem FROM topico";
+        $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial, top_ordem Ordem FROM topico";
         if(($pesquisa != '')&&($tutorial !=0)){
             $sql = $sql . " where upper(top_titulo) like :pesquisa and tut_codigo = :tutorial and top_deletado=FALSE order by top_ordem";
-            $paginacao = \Suporte\ViewHelper::prepararPaginacao($con,$sql);
-            $st = $con->query($paginacao->getSQL());
+            $paginacao = \Suporte\ViewHelper::prepararPaginacao($con, $sql, array(':pesquisa'=>'%'.$pesquisa.'%', ':tutorial'=>$tutorial));
+            $st = $con->prepare($paginacao->getSQL());
         }
         else{
             if($pesquisa != ''){
                  $sql = $sql . " where upper(top_titulo) like :pesquisa and top_deletado=FALSE order by top_ordem";
-                 $paginacao = \Suporte\ViewHelper::prepararPaginacao($con,$sql);
-                 $st = $con->query($paginacao->getSQL());
+                 $paginacao = \Suporte\ViewHelper::prepararPaginacao($con, $sql, array(':pesquisa'=>'%'.$pesquisa.'%'));
+                 $st = $con->prepare($paginacao->getSQL());
             }
             if($tutorial != 0){
                  $sql = $sql . " where tut_codigo = :tutorial and top_deletado=FALSE order by top_ordem";
-                 $paginacao = \Suporte\ViewHelper::prepararPaginacao($con,$sql);
-                 $st = $con->query($paginacao->getSQL());
+                 $paginacao = \Suporte\ViewHelper::prepararPaginacao($con, $sql, array(':tutorial'=>$tutorial));
+
+                 die($paginacao->getSQL());
+                 $st = $con->prepare($paginacao->getSQL());
+                 die($sql);
+                 die('oi');
+                
             }
         }
-        
+        die($sql);
         if($pesquisa != '')
             $st->bindValue(':pesquisa','%'.$pesquisa.'%');
         if($tutorial != 0)
             $st->bindValue(':tutorial', $tutorial);
-        
+
+        $st->execute();
         $ret = new \stdClass();        
         $ret->res = $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Topico");
         $ret->pag = $paginacao;
