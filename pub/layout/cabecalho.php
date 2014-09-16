@@ -10,7 +10,7 @@
                     <button type="button" class="btn btn-primary btn-xs pull-left visible-xs" data-toggle="menulateral">
                         Índice
                     </button>
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="../../index.php">
                         <img src="<?php echo ROOT_PATH ?>imagens/informatiza_pequeno.png"/> Informatiza
                     </a>
                     

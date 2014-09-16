@@ -41,7 +41,12 @@
 <link rel="stylesheet" href="../../libs/summernote/font-awesome.min.css">
 <link rel="stylesheet" href="../../libs/summernote/summernote.css">
 <div class="modal-header">
-    <h4 class="modal-title">Editar Tópico</h4>
+    <h4 class="modal-title">Editar Tópico
+        <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">×</span>
+            <span class="sr-only">Fechar</span>
+        </button>
+    </h4>
 </div>
 <form name="frmEdicaoTopico" id="frmEdicaoTopico" class="modal-form" action="../../ger/topico/edicao_topico.php" method="post">
     <input type="hidden" name="acao" value="gravar" />
