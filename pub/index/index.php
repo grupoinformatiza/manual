@@ -90,12 +90,12 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais();
                                     <span class="glyphicon glyphicon-cog"></span>
                                 </button>
                                 <div class="btn-group pull-right hidden">
-                                    <button class="btn btn-warning btn-xs btn-canc" title="Cancelar">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </button>
                                     <button class="btn btn-success btn-xs btn-salva" title="Salvar">
                                         <span class="glyphicon glyphicon-ok"></span>
                                     </button>
+                                    <button class="btn btn-warning btn-xs btn-canc" title="Cancelar">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>                                    
                                 </div>
                                 <?php endif; ?>
                             </a>
