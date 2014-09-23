@@ -4,6 +4,8 @@
     use Servico\EstadoDAO;
     use Servico\CidadeDAO;
     
+    $log = $_SESSION['web']['usuario'];
+    
     if(isset($_POST['acao'])){
         switch($_POST['acao']){
             case 'alterarSenha':
@@ -74,16 +76,21 @@
             case 'editar':
                 try{
                     $codigo = $_GET['codigo'];
-                
-                    $usuario = \Servico\UsuarioDAO::getUsuario($codigo);
                     
-                    $nome = $usuario->Nome;
-                    $sexo = $usuario->Sexo;
-                    $login = $usuario->Login;
-                    $email = $usuario->Email;
-                    $dtNasc = $usuario->DataNascimento;
-                    $estUsu = $usuario->Cidade->Estado->Codigo;
-                    $cidades = CidadeDAO::getComboCidade($estUsu,$usuario->Cidade->Codigo);
+                    if($log->Codigo == $codigo){
+                        $usuario = \Servico\UsuarioDAO::getUsuario($codigo);
+
+                        $nome = $usuario->Nome;
+                        $sexo = $usuario->Sexo;
+                        $login = $usuario->Login;
+                        $email = $usuario->Email;
+                        $dtNasc = $usuario->DataNascimento;
+                        $estUsu = $usuario->Cidade->Estado->Codigo;
+                        $cidades = CidadeDAO::getComboCidade($estUsu,$usuario->Cidade->Codigo);
+                    }else{
+                        $erro = urlencode("Sem permissão para edição");
+                        header("Location: lista_usuario.php?erro=$erro");
+                    }
                 }catch(Exception $ex){
                     $erro = $ex->getMessage();
                 }

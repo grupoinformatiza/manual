@@ -1,6 +1,7 @@
 <?php
     require_once '../../config.php';
     
+$log = $_SESSION['web']['usuario'];
     
     if(isset($_GET['acao'])){
         switch($_GET['acao']){
@@ -8,9 +9,15 @@
                 
                 $codigo = $_GET['codigo'];
                 
-                try{
-                    Servico\UsuarioDAO::deletarUsuario($codigo);
-                    $sucesso = "Usuário deletado com sucesso";
+                try
+                {
+                    if($log->Codigo != $codigo)
+                    {
+                       Servico\UsuarioDAO::deletarUsuario($codigo);
+                        $sucesso = "Usuário deletado com sucesso"; 
+                    }else{
+                        throw new Exception("Sem permissão para deletar este usuario.");
+                    }
                 } catch (Exception $ex) {
                     $erro = $ex->getMessage();
                 }
@@ -33,9 +40,16 @@
                 
                 try{
                     $codigo = $_GET['codigo'];
-                    $usuario = Servico\UsuarioDAO::getUsuario($codigo);
-                    Servico\UsuarioDAO::trocaAdm($usuario);
-                    $sucesso = "Usuário alterado com sucesso";
+                    if($log->Codigo != $codigo)
+                    {
+                        $usuario = Servico\UsuarioDAO::getUsuario($codigo);
+                        Servico\UsuarioDAO::trocaAdm($usuario);
+                        $sucesso = "Usuário alterado com sucesso";                        
+                    }else
+                    {
+                        throw new Exception("Sem permissão para esta alteração");
+                    }
+                    
                 } catch (Exception $ex) {
                     $erro = $ex->getMessage();
                 }                
@@ -46,6 +60,8 @@
     }
     if(!isset($pgControllerUsu))
         $pgControllerUsu = \Servico\UsuarioDAO::listar();
+    if(isset($_GET['erro']))
+        $erro = urldecode($_GET['erro']);
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -65,7 +81,7 @@
                 <h1>Usuários</h1>
             </div>
             
-            
+            <?php require_once '../layout/mensagens.php' ?>
             
             <!-- Linha para novo e busca -->
             <div class="row">
@@ -110,16 +126,29 @@
                                     <td><?php echo $usu->Codigo; ?></td>
                                     <td><?php echo $usu->Nome; ?></td>
                                     <td><?php echo $usu->Email; ?></td>
-                                    <td class="text-right">  
-                                        <a title="Tornar Administrador" href="lista_usuario.php?acao=setadm&codigo=<?php echo $usu->Codigo; ?>"  <?php echo (($usu->Adm) ? " class='btn btn-info btn-xs' " : " class='btn btn-default btn-xs'") ?>  >
-                                            <span class="glyphicon glyphicon-user"></span>
-                                        </a>
-                                        <a title="Editar" href="manut_usuario.php?acao=editar&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-warning btn-xs">
-                                            <span class="glyphicon glyphicon-pencil"></span>
-                                        </a>
-                                        <a title="Deletar" href="lista_usuario.php?acao=deletar&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-danger btn-xs btn-deletar">
-                                            <span class="glyphicon glyphicon-remove"></span>
-                                        </a>
+                                    <td class="text-right">
+                                        <?php if($usu->Codigo == $log->Codigo): ?>
+                                            <a title="Tornar Administrador" href="lista_usuario.php?acao=setadm&codigo=<?php echo $usu->Codigo; ?>"  <?php echo (($usu->Adm) ? " class='btn btn-info btn-xs disabled' " : " class='btn btn-default btn-xs disabled'") ?>  >
+                                                <span class="glyphicon glyphicon-user"></span>
+                                            </a>
+                                            <a title="Editar" href="manut_usuario.php?acao=editar&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-warning btn-xs">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </a>                                     
+                                            <a title="Deletar" href="lista_usuario.php?acao=deletar&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-danger btn-xs btn-deletar disabled">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </a>
+                                        <?php endif; ?>
+                                        <?php if($usu->Codigo != $log->Codigo): ?>
+                                            <a title="Tornar Administrador" href="lista_usuario.php?acao=setadm&codigo=<?php echo $usu->Codigo; ?>"  <?php echo (($usu->Adm) ? " class='btn btn-info btn-xs' " : " class='btn btn-default btn-xs'") ?>  >
+                                                <span class="glyphicon glyphicon-user"></span>
+                                            </a>
+                                            <a title="Editar" href="manut_usuario.php?acao=editar&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-warning btn-xs disabled">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </a>                                     
+                                            <a title="Deletar" href="lista_usuario.php?acao=deletar&codigo=<?php echo $usu->Codigo; ?>" class="btn btn-danger btn-xs btn-deletar">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </a>
+                                        <?php endif; ?>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
