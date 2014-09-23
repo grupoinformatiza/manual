@@ -72,6 +72,8 @@ function handleEditarClick(e){
 
 function handleTopicoClick(e){
     e.preventDefault();
+    if($('.sidebar').hasClass('active'))
+        $('.sidebar').toggleClass('active');
     $('.nav-sidebar li').removeClass('active');
     $(this).closest('li').addClass('active');
     $('.main').load($(this).attr('href')+' #topicoConteudo',function(){

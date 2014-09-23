@@ -36,7 +36,7 @@ class Upload{
         if(!move_uploaded_file($this->img['tmp_name'],$novoNome))
                 throw new Exception("Não foi possível mover a imagem.");
         
-        return $novoNome;
+        return $this->nome.'.'.$this->extensao;
     }
     
     
