@@ -24,7 +24,15 @@ $(document).ready(function(){
         });
         $('#frmEdicaoTopico').submit(handleFormSubmit);
     });
+    $('.nav-item').addClass('hidden');
+    $('.nav-header').click(toggleItens);
 });
+
+function toggleItens(){
+    $('.nav-item').addClass('hidden');
+    $(this).closest('.nav-sidebar').find('.nav-item').toggleClass('hidden');
+}
+
 var cache = '';
 function abrirOrdemTopico(){
     cache = $(this).closest('ul').html();
