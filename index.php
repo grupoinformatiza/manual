@@ -56,7 +56,11 @@ $tutoriais = \Servico\TutorialDAO::listarTutoriais($tipo);
             <div class="container-fluid">
                 <p class="text-muted text-center">
                     Desenvolvido por: Grupo Informatiza / 2014 
-                    <a class="text-info pull-right" href="ger/login.php"><span class="glyphicon glyphicon-lock"></span> Entrar</a>
+                    <?php if(!Suporte\Autenticacao::checkLogin()): ?>
+                        <a class="text-info pull-right" href="ger/login.php"><span class="glyphicon glyphicon-log-in"></span> Entrar</a>
+                    <?php endif; if(Suporte\Autenticacao::checkLogin()): ?>
+                        <a class="text-info pull-right" href="ger/index.php"><span class="glyphicon glyphicon-lock"></span> Administração</a>
+                    <?php endif; ?>
                 </p>
             </div>
         </div>
