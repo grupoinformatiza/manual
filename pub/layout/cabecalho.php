@@ -19,6 +19,7 @@
                     
                     <ul class="nav navbar-nav">
                         <li <?php Suporte\ViewHelper::getMenuAtivo('index'); ?>><a href="<?php echo ROOT_PATH ?>pub/index/index.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                        <li <?php Suporte\ViewHelper::getMenuAtivo('cadastro'); ?>><a href="<?php echo ROOT_PATH ?>ger/index.php">Cadastros</a></li>
                         <li <?php Suporte\ViewHelper::getMenuAtivo('sobre'); ?>><a href="<?php echo ROOT_PATH ?>">Sobre</a></li>
                     </ul>
                     
