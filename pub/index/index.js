@@ -24,7 +24,15 @@ $(document).ready(function(){
         });
         $('#frmEdicaoTopico').submit(handleFormSubmit);
     });
+    $('.nav-item').addClass('hidden');
+    $('.nav-header').click(toggleItens);
 });
+
+function toggleItens(){
+    $('.nav-item').addClass('hidden');
+    $(this).closest('.nav-sidebar').find('.nav-item').toggleClass('hidden');
+}
+
 var cache = '';
 function abrirOrdemTopico(){
     cache = $(this).closest('ul').html();
@@ -72,6 +80,8 @@ function handleEditarClick(e){
 
 function handleTopicoClick(e){
     e.preventDefault();
+    if($('.sidebar').hasClass('active'))
+        $('.sidebar').toggleClass('active');
     $('.nav-sidebar li').removeClass('active');
     $(this).closest('li').addClass('active');
     $('.main').load($(this).attr('href')+' #topicoConteudo',function(){

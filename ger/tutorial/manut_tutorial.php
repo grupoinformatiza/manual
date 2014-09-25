@@ -77,7 +77,7 @@
             
             <form name="frmManutTutorial" id="frmManutTutorial" class="form" action="manut_tutorial.php" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="acao" value="gravar" />
-                <input type="hidden" name="codigo" value="<?php echo (int)$_GET['codigo']; ?>" />
+                <input type="hidden" name="codigo" id="hdCodigo" value="<?php echo (int)$_GET['codigo']; ?>" />
                 <div class="panel panel-info">
                     <div class="panel-body">
                         <div class="form-group">
@@ -107,7 +107,7 @@
                                     </div>
                                 </div>
                                 <input type="hidden" name="hdImagemAntiga" value="<?php echo $imagem; ?>" />
-                                <img src="<?php echo $imagem;?>" id="preview">
+                                <img src="<?php echo ROOT_PATH.$imagem;?>" id="preview">
                             </div>
                             <p class="help-block">Pré visualização da imagem (Só será enviada quando clicar em salvar)</p>
                         </div>    

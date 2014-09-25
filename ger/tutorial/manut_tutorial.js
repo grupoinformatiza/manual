@@ -7,7 +7,7 @@ function validaTutorial(e){
     
     if(!validarCampos('txtNome'))
         e.preventDefault();
-    if ($('#filImagem').val() == '')
+    if ($('#filImagem').val() == '' && ($('#hdCodigo').val() == '' || $('#hdCodigo').val() == '0'))
     {
         e.preventDefault();
         alert("Insira uma imagem");

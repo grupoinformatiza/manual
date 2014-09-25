@@ -45,7 +45,7 @@ class TutorialDAO{
             $upl->setDiretorio(ROOT_PATH.'imagens/capa_tutoriais/');
             
             $nome = $upl->processar();
-            return $nome;
+            return 'imagens/capa_tutoriais/'.$nome;
         }else{
             return $tutorial->Imagem;
         }

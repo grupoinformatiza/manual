@@ -68,8 +68,7 @@ function validarCampos(campos){
 function setErroCampo(campo){
     campo.closest('.form-group').find('span').remove();
     campo.closest('.form-group')
-        .addClass('has-error has-feedback')
-        .prepend('<span class="glyphicon glyphicon-exclamation-sign form-control-feedback"></span>');
+        .addClass('has-error');
 }
 function removeErroCampo(campo){
     campo.closest('.form-group')

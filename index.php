@@ -14,10 +14,7 @@ $tutoriais = \Servico\TutorialDAO::listarTutoriais($tipo);
         <link rel="stylesheet" href="default.css" />
     </head>
     <body role="document">
-    
-        <div class="container marketing">
-            <div class="jumbotron">
-                <img src="imagens/capa.png" class="img-responsive pull-left"/>
+        <div class="jumbotron">
                 <h1>Manual Online</h1>
                 <p>Este site foi desenvolvido para conter toda a documentação referente a um projeto no colégio CTI - UNESP</p>
                 <p>
@@ -25,27 +22,42 @@ $tutoriais = \Servico\TutorialDAO::listarTutoriais($tipo);
                         Ver tutoriais
                     </a>
                 </p>
-            </div>                
+        </div>  
+        <div class="container marketing">
+                          
             
         
             
             <div class="row">
-                <?php $c=0; foreach($tutoriais as $tut) : if($c==3) break; ?>                
-                <div class="col-lg-4 text-center tutorial" >
+                <?php $c=0; foreach($tutoriais as $tut) : if($c==3) break; ?>    
+                
+                <div class="col-sm-6 col-md-4 col-xs-6">
+                    <div class="thumbnail">
+                        <img  src="<?php echo $tut->Imagem ?>" alt="...">
+                        <div class="caption">
+                            <h3 class="text-center"><?php echo $tut->Nome?></h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <!--<div class="col-lg-4 text-center tutorial" >
                     <a href="/pub/index/">
-                        <img class="img-circle"  src="<?php echo $tut->Imagem ?>" style="width: 140px; height: 140px;"><br>    
+                        <img class="img-circle"   style="width: 140px; height: 140px;"><br>    
                         <a href="pub/index/index.php?acao=listartutorial&cod=<?php echo $tut->Codigo; ?>">
                             <h3><?php echo $tut->Nome?></h3></a>
                     </a>
-                </div>
+                </div>-->
                 <?php $c++; endforeach; ?> 
             </div>
                 
         </div>            
         
         <div class="footer">
-            <div class="container">
-                <p class="text-muted">Desenvolvido por: Grupo Informatiza / 2014 </p>
+            <div class="container-fluid">
+                <p class="text-muted text-center">
+                    Desenvolvido por: Grupo Informatiza / 2014 
+                    <a class="text-info pull-right" href="ger/login.php"><span class="glyphicon glyphicon-lock"></span> Entrar</a>
+                </p>
             </div>
         </div>
     
