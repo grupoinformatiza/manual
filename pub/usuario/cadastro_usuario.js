@@ -12,8 +12,14 @@ $(function(){
         }
     );
     $('#txtSenhaConf').blur(validarSenha2);
-    $('#txtSenha').blur(validarSenha2);
+    $('#txtSenha').blur(validarSenha2);   
+    $('#txtDtNasc').blur(
+        function(){
+            validarData($(this));
+        }
+    );                   
 });
+
 
 function validarSenha(){
     var senha = $('#txtSenha');
