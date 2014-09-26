@@ -119,6 +119,7 @@ class TutorialDAO{
         $st  = $con->prepare($sql);
         $st->bindValue(':cod', $cod, PDO::PARAM_INT);
         $st->execute();
+        TopicoDAO::deletarTopicoTutorial($cod);
         if(!$st)
             throw new Exception("Não foi possível deletar o tutorial!");
     }

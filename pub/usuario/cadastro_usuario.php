@@ -53,7 +53,7 @@
         
     </head>
     <body role="document">
-        <?php require_once '../layout/cabecalho.php';?>
+        <?php require_once '../layout/cabecalho_simples.php';?>
         
         <div class="container">
             <div class="row">          

@@ -104,9 +104,9 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais();
                             
                             <?php foreach($topicos as $top) : ?>
                                 <li class="nav-item" id="topico_<?php echo $top->Codigo; ?>">
-                                    <a href="index.php?acao=exibirtopico&cod=<?php echo $top->Codigo; ?>">
+                                    <a href="index.php?acao=exibirtopico&cod=<?php echo $top->Codigo; ?>"> 
                                         <?php echo $top->Titulo; ?>
-                                        <span class="glyphicon glyphicon-sort pull-right hidden"></span>
+                                        <span class="glyphicon glyphicon-sort pull-left hidden"></span>                                        
                                     </a> 
                                 </li>
                             <?php endforeach; ?>
