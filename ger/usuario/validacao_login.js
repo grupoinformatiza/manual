@@ -1,6 +1,6 @@
 function validarLogin(campo,nivel){
     if(campo.val() == ''){
-        setWarningCampo(campo,'Informe o Login');
+        removeErroCampo(campo);
     }else{
         
         //verificando se o login é valido

@@ -140,7 +140,9 @@
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../ger/layout/default.js"></script>
     <script type="text/javascript" src="../../ger/usuario/validacao_login.js"></script>
+    <script type="text/javascript" src="../../ger/usuario/validacao_email.js"></script>
     <script type="text/javascript" src="cadastro_usuario.js"></script>
+    
     
     
 </html>
