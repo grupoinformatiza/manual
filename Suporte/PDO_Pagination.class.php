@@ -89,7 +89,6 @@ class PDO_Pagination {
         
         $sql = str_replace( $match['texto'], 'COUNT(*)', $this->_sql);
         
-        
         $st = $this->_connection->prepare($sql);
         
         if(!is_null($this->_parametros))
@@ -283,9 +282,7 @@ class PDO_Pagination {
     {
         $limit_per_page = $this->getLimitPerPage();
         $offset = $this->getOffset();
-        
         return $this->_sql .  " LIMIT {$limit_per_page} OFFSET {$offset} "; 
-        
     }
     
     /**

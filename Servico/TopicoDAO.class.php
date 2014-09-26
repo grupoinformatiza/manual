@@ -29,23 +29,7 @@ class TopicoDAO{
         $st->execute();
               
     }
-    
-    public static function listar($titulo, $tutorial=0){
-        $titulo = strtoupper($titulo);
-        $con = \Suporte\PdoFactory::getConexao();
-        
-        if($tutorial != 0)
-            $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial, top_ordem Ordem FROM topico where tut_codigo=:tutorial and top_deletado = False order by top_ordem";
-        else
-            $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial, top_ordem Ordem FROM topico WHERE upper(top_titulo) like :titulo and top_deletado = False order by top_ordem";
-        $st  = $con->prepare($sql);
-        if($tutorial != 0)
-           $st->bindValue(':tutorial', $tutorial);
-        $st->bindValue(':titulo','%'.$titulo.'%'); 
-        $st->execute();
-        return $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Topico");
-    }
-    
+   
     public static function listarTop($tutorial){
         $con = \Suporte\PdoFactory::getConexao();
         $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial, top_ordem Ordem FROM topico where tut_codigo=:tutorial and top_deletado = False order by top_ordem";
@@ -65,31 +49,6 @@ class TopicoDAO{
         $tut = $st->fetchObject();
         $prox = $tut->prox;
         return $prox;        
-    }
-    
-    public static function listarPaginacao($titulo=''){
-        $con = \Suporte\PdoFactory::getConexao();
-        $titulo = strtoupper($titulo);
-        if($titulo != ''){
-            $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial, top_ordem Ordem FROM topico WHERE upper(top_titulo) like :titulo and top_deletado = False";
-            $paginacao = \Suporte\ViewHelper::prepararPaginacao($con,$sql,array(':titulo'=>'%'.$titulo.'%'));
-            $st = $con->prepare($paginacao->getSQL());
-        }
-        else{
-            $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial, top_ordem Ordem FROM topico WHERE top_deletado = False";
-            $paginacao = \Suporte\ViewHelper::prepararPaginacao($con,$sql);
-            $st = $con->query($paginacao->getSQL());
-        }
-        if($titulo != ''){
-            $st->bindValue(':titulo','%'.$titulo.'%');            
-        }
-            
-        $st->execute();
-        $ret = new \stdClass();
-        
-        $ret->res = $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Topico");
-        $ret->pag = $paginacao;
-        return $ret;
     }
     
     public static function getTopico($codTopico){
@@ -154,35 +113,40 @@ class TopicoDAO{
     
     public static function listarPesquisa($pesquisa='',$tutorial=0){
         $con = \Suporte\PdoFactory::getConexao();
-        $sql = "SELECT top_codigo Codigo,top_titulo Titulo,top_conteudo Conteudo,tut_codigo Tutorial, top_ordem Ordem FROM topico";
-        if(($pesquisa != '')&&($tutorial !=0)){
-            $sql = $sql . " where upper(top_titulo) like :pesquisa and tut_codigo = :tutorial and top_deletado=FALSE order by top_ordem";
-            $paginacao = \Suporte\ViewHelper::prepararPaginacao($con, $sql, array(':pesquisa'=>'%'.$pesquisa.'%', ':tutorial'=>$tutorial));
-            $st = $con->prepare($paginacao->getSQL());
+        
+        
+        //select base
+        $sql = "SELECT top_codigo Codigo,top_titulo Titulo, top_conteudo Conteudo "
+                . "FROM topico ";
+        
+        //tratando valores
+        $pesquisa = trim(strtoupper($pesquisa));
+        $tutorial = (int)$tutorial;
+        
+        //filtro padrão
+        $sql .= " WHERE top_deletado = FALSE ";
+        
+        $parametros = null;
+        
+        if($pesquisa != ''){
+            $sql .= " AND UPPER(top_titulo) LIKE :pesquisa ";
+            $parametros[':pesquisa'] = '%'.$pesquisa.'%';
         }
-        else{
-            if($pesquisa != ''){
-                 $sql = $sql . " where upper(top_titulo) like :pesquisa and top_deletado=FALSE order by top_ordem";
-                 $paginacao = \Suporte\ViewHelper::prepararPaginacao($con, $sql, array(':pesquisa'=>'%'.$pesquisa.'%'));
-                 $st = $con->prepare($paginacao->getSQL());
-            }
-            if($tutorial != 0){
-                 $sql = $sql . " where tut_codigo = :tutorial and top_deletado=FALSE order by top_ordem";
-                 $paginacao = \Suporte\ViewHelper::prepararPaginacao($con, $sql, array(':tutorial'=>$tutorial));
-
-                 die($paginacao->getSQL());
-                 $st = $con->prepare($paginacao->getSQL());
-                 die($sql);
-                 die('oi');
-                
-            }
+        if($tutorial != 0){
+            $sql .= " AND tut_codigo = :tutorial";
+            $parametros[':tutorial'] = $tutorial;
         }
-        die($sql);
+        
+        //Preparação da paginação
+        $paginacao = \Suporte\ViewHelper::prepararPaginacao($con, $sql,$parametros);
+        $st = $con->prepare($paginacao->getSQL());
+        
         if($pesquisa != '')
-            $st->bindValue(':pesquisa','%'.$pesquisa.'%');
+            $st->bindValue (':pesquisa', '%'.$pesquisa.'%');
+        
         if($tutorial != 0)
-            $st->bindValue(':tutorial', $tutorial);
-
+            $st->bindValue (':tutorial', $tutorial);
+        
         $st->execute();
         $ret = new \stdClass();        
         $ret->res = $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Topico");

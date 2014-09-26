@@ -1,5 +1,8 @@
 <?php
 require_once '../../config.php';
+    $titulo   = "";
+    $tutorial = 0;
+
     if (isset($_GET['acao'])){        
         switch($_GET['acao']){
             case 'deletar':
@@ -10,15 +13,10 @@ require_once '../../config.php';
                 } catch (Exception $ex) {
                     $erro = $ex->getMessage();
                 }
-            break;
+                break;
             case 'pesquisa':
-                $titulo = $_GET['txtPesquisarTopico'];
+                $titulo   = $_GET['txtPesquisarTopico'];
                 $tutorial = $_GET['cmbTutorial'];
-                try{
-                    $pgControllerTop = \Servico\TopicoDAO::listarPesquisa($titulo,$tutorial);
-                } catch (Exception $ex) {
-                    $erro = $ex->getMessage();
-                }     
                 break;
                     
         }        
@@ -28,7 +26,7 @@ require_once '../../config.php';
     //fazer o get post pra carregar os topicos qdo mudar o combo
     //listando tutoriais para o campo de pesquisa por tutorial    
     if(!isset($pgControllerTop))
-        $pgControllerTop = Servico\TopicoDAO::listarPaginacao();
+        $pgControllerTop = Servico\TopicoDAO::listarPesquisa($titulo,$tutorial);
     $tutoriais = Servico\TutorialDAO::listarTutoriais();
     
 ?>
@@ -77,7 +75,7 @@ require_once '../../config.php';
                     </div> 
                     <div class="col-md-4 form-group">
                         <select class="form-control input-md" id="cmbTutorial" name="cmbTutorial">
-                            <option value="1">-- Selecione --</option>
+                            <option value="0">-- Selecione --</option>
                             <?php foreach($tutoriais as $tut) : ?>
                                 <option value="<?php echo $tut->Codigo; ?>" ><?php echo $tut->Nome . ' ('.$tut->TipoDescricao.')' ?></option>
                             <?php endforeach; ?>                         
