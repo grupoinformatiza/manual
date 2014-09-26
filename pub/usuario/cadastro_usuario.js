@@ -6,7 +6,12 @@ $(function(){
             validarLogin($(this),'../../ger/usuario/');
         }
     );
-    $('#txtSenhaConf').blur(validarSenha);
+    $('#txtEmail').blur(
+        function(){
+            validarEmail($(this));
+        }
+    );
+    $('#txtSenhaConf').blur(validarSenha2);
     $('#txtSenha').blur(validarSenha2);
 });
 
@@ -15,7 +20,7 @@ function validarSenha(){
     var conf  = $('#txtSenhaConf');
            
     if(senha.val() == ''){
-        setWarningCampo(senha,'Informe a senha');
+        removeErroCampo(senha);
         return false;
     }else{
         removeErroCampo(senha);
@@ -35,15 +40,8 @@ function validarSenha2(){
     var conf2  = $('#txtSenhaConf'); 
 
     if((senha2.val() == '')&&(conf2.val() == '')){
-        if(conf2.val() == senha2.val()){
-            removeErroCampo(senha2);
-            removeErroCampo(conf2);
-            setSucessCampo(conf2);
-        }
-        else{
-            setFatalErrorCampo(conf2,'As senhas não conferem');
-            return false;
-        } 
+        removeErroCampo(senha2);
+        removeErroCampo(conf2);
     }
     else{
         if(conf2.val() == senha2.val()){
@@ -58,6 +56,7 @@ function validarSenha2(){
             }
         }
     }
+    return true;
 }
 
 

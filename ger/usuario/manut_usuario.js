@@ -4,6 +4,9 @@ $(function(){
     $('#txtLogin').blur(function(){
         validarLogin($(this),'');
     });
+    $('#txtEmail').blur(function(){
+        validarEmail($(this));
+    });
 });
 
 
@@ -13,6 +16,7 @@ function validaUsuario(e){
     if(!validarCampos('txtNome,txtDtNasc,estado,cmbCidade,cmbSexo,txtEmail,txtLogin,txtSenha'))
         e.preventDefault();  
 }
+
 
 function carregarCidades(){
     var est = $('#cmbEstado').val();

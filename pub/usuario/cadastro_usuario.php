@@ -53,7 +53,7 @@
         
     </head>
     <body role="document">
-        <?php require_once '../layout/cabecalho.php';?>
+        <?php require_once '../layout/cabecalho_simples.php';?>
         
         <div class="container">
             <div class="row">          
@@ -140,7 +140,9 @@
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../ger/layout/default.js"></script>
     <script type="text/javascript" src="../../ger/usuario/validacao_login.js"></script>
+    <script type="text/javascript" src="../../ger/usuario/validacao_email.js"></script>
     <script type="text/javascript" src="cadastro_usuario.js"></script>
+    
     
     
 </html>

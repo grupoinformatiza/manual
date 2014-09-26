@@ -87,6 +87,20 @@ class TopicoDAO{
             throw new Exception("Não foi possível deletar o tópico!");
     }
     
+        public static function deletarTopicoTutorial($codigoTutorial){
+        $cod = (int)$codigoTutorial;
+        if($cod <= 0)
+            throw new Exception("Código Inválido");
+        
+        $con = \Suporte\PdoFactory::getConexao();
+        $sql = "UPDATE topico SET top_deletado = True WHERE tut_codigo = :cod and top_deletado = FALSE";
+        $st  = $con->prepare($sql);
+        $st->bindValue(':cod', $cod, PDO::PARAM_INT);
+        $st->execute();
+        if(!$st->rowCount())
+            throw new Exception("Não foi possível deletar o tópico!");
+    }
+    
     public static function ajustarOrdemTopico($topicos){
         if(!is_array($topicos))
             throw new Exception("Parâmetro inválido para troca de ordens");

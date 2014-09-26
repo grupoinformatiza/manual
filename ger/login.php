@@ -45,8 +45,9 @@
                             <span class="glyphicon form-control-feedback glyphicon-lock"></span>
                             <input type="password" class="form-control input-lg" placeholder="Senha" id="txtSenha" name="txtSenha"/>
                         </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-lg btn-primary pull-right">OK</button>        
+                        <div class="form-group pull-right">
+                            <button type="submit" class="btn btn-lg btn-primary">OK</button>
+                            <a class="btn btn-default btn-lg" href="../pub/index/index.php">Cancelar</a>
                         </div>
                     </form>
                 </div>
