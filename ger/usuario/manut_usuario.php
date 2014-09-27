@@ -213,6 +213,7 @@
     <script type="text/javascript" src="../layout/default.js"></script>
     <script type="text/javascript" src="validacao_login.js"></script>
     <script type="text/javascript" src="validacao_email.js"></script>
+    <script type="text/javascript" src="../../validacao_data.js"></script>
     <script type="text/javascript" src="manut_usuario.js"></script>
     
     

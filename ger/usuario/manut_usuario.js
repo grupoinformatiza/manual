@@ -7,6 +7,9 @@ $(function(){
     $('#txtEmail').blur(function(){
         validarEmail($(this));
     });
+    $('#txtDtNasc').blur(function(){
+            validarData($(this));
+    });
 });
 
 

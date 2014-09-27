@@ -13,6 +13,7 @@ class ViewHelper{
     }
     
     public static function prepararPaginacao($conexao,$sql,$parametros = null){
+                
         
         $paginacao = new \Suporte\PDO_Pagination($conexao);
         $paginacao->setLimitPerPage(10);

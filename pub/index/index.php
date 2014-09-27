@@ -17,19 +17,6 @@ require "../../config.php";
     if(isset($_GET['acao'])){
         switch($_GET['acao']){
           
-            case 'listartutorial':                
-                try{
-                    $codigo = $_GET['cod'];  
-                    
-                    $topico = \Servico\TopicoDAO::listar('', $codigo);
-                                  
-                    $titulo = $topico->Titulo;
-                    $conteudo = $topico->Conteudo;
-                    $IDtutorial = $topico->Tutorial->Codigo;
-                }catch(Exception $ex){
-                    $erro = $ex->getMessage();
-                }               
-                break; 
             
             case 'exibirtopico':
                 try{
@@ -39,9 +26,9 @@ require "../../config.php";
                     $top_conteudo = $topico->Conteudo;
                     $top_codigo = $codigo;
                 } catch (Exception $ex) {
-                    
                     $erro = $ex->getMessage();
                 }
+                break;
                 
         }
     }
@@ -55,6 +42,8 @@ require "../../config.php";
 if(!isset($pgControllerTut))
     $pgControllerTut = Servico\TutorialDAO::listarTutoriais($tipo);
 $tutoriais = Servico\TutorialDAO::listarTutoriais($tipo);
+
+$tutoriais = Servico\TutorialDAO::listarTutoriais();
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -72,10 +61,10 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais($tipo);
             <div class="row">
                 <div class="col-md-2 col-sm-2 col-xs-12 sidebar menulateral">
                           
-                    <form class="form" role="search">
+                    <form class="form" name="frmProcurar" id="frmProcurar" method="get" action="index.php" role="search">
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Procurar tópicos...">
+                                <input type="text" name="pesquisa" class="form-control" placeholder="Procurar tópicos...">
                                 <div class="input-group-btn">
                                     <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                                 </div>
@@ -133,6 +122,12 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais($tipo);
                             <?php endif; ?>
 
                         <?php endif; ?>
+                    </div>
+                    
+                    <div id="resultadoPesquisa">
+                        
+                        <?php if(isset($_GET['pesquisa'])) include 'pesquisa_topico.php' ?>
+                    
                     </div>
                 </div>
             </div>
