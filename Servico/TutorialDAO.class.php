@@ -125,9 +125,9 @@ class TutorialDAO{
     }
     
         
-    public static function listarTutoriais($tipo=0){
-        
-        if($tipo!='')
+    public static function listarTutoriais($tipo = 0){
+        $tipo = (int)$tipo;
+        if($tipo!= 0)
             $sql = "SELECT tut_codigo Codigo,tut_nome Nome,tut_tipo Tipo, tut_imagem Imagem "
             . "FROM tutorial where tut_deletado = FALSE and tut_tipo=:tipo";        
         else

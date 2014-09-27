@@ -22,7 +22,7 @@
                         <?php if(Suporte\Autenticacao::checkLogin()) : ?>
                         <li <?php Suporte\ViewHelper::getMenuAtivo('cadastro'); ?>><a href="<?php echo ROOT_PATH ?>ger/index.php">Cadastros</a></li>
                         <?php endif; ?>
-                        <li <?php Suporte\ViewHelper::getMenuAtivo('sobre'); ?>><a href="<?php echo ROOT_PATH ?>pub/sobre.php">Sobre</a></li>
+                        <li <?php Suporte\ViewHelper::getMenuAtivo('sobre'); ?>><a href="<?php echo ROOT_PATH ?>pub/sobre/sobre.php">Sobre</a></li>
                     </ul>
                     
                     
@@ -31,8 +31,8 @@
                     </div>
                     
                     <ul class="nav navbar-nav navbar-right" id="navbar-tipos">
-                        <li><a href="<?php echo ROOT_PATH ?>">Desenvolvedor</a></li>
-                        <li><a href="<?php echo ROOT_PATH ?>">Usuário</a></li>
+                        <li <?php Suporte\ViewHelper::getMenuAtivo('usuario'); ?>><a href="<?php echo ROOT_PATH ?>pub/index/index.php?tipo=1">Usuário</a></li>
+                        <li <?php Suporte\ViewHelper::getMenuAtivo('desenvolvedor'); ?>><a href="<?php echo ROOT_PATH ?>pub/index/index.php?tipo=2">Desenvolvedor</a></li>                                                
                     </ul>
                     
                 </div>

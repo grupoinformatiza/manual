@@ -45,12 +45,16 @@ require "../../config.php";
                 
         }
     }
-
+    
+    if(isset($_GET['tipo']))
+        $tipo = $_GET['tipo'];
+    else
+        $tipo = '';
 
 
 if(!isset($pgControllerTut))
-    $pgControllerTut = Servico\TutorialDAO::listarTutoriais();
-$tutoriais = Servico\TutorialDAO::listarTutoriais();
+    $pgControllerTut = Servico\TutorialDAO::listarTutoriais($tipo);
+$tutoriais = Servico\TutorialDAO::listarTutoriais($tipo);
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -63,7 +67,7 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais();
         <link rel="stylesheet" href="../../libs/ui/jquery-ui.min.css">
     </head>
     <body role="document">
-        <?php  require_once '../layout/cabecalho.php'; ?>s
+        <?php  require_once '../layout/cabecalho.php'; ?>
         <div class="container-fluid" role="main">
             <div class="row">
                 <div class="col-md-2 col-sm-2 col-xs-12 sidebar menulateral">

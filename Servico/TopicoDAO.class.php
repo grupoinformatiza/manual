@@ -138,7 +138,7 @@ class TopicoDAO{
         $st  = $con->prepare($sql);
         $st->bindValue(':cod', $cod, PDO::PARAM_INT);
         $st->execute();
-        if(!$st->rowCount())
+        if(!$st)
             throw new Exception("Não foi possível deletar o tópico!");
     }
     

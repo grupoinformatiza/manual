@@ -19,7 +19,7 @@
                         <?php if(Suporte\Autenticacao::checkLogin()) : ?>
                         <li <?php Suporte\ViewHelper::getMenuAtivo('cadastro'); ?>><a href="<?php echo ROOT_PATH ?>ger/index.php">Cadastros</a></li>
                         <?php endif; ?>
-                        <li <?php Suporte\ViewHelper::getMenuAtivo('sobre'); ?>><a href="<?php echo ROOT_PATH ?>pub/sobre.php">Sobre</a></li>
+                        <li <?php Suporte\ViewHelper::getMenuAtivo('sobre'); ?>><a href="<?php echo ROOT_PATH ?>pub/sobre/sobre.php">Sobre</a></li>
                     </ul>
                     
                     
