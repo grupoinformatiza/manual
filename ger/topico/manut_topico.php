@@ -5,6 +5,7 @@
         switch($_POST['acao']){
             case 'gravar':          
                 try{
+                    $usu = $_SESSION['web']['usuario'];
                     $topico = new Entidade\Topico();
                     if(isset($_POST['codigo']) && $_POST['codigo'] != 0)
                         $topico->Codigo = $_POST['codigo'];
@@ -12,6 +13,8 @@
                     $topico->Conteudo = $_POST['txtConteudo'];
                     $topico->Tutorial = Servico\TutorialDAO::getTutorial($_POST['cmbTutorial']);
                     $topico->Ordem = $_POST['txtOrdem'];
+                    $topico->Usuario = $usu;
+                    $topico->Data =  date('Y-m-d H:i:s');
                     Servico\TopicoDAO::gravar($topico);
                     $sucesso = "Tópico gravado com sucesso!";
                 } catch (Exception $ex) {

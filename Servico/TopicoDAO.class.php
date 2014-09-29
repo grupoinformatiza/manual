@@ -10,18 +10,20 @@ class TopicoDAO{
              
         $con = \Suporte\PdoFactory::getConexao();
         if($topico->Codigo != ''){
-            $sql = "UPDATE topico SET top_titulo=:titulo, top_conteudo=:conteudo,tut_codigo=:tutorial, top_ordem=:ordem where "
+            $sql = "UPDATE topico SET top_titulo=:titulo, top_conteudo=:conteudo,tut_codigo=:tutorial, top_ordem=:ordem, top_cadastro=:data, usu_codigo=:usuario where "
                     . "top_codigo=:codigo";
         }
         else{
-        $sql = "INSERT INTO topico (top_titulo,top_conteudo,tut_codigo,top_ordem) "
-                . "VALUES (:titulo,:conteudo,:tutorial, :ordem) ";
+        $sql = "INSERT INTO topico (top_titulo,top_conteudo,tut_codigo,top_ordem,top_cadastro,usu_codigo) "
+                . "VALUES (:titulo,:conteudo,:tutorial, :ordem, :data,:usuario) ";
         }
         $st = $con->prepare($sql);
         $st->bindValue(':titulo', $topico->Titulo);
         $st->bindValue(':conteudo', $topico->Conteudo);
         $st->bindValue(':tutorial', $topico->Tutorial->Codigo);
         $st->bindValue(':ordem', $topico->Ordem);
+        $st->bindValue(':data', $topico->Data);
+        $st->bindValue(':usuario', $topico->Usuario->Codigo);
         if($topico->Codigo != ''){
             $st->bindValue(':codigo', $topico->Codigo);
         }

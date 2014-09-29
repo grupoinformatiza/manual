@@ -14,6 +14,8 @@ use Exception;
         private $conteudo;
         private $tutorial;
         private $ordem;
+        private $data;
+        private $usuario;
                      
         
         public function setTitulo($_titulo) {
@@ -38,13 +40,29 @@ use Exception;
             return $this->titulo;
         }        
         
+        public function getData(){
+            return $this->data;
+        }
+        
+        public function setData($data){
+            $this->data = $data;
+        }
+        
+        public function getUsuario(){
+            return $this->usuario;
+        }
+        
+        public function setUsuario($usuario){
+            if($usuario != 0)
+                throw new Exception("Usuário deve ser diferente de 0");
+            $this->usuario = $usuario;
+        }
         
         public function setConteudo($_conteudo) {
                 if ($_conteudo == "")
                     throw new Exception("Conteúdo deve ser preenchido");
                 $this->conteudo = $_conteudo;
                 
-
         }
         
         public function getConteudo(){
