@@ -39,11 +39,8 @@ require "../../config.php";
         $tipo = '';
 
 
-if(!isset($pgControllerTut))
-    $pgControllerTut = Servico\TutorialDAO::listarTutoriais($tipo);
 $tutoriais = Servico\TutorialDAO::listarTutoriais($tipo);
 
-$tutoriais = Servico\TutorialDAO::listarTutoriais();
 ?>
 <!DOCTYPE HTML>
 <html>
