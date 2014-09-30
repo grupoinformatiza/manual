@@ -31,8 +31,10 @@
                     </div>
                     
                     <ul class="nav navbar-nav navbar-right" id="navbar-tipos">
-                        <li <?php Suporte\ViewHelper::getMenuAtivo('usuario'); ?>><a href="<?php echo ROOT_PATH ?>pub/index/index.php?tipo=1">Usuário</a></li>
-                        <li <?php Suporte\ViewHelper::getMenuAtivo('desenvolvedor'); ?>><a href="<?php echo ROOT_PATH ?>pub/index/index.php?tipo=2">Desenvolvedor</a></li>                                                
+                        
+                        <li <?php echo (isset($_GET['tipo']) && $_GET['tipo'] == 1) ? "class='active'" : ""  ?>><a href="<?php echo ROOT_PATH ?>pub/index/index.php?tipo=1">Usuário</a></li>
+                        <li <?php echo (isset($_GET['tipo']) && $_GET['tipo'] == 2) ? "class='active'" : ""  ?>><a href="<?php echo ROOT_PATH ?>pub/index/index.php?tipo=2">Desenvolvedor</a></li> 
+                        
                     </ul>
                     
                 </div>

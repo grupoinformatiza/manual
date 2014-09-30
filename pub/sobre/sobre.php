@@ -16,34 +16,35 @@ require "../../config.php";
     <body role="document">
         <?php require_once '../layout/cabecalho_simples.php';?>
         
-        <div class="container">
+        <div class="container ">
             <div class="row">          
-                <!-- Linha para o formulario de cadastro -->
-                <div>
+                <div class="col-md-12">
                     <h1>Informações</h1>                
                     
                     <p>Desenvolvimento de um sistema para compartilhamento de arquivos entre integrantes do
-                        Colégio Técnico Industrial – “Isaac Portal Roldán” – CTI.<br>
-                        
+                        Colégio Técnico Industrial – “Isaac Portal Roldán” – CTI.</p>                 
                     <h3>Equipe de desenvolvimento:</h3>
-                    <br><br>
-                    <div class="row">
-                        <div class="imagem">
-                            <img src="../../imagens/imagem_sobre.jpg" class=" img-responsive img-rounded">
-                        </div>
-                        <br><br>                            
-                    </div>
-                    
-                    <div class="col-md-3">
-                        <h4>Raphael Garnica</h4>
-                        <h4>Paulo Matheus Faria Cruz</h4>
-                        <h4>Fabio Yoshio de Amorim</h4>
-                        <h4>Ana Paula Suaiden</h4>
-                        <h4>Luiz Carlos Mendonca Junior</h4>
-                        <h4>Luís Fernando Simões</h4>
-                        <h4>Matheus Henrique Lopes </h4>
-                    </div>                                     
-                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="imagem">
+                        <img src="../../imagens/imagem_sobre.jpg" class=" img-responsive img-rounded">
+                    </div>                           
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <h4>Raphael Garnica</h4>
+                    <h4>Paulo Matheus Faria Cruz</h4>
+                    <h4>Fabio Yoshio de Amorim</h4>
+                    <h4>Ana Paula Suaiden</h4>
+                    <h4>Luiz Carlos Mendonca Junior</h4>
+                    <h4>Luís Fernando Simões</h4>
+                    <h4>Matheus Henrique Lopes </h4><br>
+                </div>    
+             
+                <div class="col-md-9">
                     <h4>Componentes</h4>
                     <p>O projeto é composto por um servidor Linux para compartilhar os dados e serviços do sistema, 
                     pelo software Samba para possibilitar a intereção e o compartilhamento de recursos entre o
@@ -51,9 +52,9 @@ require "../../config.php";
                     qual o usuário compartilhará os arquivos.</p>
                     <p>Todos os componentes do sistema trabalharão para fornecer ao usuário uma maneira eficaz e 
                     poderosa de compartilhar arquivos, porém o software ownCloud será a única ferramenta com a 
-                    qual o usuário interagirá, afim de facilitar o uso do servidor.</p>                   
-                                        
-                </div> <!-- col que envolve o formulario inteiro -->
+                    qual o usuário interagirá, afim de facilitar o uso do servidor.</p> 
+                </div>
+                                       
             </div>
                  
             
