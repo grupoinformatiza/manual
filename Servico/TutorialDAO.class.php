@@ -16,10 +16,12 @@ class TutorialDAO{
                     . "SET tut_nome = :nome,"
                     . "tut_tipo = :tipo,"
                     . "tut_imagem = :imagem "
+                    . "tut_cadastro = :data"
+                    . "usu_codigo = :usuario"
                     . "WHERE tut_codigo = :codigo";
         }else{
-            $sql = "INSERT INTO tutorial (tut_nome,tut_tipo,tut_imagem) "
-                . "VALUES (:nome,:tipo,:imagem) ";
+            $sql = "INSERT INTO tutorial (tut_nome,tut_tipo,tut_imagem,tut_cadastro, usu_codigo) "
+                . "VALUES (:nome,:tipo,:imagem,:data,:usuario) ";
         }
         
         
@@ -30,6 +32,8 @@ class TutorialDAO{
         $st->bindValue(':nome', $tutorial->Nome);
         $st->bindValue(':tipo', $tutorial->Tipo);
         $st->bindvalue(':imagem',$imagem);
+        $st->bindvalue(':data',$tutorial->Data);
+        $st->bindValue(':usuario', $tutorial->Usuario->Codigo);
         
         $st->execute();
         

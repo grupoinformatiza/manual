@@ -18,7 +18,11 @@
                         $tutorial->Imagem = $_FILES['filImagem'];
                     else
                         $tutorial->Imagem = $_POST['hdImagemAntiga'];
-                                        
+                    
+                    $usu = $_SESSION['web']['usuario'];
+                    $tutorial->Usuario = $usu;
+                    $tutorial->Data =  date('Y-m-d H:i:s');
+                    
                     Servico\TutorialDAO::gravar($tutorial);
                     $sucesso = urlencode("Tutorial gravado com sucesso!");
                     header("Location: lista_tutorial.php?msg=$sucesso");

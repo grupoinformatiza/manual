@@ -7,6 +7,8 @@ use Exception;
         private $tipo;
         private $imagem;
         private $ordem;
+        private $usuario;
+        private $data;
                      
         public function setNome($_nome){
             if ($_nome == "")
@@ -47,7 +49,23 @@ use Exception;
         public function getImagem(){
             return $this->imagem;
         }       
-        
+            
+        public function getData(){
+            return $this->data;
         }
+        
+        public function setData($data){
+            $this->data = $data;
+        }
+        
+        public function getUsuario(){
+            return $this->usuario;
+        }
+        
+        public function setUsuario($usuario){
+            if($usuario == 0)
+                throw new Exception("Usuário deve ser diferente de 0");
+            $this->usuario = $usuario;
+        }        
 
-
+    }

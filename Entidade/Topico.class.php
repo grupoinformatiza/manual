@@ -26,8 +26,8 @@ use Exception;
         }
         
         public function setOrdem($_ordem){
-            if ($_ordem == "")
-                throw new Exception("Ordem deve ser preenchida");
+            //if ($_ordem == "")
+                //throw new Exception("Ordem deve ser preenchida");
             $this->ordem = $_ordem;
 
         }
@@ -53,7 +53,7 @@ use Exception;
         }
         
         public function setUsuario($usuario){
-            if($usuario != 0)
+            if($usuario == 0)
                 throw new Exception("Usuário deve ser diferente de 0");
             $this->usuario = $usuario;
         }

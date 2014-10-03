@@ -19,28 +19,24 @@
                     $sucesso = "Tópico gravado com sucesso!";
                 } catch (Exception $ex) {
                     $erro = $ex->getMessage();
-                }
-                
+                }                
                 break;
             case 'setarOrdem':
+                die('oi');
                 $erro = "";
                 try{                
                     $cod_tutorial = $_POST['ordem'];
-                    $proxOrdem = Servico\TopicoDAO::getOrdem($cod_tutorial);
-                    
+                    $proxOrdem = Servico\TopicoDAO::getOrdem($cod_tutorial);                    
                 } catch (Exception $ex) {
                     $erro = $ex->getMessage();
-                }
-                
+                }              
                 $ret = array(
                     "ordem" => $proxOrdem,
                     "mensagem" => $erro
                 );
+                $ordem = $ret["ordem"];
                 die(json_encode($ret)); //json - tipo de dado 
-            break;
-            
-            
-                   
+            break;               
         }
     }
     $titulo= null;
