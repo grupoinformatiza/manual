@@ -9,7 +9,7 @@
 
 <h1>Resultados da pesquisa</h1>
 <ol class="breadcrumb">
-    <li><a href="index.php">Inicio</a></li>
+    <li><a href="index.php">Início</a></li>
     <li class="active"><a href=""><?php echo $textoDigitado ?></a></li>
 </ol>
 
