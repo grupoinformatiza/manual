@@ -1,6 +1,5 @@
 .indice {
- 
-    margin-right: 10px;
+     margin-right: 10px;
 }
 
 a:hover{
@@ -38,6 +37,7 @@ body {
     padding-left:36px;
     padding-bottom:42px;
     box-shadow: 0 0 6px 0 #000;
+    margin-bottom: 100px;
 }
 #menulateral .form{
     margin-left:0;
