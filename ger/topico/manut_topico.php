@@ -22,7 +22,7 @@
                 }                
                 break;
             case 'setarOrdem':
-                die('oi');
+
                 $erro = "";
                 try{                
                     $cod_tutorial = $_POST['ordem'];

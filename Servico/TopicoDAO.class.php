@@ -6,26 +6,28 @@ use Exception;
 class TopicoDAO{
     
     
-    public static function gravar(\Entidade\Topico $topico){
-             
+    public static function gravar(\Entidade\Topico $topico){  
         $con = \Suporte\PdoFactory::getConexao();
+        
+        $keywords = $topico->Titulo . '||' . $topico->Conteudo;
+        
         if($topico->Codigo != ''){
             $sql = "UPDATE topico SET top_titulo=:titulo, top_conteudo=:conteudo,tut_codigo=:tutorial, "
-                    . "top_ordem=:ordem, top_cadastro=:data, usu_codigo=:usuario where "
+                    . "top_ordem=:ordem, top_cadastro=:data, usu_codigo=:usuario, top_conteudo_vetor=to_tsvector(:keywords) where "
                     . "top_codigo=:codigo";
         }
         else{
-        $sql = "INSERT INTO topico (top_titulo,top_conteudo,tut_codigo,top_cadastro,usu_codigo) "
-                . "VALUES (:titulo,:conteudo,:tutorial, :data,:usuario) ";
+        $sql = "INSERT INTO topico (top_titulo,top_conteudo,tut_codigo,top_cadastro,usu_codigo,top_conteudo_vetor, top_ordem) "
+                . "VALUES (:titulo,:conteudo,:tutorial, :data,:usuario,to_tsvector(:keywords),:ordem) ";
         }
         $st = $con->prepare($sql);
         $st->bindValue(':titulo', $topico->Titulo);
         $st->bindValue(':conteudo', $topico->Conteudo);
         $st->bindValue(':tutorial', $topico->Tutorial->Codigo);
-        if($topico->Codigo != '')
-            $st->bindValue(':ordem', $topico->Ordem);
+        $st->bindValue(':ordem', $topico->Ordem);
         $st->bindValue(':data', $topico->Data);
         $st->bindValue(':usuario', $topico->Usuario->Codigo);
+        $st->bindValue(':keywords', $keywords);
         if($topico->Codigo != ''){
             $st->bindValue(':codigo', $topico->Codigo);
         }

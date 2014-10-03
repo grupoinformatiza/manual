@@ -16,6 +16,7 @@ use Exception;
         private $ordem;
         private $data;
         private $usuario;
+        private $keywords;
                      
         
         public function setTitulo($_titulo) {
@@ -26,8 +27,8 @@ use Exception;
         }
         
         public function setOrdem($_ordem){
-            //if ($_ordem == "")
-                //throw new Exception("Ordem deve ser preenchida");
+            if ($_ordem == "")
+                throw new Exception("Ordem deve ser preenchida");
             $this->ordem = $_ordem;
 
         }
@@ -48,12 +49,20 @@ use Exception;
             $this->data = $data;
         }
         
+        public function getKeywords(){
+            return $this->keywords;
+        }
+        
+        public function setKeywords($keywords){
+            $this->keywords = $keywords;
+        }        
+        
         public function getUsuario(){
             return $this->usuario;
         }
         
         public function setUsuario($usuario){
-            if($usuario == 0)
+            if($usuario == '')
                 throw new Exception("Usuário deve ser diferente de 0");
             $this->usuario = $usuario;
         }
