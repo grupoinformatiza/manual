@@ -2,7 +2,7 @@ $(document).ready(function(){
     $("[data-toggle=menulateral]").click(function(){
         $('.sidebar').toggleClass('active');
     });    
-    $('.nav-sidebar li a').click(handleTopicoClick);
+    $('.nav-sidebar li:not(.nav-header) a').click(handleTopicoClick);
     $('#btnEditar').click(handleEditarClick);
     
     $('.btn-config').click(abrirOrdemTopico);
@@ -84,7 +84,7 @@ function handleTopicoClick(e){
         $('.sidebar').toggleClass('active');
     $('.nav-sidebar li').removeClass('active');
     $(this).closest('li').addClass('active');
-    $('.main').load($(this).attr('href')+' #topicoConteudo',function(){
+    $('.main').load($(this).attr('href'),function(){
         $('#btnEditar').click(handleEditarClick);
     });
     

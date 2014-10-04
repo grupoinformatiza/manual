@@ -1,46 +1,25 @@
 <?php 
 define('ROOT_PATH', '../../');
 require "../../config.php";
-    $top_titulo = null;
-    $top_conteudo = null;
-    $top_codigo = null;
-    if(isset($_GET['topico'])){ //ordenação de tópicos
-        try{
-            \Servico\TopicoDAO::ajustarOrdemTopico($_GET['topico']);
-            $ret['status'] = true;
-        } catch (Exception $ex) {
-            $ret['status'] = false;
-            $ret['erro']   = $ex->getMessage();
-        }
-        die(json_encode($ret));
+$top_titulo = null;
+$top_conteudo = null;
+$top_codigo = null;
+if(isset($_GET['topico'])){ //ordenação de tópicos
+    try{
+        \Servico\TopicoDAO::ajustarOrdemTopico($_GET['topico']);
+        $ret['status'] = true;
+    } catch (Exception $ex) {
+        $ret['status'] = false;
+        $ret['erro']   = $ex->getMessage();
     }
-    if(isset($_GET['acao'])){
-        switch($_GET['acao']){
-          
-            
-            case 'exibirtopico':
-                try{
-                    $codigo = $_GET['cod'];
-                    $topico = \Servico\TopicoDAO::getTopico($codigo);  
-                    $top_titulo = $topico->Titulo;
-                    $top_conteudo = $topico->Conteudo;
-                    $top_codigo = $codigo;
-                } catch (Exception $ex) {
-                    $erro = $ex->getMessage();
-                }
-                break;
-                
-        }
-    }
-    
-    if(isset($_GET['tipo']))
-        $tipo = $_GET['tipo'];
-    else
-        $tipo = '';
+    die(json_encode($ret));
+}
 
-
+if(isset($_GET['tipo']))
+    $tipo = $_GET['tipo'];
+else
+    $tipo = '';
 $tutoriais = Servico\TutorialDAO::listarTutoriais($tipo);
-
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -72,7 +51,7 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais($tipo);
                     <ul class="nav nav-sidebar">
                         
                         <li class="nav-header">
-                            <a href="index.php?acao=listartutorial&cod=<?php echo $tut->Codigo; ?>"> 
+                            <a href="#"> 
                                 <?php echo $tut->Nome; ?>
                                 
                                 <?php if(Suporte\Autenticacao::checkLogin()) : ?>
@@ -94,7 +73,7 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais($tipo);
                             
                             <?php foreach($topicos as $top) : ?>
                                 <li class="nav-item" id="topico_<?php echo $top->Codigo; ?>">
-                                    <a href="index.php?acao=exibirtopico&cod=<?php echo $top->Codigo; ?>"> 
+                                    <a href="visualiza_topico.php?cod=<?php echo $top->Codigo; ?>"> 
                                         <?php echo $top->Titulo; ?>
                                         <span class="glyphicon glyphicon-sort pull-left hidden"></span>                                        
                                     </a> 
@@ -109,16 +88,7 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais($tipo);
                     <div id="topicoConteudo">
                         <?php require_once '../../ger/layout/mensagens.php'; ?>
 
-                        <h1 id="tituloTopico"><?php echo $top_titulo ?></h1>
-                        <p id="conteudoTopico"><?php echo $top_conteudo ?></p> 
-                        <?php if(!is_null($top_titulo)) : ?>    
-                            <?php  if(Suporte\Autenticacao::checkLogin()) : ?>
-                        <a class="btn btn-default btn-md pull-right" id="btnEditar" href="../../ger/topico/edicao_topico.php?acao=editar&codigo=<?php echo $top_codigo; ?>" target="_blank">
-                                    <span class="glyphicon glyphicon-edit"></span> Editar
-                                </a>
-                            <?php endif; ?>
-
-                        <?php endif; ?>
+                        <?php include 'visualiza_topico.php' ?>
                     </div>
                     
                     <div id="resultadoPesquisa">
