@@ -12,6 +12,7 @@ $tutoriais = \Servico\TutorialDAO::listarTutoriais($tipo);
         <title>Manual Informatiza</title>
         <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="default.css" />
+        <link rel="stylesheet" href="index.css" />
     </head>
     <body role="document">
         <div class="jumbotron">

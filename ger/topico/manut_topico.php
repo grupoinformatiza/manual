@@ -5,6 +5,7 @@
         switch($_POST['acao']){
             case 'gravar':          
                 try{
+                    $usu = $_SESSION['web']['usuario'];
                     $topico = new Entidade\Topico();
                     if(isset($_POST['codigo']) && $_POST['codigo'] != 0)
                         $topico->Codigo = $_POST['codigo'];
@@ -12,32 +13,30 @@
                     $topico->Conteudo = $_POST['txtConteudo'];
                     $topico->Tutorial = Servico\TutorialDAO::getTutorial($_POST['cmbTutorial']);
                     $topico->Ordem = $_POST['txtOrdem'];
+                    $topico->Usuario = $usu;
+                    $topico->Data =  date('Y-m-d H:i:s');
                     Servico\TopicoDAO::gravar($topico);
                     $sucesso = "Tópico gravado com sucesso!";
                 } catch (Exception $ex) {
                     $erro = $ex->getMessage();
-                }
-                
+                }                
                 break;
             case 'setarOrdem':
+
                 $erro = "";
                 try{                
                     $cod_tutorial = $_POST['ordem'];
-                    $proxOrdem = Servico\TopicoDAO::getOrdem($cod_tutorial);
-                    
+                    $proxOrdem = Servico\TopicoDAO::getOrdem($cod_tutorial);                    
                 } catch (Exception $ex) {
                     $erro = $ex->getMessage();
-                }
-                
+                }              
                 $ret = array(
                     "ordem" => $proxOrdem,
                     "mensagem" => $erro
                 );
+                $ordem = $ret["ordem"];
                 die(json_encode($ret)); //json - tipo de dado 
-            break;
-            
-            
-                   
+            break;               
         }
     }
     $titulo= null;

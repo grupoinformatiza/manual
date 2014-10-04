@@ -2,6 +2,7 @@
 namespace Servico;
 use PDO;
 use Exception;
+
 class UsuarioDAO{
    
     public static function gravar(\Entidade\Usuario $usuario){
@@ -189,9 +190,11 @@ class UsuarioDAO{
         
         if($usuario->Adm) //se o usuario ja é adm
             $sql = "UPDATE usuario SET usu_adm = False WHERE usu_codigo = :cod AND usu_deletado = False";  
-        else //se o usuario não é adm 
+        else {//se o usuario não é adm 
             $sql = "UPDATE usuario SET usu_adm = True WHERE usu_codigo = :cod AND usu_deletado = False";
-        
+            
+            self::emailConfirmarAdm($usuario);
+        }
         
         $con = \Suporte\PdoFactory::getConexao();        
         $st  = $con->prepare($sql);
@@ -199,7 +202,19 @@ class UsuarioDAO{
         $st->execute();
         if(!$st->rowCount())
             throw new Exception("Usuário não encontrado. Não foi possível torna-lo administrador.");
-    }    
+    }
+        
+    public static function emailCodigoUsuarioConfirmarAdm($codigoUsuario) {
+        self::emailConfirmarAdm(getUsuario($codigoUsuario));
+    }
     
+    public static function emailConfirmarAdm(\Entidade\Usuario $usuario) {
+        \Suporte\Email::enviaEmail('Informatiza', 
+                'informatiza03@gmail.com', 
+                'grupo_03', 
+                $usuario->Email, 
+                $usuario->Nome,
+                'Confirmação de usuário Adm', 
+                'Parabéns, você tornou-se em um administrador do manual on-line do grupo Informatiza do CTI');
+    }
 }
-

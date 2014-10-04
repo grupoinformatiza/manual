@@ -22,7 +22,6 @@ function validaTopico(e){
 
 function setarOrdem(){
     var tut = $('#cmbTutorial').val();
-    
     if(tut != ''){
         $.post(
             'manut_topico.php',
@@ -38,5 +37,4 @@ function setarOrdem(){
     }else{
         $('#txtOrdem').val("");
     }
-    
 }

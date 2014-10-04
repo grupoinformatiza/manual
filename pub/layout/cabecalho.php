@@ -6,16 +6,16 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                    </button>
-                    <button type="button" class="btn btn-primary btn-xs pull-left visible-xs" data-toggle="menulateral">
-                        Índice
-                    </button>
+                    </button>                    
                     <a class="navbar-brand" href="../../index.php">
                         <img src="<?php echo ROOT_PATH ?>imagens/informatiza_pequeno.png"/> Informatiza
-                    </a>
-                    
-                </div>
-                <div class="collapse navbar-collapse">
+                    </a>                    
+                    <button type="button" class="btn pull-right visible-xs navbar-btn indice" data-toggle="menulateral">
+                        <span class="glyphicon glyphicon-list-alt"></span> Índice
+                    </button>
+                </div> 
+             
+                <div class="collapse navbar-collapse">                   
                     
                     <ul class="nav navbar-nav">
                         <li <?php Suporte\ViewHelper::getMenuAtivo('index'); ?>><a href="<?php echo ROOT_PATH ?>pub/index/index.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
@@ -31,8 +31,10 @@
                     </div>
                     
                     <ul class="nav navbar-nav navbar-right" id="navbar-tipos">
-                        <li <?php Suporte\ViewHelper::getMenuAtivo('usuario'); ?>><a href="<?php echo ROOT_PATH ?>pub/index/index.php?tipo=1">Usuário</a></li>
-                        <li <?php Suporte\ViewHelper::getMenuAtivo('desenvolvedor'); ?>><a href="<?php echo ROOT_PATH ?>pub/index/index.php?tipo=2">Desenvolvedor</a></li>                                                
+                        
+                        <li <?php echo (isset($_GET['tipo']) && $_GET['tipo'] == 1) ? "class='active'" : ""  ?>><a href="<?php echo ROOT_PATH ?>pub/index/index.php?tipo=1">Usuário</a></li>
+                        <li <?php echo (isset($_GET['tipo']) && $_GET['tipo'] == 2) ? "class='active'" : ""  ?>><a href="<?php echo ROOT_PATH ?>pub/index/index.php?tipo=2">Desenvolvedor</a></li> 
+                        
                     </ul>
                     
                 </div>
