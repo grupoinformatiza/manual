@@ -136,7 +136,7 @@ class TopicoDAO{
         
         
         //select base
-        $sql = "SELECT top_codigo Codigo,top_titulo Titulo, top_conteudo Conteudo "
+        $sql = "SELECT top_codigo,top_titulo, top_conteudo, usu_codigo, top_cadastro, tut_codigo "
                 . "FROM topico ";
         
         //tratando valores
@@ -149,7 +149,7 @@ class TopicoDAO{
         $parametros = null;
         
         if($pesquisa != ''){
-            $sql .= " AND UPPER(top_titulo) LIKE :pesquisa ";
+            $sql .= " AND top_conteudo_vetor @@ to_tsquery(:pesquisa) ";
             $parametros[':pesquisa'] = '%'.$pesquisa.'%';
         }
         if($tutorial != 0){
@@ -168,8 +168,25 @@ class TopicoDAO{
             $st->bindValue (':tutorial', $tutorial);
         
         $st->execute();
+        
+        $topicos = array();
+        
+        while($rs = $st->fetchObject()){
+            $topico = new \Entidade\Topico();
+            $topico->Codigo = $rs->top_codigo;
+            $topico->Titulo = $rs->top_titulo;
+            $topico->Conteudo = $rs->top_conteudo;
+            $topico->Usuario = UsuarioDAO::getUsuario($rs->usu_codigo);
+            $topico->Tutorial = TutorialDAO::getTutorial($rs->tut_codigo);
+            $topico->Data = $rs->top_cadastro;
+            $topicos[] = $topico;
+        }
+        
+        
+        
+        
         $ret = new \stdClass();        
-        $ret->res = $st->fetchAll(PDO::FETCH_CLASS,"Entidade\Topico");
+        $ret->res = $topicos;
         $ret->pag = $paginacao;
         return $ret;
     }

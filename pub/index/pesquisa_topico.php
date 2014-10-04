@@ -17,7 +17,10 @@
     <div class="container-topico-resultado">
         <h3><?php echo $topico->Titulo ?></h3>
         <p><?php echo strip_tags(substr($topico->Conteudo,0,100)) ?></p>
-        <!--<p class="text-info"><?php echo $topico->Tutorial->Nome ?></p>-->
+        <p class="text-muted">
+            <a class="btn btn-sm btn-default"><?php echo $topico->Tutorial->Nome ?> (<?php echo $topico->Tutorial->TipoDescricao ?>)</a>  
+            Última alteração realizada por <?php echo $topico->Usuario->Nome ?> em <?php echo $topico->DataBr; ?>
+        </p>
     </div>
 </a>
 <?php endforeach; ?>

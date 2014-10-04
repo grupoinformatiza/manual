@@ -45,6 +45,11 @@ use Exception;
             return $this->data;
         }
         
+        public function getDataBr(){
+            $dt = new \DateTime($this->data);
+            return $dt->format('d/m/Y');
+        }
+        
         public function setData($data){
             $this->data = $data;
         }
