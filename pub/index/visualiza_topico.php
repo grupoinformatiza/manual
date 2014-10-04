@@ -22,6 +22,18 @@ if(isset($_GET['cod'])):
 
     <h1 id="tituloTopico"><?php echo $topico->Titulo ?></h1>
     <p id="conteudoTopico"><?php echo $topico->Conteudo ?></p>   
+    
+    
+    <div class="well well-sm">
+       Este tópico foi útil?
+       <a class="btn btn-md btn-default">
+           <span class="glyphicon glyphicon-thumbs-up"></span> Sim
+       </a>
+       <a class="btn btn-md btn-default">
+           <span class="glyphicon glyphicon-thumbs-down"></span> Não
+       </a>
+    </div>
+    
     <?php  if(Suporte\Autenticacao::checkLogin()) : ?>
         <a class="btn btn-default btn-md pull-right" id="btnEditar" href="../../ger/topico/edicao_topico.php?acao=editar&codigo=<?php echo $topico->Codigo; ?>" target="_blank">
             <span class="glyphicon glyphicon-edit"></span> Editar
