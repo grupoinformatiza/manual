@@ -1,5 +1,5 @@
 <?php
-    $textoDigitado = $_GET['pesquisa'];
+    $textoDigitado = urldecode($_GET['pesquisa']);
     $pgControl = Servico\TopicoDAO::listarPesquisa($textoDigitado);
 ?>
 
@@ -16,7 +16,7 @@
 <a href="index.php?cod=<?php echo $topico->Codigo ?>">
     <div class="container-topico-resultado">
         <h3><?php echo $topico->Titulo ?></h3>
-        <p><?php echo strip_tags(substr($topico->Conteudo,0,100)) ?></p>
+        <p><?php echo substr(strip_tags($topico->Conteudo),0,200) ?>...</p>
         <p class="text-muted">
             <a class="btn btn-sm btn-default"><?php echo $topico->Tutorial->Nome ?> (<?php echo $topico->Tutorial->TipoDescricao ?>)</a>  
             Última alteração realizada por <?php echo $topico->Usuario->Nome ?> em <?php echo $topico->DataBr; ?>

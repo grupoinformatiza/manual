@@ -23,10 +23,7 @@ class TutorialDAO{
             $sql = "INSERT INTO tutorial (tut_nome,tut_tipo,tut_imagem,tut_cadastro, usu_codigo) "
                 . "VALUES (:nome,:tipo,:imagem,:data,:usuario) ";
         }
-        
-        
         $st = $con->prepare($sql);
-        
         if($tutorial->Codigo != '')
             $st->bindValue(':codigo', $tutorial->Codigo);
         $st->bindValue(':nome', $tutorial->Nome);
@@ -45,7 +42,7 @@ class TutorialDAO{
         if(!is_null($tutorial->Imagem) && is_array($tutorial->Imagem)){
             if(!is_writable(ROOT_PATH.'imagens/capa_tutoriais/'))
                 chmod (ROOT_PATH.'imagens/capa_tutoriais/', '0777');
-            $upl = new \Suporte\Upload($tutorial->Imagem,$tutorial->Nome.' '.$tutorial->Tipo);
+            $upl = new \Suporte\Upload($tutorial->Imagem,  \Suporte\ViewHelper::removerAcento($tutorial->Nome).' '.$tutorial->Tipo);
             $upl->setDiretorio(ROOT_PATH.'imagens/capa_tutoriais/');
             
             $nome = $upl->processar();

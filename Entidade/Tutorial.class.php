@@ -63,7 +63,7 @@ use Exception;
         }
         
         public function setUsuario($usuario){
-            if($usuario == 0)
+            if($usuario == "")
                 throw new Exception("Usuário deve ser diferente de 0");
             $this->usuario = $usuario;
         }        

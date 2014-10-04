@@ -30,6 +30,7 @@ class Upload{
     
     public function processar(){
         $this->validarExtensao();
+        $this->nome = strtolower(ViewHelper::removerAcento($this->nome));
         $novoNome = $this->diretorio.$this->nome.'.'.$this->extensao;
         
         

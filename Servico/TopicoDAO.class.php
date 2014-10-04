@@ -150,6 +150,7 @@ class TopicoDAO{
         
         if($pesquisa != ''){
             $sql .= " AND top_conteudo_vetor @@ to_tsquery(:pesquisa) ";
+            $pesquisa = str_replace(' ', '|', $pesquisa);
             $parametros[':pesquisa'] = '%'.$pesquisa.'%';
         }
         if($tutorial != 0){
