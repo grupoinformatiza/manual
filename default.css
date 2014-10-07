@@ -1,7 +1,9 @@
 .indice {
      margin-right: 10px;
 }
-
+.linkTopico{
+    color:#000;
+}
 a:hover{
   text-decoration: none;
 }

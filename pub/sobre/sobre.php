@@ -1,5 +1,5 @@
 <?php 
-define('ROOT_PATH', '../../../');
+define('ROOT_PATH', '../../');
 require "../../config.php";
 ?>
 <!DOCTYPE HTML>

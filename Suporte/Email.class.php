@@ -121,9 +121,9 @@ class Email {
         
         //Envia a mensagem e verifica se houve erro
         if (!$mail->send()) {
-            echo "Mailer Error: " . $mail->ErrorInfo;
+            return false;
         } else {
-            echo "Message sent!";
+            return true;
         }        
     }
 }

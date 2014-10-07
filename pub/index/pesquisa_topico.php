@@ -13,9 +13,9 @@
 <?php echo $pgControl->pag->printResultBar(); ?>
 
 <?php foreach($pgControl->res as $topico) : ?>
-<a href="index.php?cod=<?php echo $topico->Codigo ?>">
+<a class="linkTopico" href="index.php?cod=<?php echo $topico->Codigo ?>">
     <div class="container-topico-resultado">
-        <h3><?php echo $topico->Titulo ?></h3>
+        <h3 class="text-primary"><?php echo $topico->Titulo ?></h3>
         <p><?php echo substr(strip_tags($topico->Conteudo),0,200) ?>...</p>
         <p class="text-muted">
             <a class="btn btn-sm btn-default"><?php echo $topico->Tutorial->Nome ?> (<?php echo $topico->Tutorial->TipoDescricao ?>)</a>  

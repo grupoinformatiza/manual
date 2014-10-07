@@ -209,12 +209,15 @@ class UsuarioDAO{
     }
     
     public static function emailConfirmarAdm(\Entidade\Usuario $usuario) {
-        \Suporte\Email::enviaEmail('Informatiza', 
+        $t = \Suporte\Email::enviaEmail('Informatiza', 
                 'informatiza03@gmail.com', 
                 'grupo_03', 
                 $usuario->Email, 
-                $usuario->Nome,
-                'Confirmação de usuário Adm', 
-                'Parabéns, você tornou-se em um administrador do manual on-line do grupo Informatiza do CTI');
+                utf8_decode($usuario->Nome),
+                utf8_decode('Confirmação de usuário Adm'), 
+                utf8_decode('Parabéns, você tornou-se em um administrador do manual on-line do grupo Informatiza do CTI'));
+        
+        if(!$t)
+            throw new Exception("Erro enviando email!");
     }
 }
