@@ -36,18 +36,11 @@ $tutoriais = \Servico\TutorialDAO::listarTutoriais($tipo);
                     <div class="thumbnail">
                         <img  src="<?php echo $tut->Imagem ?>" alt="...">
                         <div class="caption">
-                            <h3 class="text-center"><?php echo $tut->Nome?></h3>
+                            <a href="pub/index/index.php?tutorial=<?php echo $tut->Codigo?>"><h3 class="text-center"><?php echo $tut->Nome?></h3></a>
                         </div>
                     </div>
                 </div>
                 
-                <!--<div class="col-lg-4 text-center tutorial" >
-                    <a href="/pub/index/">
-                        <img class="img-circle"   style="width: 140px; height: 140px;"><br>    
-                        <a href="pub/index/index.php?acao=listartutorial&cod=<?php echo $tut->Codigo; ?>">
-                            <h3><?php echo $tut->Nome?></h3></a>
-                    </a>
-                </div>-->
                 <?php $c++; endforeach; ?> 
             </div>
                 
