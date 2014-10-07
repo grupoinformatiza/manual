@@ -96,6 +96,10 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais($tipo);
                         <?php if(isset($_GET['pesquisa'])) include 'pesquisa_topico.php' ?>
                     
                     </div>
+                    
+                    <div id="tutorialSelecionado">
+                        <?php include 'pesquisa_tutorial.php'?>
+                    </div>
                 </div>
             </div>
             
