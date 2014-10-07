@@ -15,9 +15,9 @@ class TutorialDAO{
             $sql = "UPDATE tutorial "
                     . "SET tut_nome = :nome,"
                     . "tut_tipo = :tipo,"
-                    . "tut_imagem = :imagem "
-                    . "tut_cadastro = :data"
-                    . "usu_codigo = :usuario"
+                    . "tut_imagem = :imagem, "
+                    . "tut_cadastro = :data,"
+                    . "usu_codigo = :usuario "
                     . "WHERE tut_codigo = :codigo";
         }else{
             $sql = "INSERT INTO tutorial (tut_nome,tut_tipo,tut_imagem,tut_cadastro, usu_codigo) "

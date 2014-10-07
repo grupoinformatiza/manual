@@ -11,6 +11,9 @@ class TopicoDAO{
         
         $keywords = $topico->Titulo . '||' . $topico->Conteudo;
         
+        $topico->Data = date('Y-m-d H:i:s');
+        $topico->Usuario = $_SESSION['web']['usuario'];
+        
         if($topico->Codigo != ''){
             $sql = "UPDATE topico SET top_titulo=:titulo, top_conteudo=:conteudo,tut_codigo=:tutorial, "
                     . "top_ordem=:ordem, top_cadastro=:data, usu_codigo=:usuario, top_conteudo_vetor=to_tsvector(:keywords) where "

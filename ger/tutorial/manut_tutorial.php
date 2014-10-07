@@ -45,6 +45,7 @@
                 
                     $tutorial = \Servico\TutorialDAO::getTutorial($codigo);
                     
+                    
                     $nome = $tutorial->Nome;
                     $tipo = $tutorial->Tipo;
                     $imagem = $tutorial->Imagem;
