@@ -15,7 +15,7 @@ if(isset($_GET['cod'])):
 ?>
 
     <ol class="breadcrumb">
-        <li><a href="index.php">Inicio</a></li>
+        <li><a href="index.php">Início</a></li>
         <li><a href=""><?php echo $topico->Tutorial->Nome; ?></a></li>
         <li class="active"><a href=""><?php echo $topico->Titulo ?></a></li>
     </ol>

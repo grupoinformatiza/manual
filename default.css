@@ -11,6 +11,11 @@ html {
   position: relative;
   min-height: 100%;
 }
+.container-tutorial-selecionado{
+  background-color: #f5f5f5;
+  padding:10px;
+  border-bottom:1px solid #ccc;
+}
 .container-topico-resultado{
   background-color: #f5f5f5;
   padding:10px;
