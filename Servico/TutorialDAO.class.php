@@ -90,6 +90,8 @@ class TutorialDAO{
     }
     
     public static function getTutorial($codTutorial){
+        if($codTutorial == "")
+            throw new Exception ("Informe o tutorial");
         
         $con = \Suporte\PdoFactory::getConexao();
         $sql = "SELECT * FROM tutorial WHERE tut_codigo = :cod";
