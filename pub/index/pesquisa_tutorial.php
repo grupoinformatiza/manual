@@ -12,9 +12,13 @@ if(isset($_GET['tutorial'])):
             <li><a href="index.php">Início</a></li>
             <li class="active"><a href=""><?php echo $tutorial->Nome ?></a></li>
         </ol>
-
     <?php foreach($topicos as $topico) : ?>
-        <h3><?php echo $topico->Titulo ?></h3>
+    <a class="linkTopico" href="index.php?cod=<?php echo $topico->Codigo ?>">
+        <div class="container-tutorial-selecionado">
+            <h3><?php echo $topico->Titulo ?></h3>            
+        </div>
+    </a>
     <?php endforeach; ?>
-        
+    
 <?php endif; ?>
+        
