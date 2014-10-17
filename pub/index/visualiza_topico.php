@@ -26,11 +26,11 @@ if(isset($_GET['cod'])):
     
     <div class="well well-sm">
        Este tópico foi útil?
-       <a class="btn btn-md btn-default">
+       <a id="sim" class="btn btn-md btn-default" data-topico="<?php echo $topico->Codigo ?>" data-positivo="1">
            <span class="glyphicon glyphicon-thumbs-up"></span> Sim
        </a>
-       <a class="btn btn-md btn-default">
-           <span class="glyphicon glyphicon-thumbs-down"></span> Não
+       <a id="nao" class="btn btn-md btn-default" data-topico="<?php echo $topico->Codigo ?>" data-positivo="0">
+           <span class="glyphicon glyphicon-thumbs-down "></span> Não
        </a>
     </div>
     

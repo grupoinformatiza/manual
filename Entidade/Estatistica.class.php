@@ -1,9 +1,9 @@
 <?php
-namespace Estatistica;
+namespace Entidade;
 use Exception;
 
 
-    class Entidade extends Base{
+    class Estatistica extends Base{
         private $topico;
         private $ip;
         private $data;
@@ -32,9 +32,10 @@ use Exception;
         }
         
         public function setComentario($_comentario){
-            if ($_comentario == "")
-                throw new Exception ("Comentário deve ser diferente de vazio");
-            $this->comentario = $_comentario;
+            if( !($this->positivo) && $_comentario == "" )
+                throw new Exception ("Insira algum comentário abaixo");            
+            
+            $this->comentario = $_comentario;            
         }
         
         public function setData($data){
@@ -51,7 +52,7 @@ use Exception;
             return $this->positivo;
         }       
         public function getComentario(){
-            return $this->cometario;
+            return $this->comentario;
         }
         public function getData(){
             return $this->data;

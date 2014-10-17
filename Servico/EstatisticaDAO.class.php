@@ -16,7 +16,7 @@ class EstatisticaDAO{
         
         
         $st = $con->prepare($sql);
-        $st->bindValue(':topico', $estatistica->Topico);
+        $st->bindValue(':topico', $estatistica->Topico->Codigo);
         $st->bindValue(':ip', $estatistica->Ip);
         $st->bindValue(':data', $estatistica->Data);
         $st->bindValue(':positivo', $estatistica->Positivo);
