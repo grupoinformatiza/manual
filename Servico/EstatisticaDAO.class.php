@@ -25,4 +25,10 @@ class EstatisticaDAO{
         $st->execute();        
     }
     
+    public static function listaTop10Avalia()
+    {
+        //Tenho o ID do tópico mas quero o titulo e o id do tutorial
+        //Mas como retornar depois sendo que terei $topicos e $avaliacao?
+    }
+    
 }
