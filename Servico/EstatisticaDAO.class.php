@@ -27,8 +27,21 @@ class EstatisticaDAO{
     
     public static function listaTop10Avalia()
     {
-        //Tenho o ID do tópico mas quero o titulo e o id do tutorial
-        //Mas como retornar depois sendo que terei $topicos e $avaliacao?
+        $con = \Suporte\PdoFactory::getConexao();
+        $sql = "select top_codigo, (select count(*) from estatistica where esc_positivo=TRUE and top_codigo=EST.top_codigo) as POSITIVO,"
+            ."(select count(*) from estatistica where esc_positivo=FALSE and top_codigo=EST.top_codigo) as NEGATIVO"
+            ."from estatistica as EST group by top_codigo";
+        $st = $con->prepare($sql);
+        
+        $st->execute();
+        
+        $avaliacoes = array();
+        
+        //while($rs = $st->fetchObject()){
+            //$avaliacoes
+        //}
+        
+        return $st->fetchObject();
     }
     
 }

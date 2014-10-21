@@ -4,7 +4,7 @@ require_once '../../config.php';
 
     //if(!isset($pgControllerTop))
         //$pgControllerTop = Servico\TopicoDAO::listarPesquisa($titulo,$tutorial);
-    //$tutoriais = Servico\TutorialDAO::listarTutoriais();
+    //$avaliacoes = Servico\EstatisticaDAO::listaTop10Avalia();
 ?>
 
 <!DOCTYPE HTML>
@@ -25,34 +25,38 @@ require_once '../../config.php';
             <h4>Top 10: mais úteis</h4>
             <div class="row">
                     <div class="col-md-5">
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead> 
-                                    <tr>
-                                        <td class="col-sm-1">Código</td>
-                                        <td class="col-sm-2">Likes</td>
-                                        <td class="col-sm-2">Dislikes</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php //foreach($pgControllerTop->res as $ava) : ?>
-                                    <tr>
-                                        <td>1</td>
-                                        <td class="text-center">                                                                                                                
-                                            <a>
-                                                43534 <span class="glyphicon glyphicon-thumbs-up"></span>
-                                            </a>
-                                        </td>
-                                        <td class="text-center">
-                                            <a>
-                                                4 <span class="glyphicon glyphicon-thumbs-down"></span>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <?php //endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div> <!-- table responsive -->
+                        <div class="panel" id="tabelaTop10">
+                            <div class="panel-body" id="tabelaTop10">
+                                <div class="table-responsive">
+                                    <table class="panel" >
+                                        <thead> 
+                                            <tr>
+                                                <td class="col-sm-1 text-center">Código</td>
+                                                <td class="col-sm-2 text-center">Likes</td>
+                                                <td class="col-sm-2 text-center">Dislikes</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php //foreach($avaliacoes as $ava): ?>
+                                            <tr>
+                                                <td><?php $ava->Topico ?></td>
+                                                <td class="text-center">                                                                                                                
+                                                    <a>
+                                                        <?php $ava->Topico ?> <span class="glyphicon glyphicon-thumbs-up"></span>
+                                                    </a>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a>
+                                                        <?php $ava->Topico ?> <span class="glyphicon glyphicon-thumbs-down"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <?php //endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div> <!-- table responsive -->
+                            </div>
+                        </div>    
                     </div>
             </div>
             <h4>Avaliação dos tópicos: </h4>
