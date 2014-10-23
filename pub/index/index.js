@@ -26,6 +26,11 @@ $(document).ready(function(){
     });
     $('.nav-item').addClass('hidden');
     $('.nav-header').click(toggleItens);
+    $('#frmComentario').submit(enviarComentario);
+    $('#comentario').on("hidden.bs.modal",function(){
+        $('#txtComentario').val("");
+        $('.msgPlaceholderComentario').html("");
+    });
 });
 
 function toggleItens(){
@@ -86,6 +91,44 @@ function handleTopicoClick(e){
     $(this).closest('li').addClass('active');
     $('.main').load($(this).attr('href'),function(){
         $('#btnEditar').click(handleEditarClick);
+        //$('#sim').click(avaliaTopico);
+        $('#sim,#nao').click(abreComentario);
+        
     });
-    
+  
 }
+
+function abreComentario(e){
+   $('#comentario').modal('show');
+   $('#btnComentario').data('topico', $(this).data('topico'));
+   $('#btnComentario').data('positivo', $(this).data('positivo'));   
+}
+
+function enviarComentario(e){
+    e.preventDefault();
+    avaliaTopico();
+}
+
+
+function avaliaTopico(e){
+    var botao = $('#btnComentario');
+    $.post(
+         'processa_avaliacao.php',
+         {acao:'gravar', positivo:botao.data('positivo'), comentario:$('#txtComentario').val(), topico:botao.data('topico')},
+         function(ret){
+             if(ret.status){
+                 $('#comentario').modal('hide');
+                 $('#nao').addClass('disabled');
+                 $('#sim').addClass('disabled');
+                 if(botao.data('positivo'))
+                    $('#sim').removeClass('btn-default').addClass('btn-success'); 
+                else
+                    $('#nao').removeClass('btn-default').addClass('btn-danger'); 
+                    
+             }else{
+                 $('.msgPlaceholderComentario').html('<div class="alert alert-danger">'+ret.erro+'</div>');
+             }
+         },
+         'json'
+     );
+}  

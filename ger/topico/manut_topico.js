@@ -11,7 +11,7 @@ $(function(){
 
 function validaTopico(e){
     
-    if(!validarCampos('txtTitulo,txtConteudo,tutorial'))
+    if(!validarCampos('txtTitulo,txtConteudo,cmbTutorial'))
         e.preventDefault();
     if ($('#filImagem').val() == '')
     {

@@ -4,6 +4,7 @@ require "../../config.php";
 $top_titulo = null;
 $top_conteudo = null;
 $top_codigo = null;
+
 if(isset($_GET['topico'])){ //ordenação de tópicos
     try{
         \Servico\TopicoDAO::ajustarOrdemTopico($_GET['topico']);
@@ -112,6 +113,31 @@ $tutoriais = Servico\TutorialDAO::listarTutoriais($tipo);
                 </div>
             </div>
         </div>
+        
+        <div class="modal fade" id="comentario" tabindex="-1" role="dialog" aria-labelledby="editarTopicoLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form name="frmComentario" id="frmComentario" class="modal-form" action="../../pub/index/processa_avaliacao.php" method="post">
+                        <input type="hidden" name="acao" value="gravar" />
+                        <div class="modal-header">
+                            <h4 class="modal-title">Por gentileza, deixe um comentário sobre este tópico
+                                <button type="button" class="close" data-dismiss="modal">
+                                    <span aria-hidden="true">×</span>
+                                    <span class="sr-only">Fechar</span>
+                                </button>
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                                <div class="msgPlaceholderComentario"></div>
+                                    <textarea type="text" name="txtComentario" id="txtComentario" rows="7" class="form-control input-md"></textarea>      
+                         </div>
+                        <div class="modal-footer">        
+                            <button id="btnComentario" type="submit" class="btn btn-primary btn-md" data-topico=""><span class="glyphicon glyphicon-floppy-disk"></span> Enviar</button>
+                        </div>  
+                    </form>
+                </div>
+            </div>
+        </div>        
         
     </body>
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
