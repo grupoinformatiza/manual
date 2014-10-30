@@ -39,15 +39,15 @@ require_once '../../config.php';
                                         <tbody>
                                             <?php //foreach($avaliacoes as $ava): ?>
                                             <tr>
-                                                <td><?php $ava->Topico ?></td>
+                                                <td><?php //$ava->Topico ?>12</td>
                                                 <td class="text-center">                                                                                                                
                                                     <a>
-                                                        <?php $ava->Topico ?> <span class="glyphicon glyphicon-thumbs-up"></span>
+                                                        <?php //$ava->Topico ?> 312<span class="glyphicon glyphicon-thumbs-up"></span>
                                                     </a>
                                                 </td>
                                                 <td class="text-center">
                                                     <a>
-                                                        <?php $ava->Topico ?> <span class="glyphicon glyphicon-thumbs-down"></span>
+                                                        <?php //$ava->Topico ?> 23<span class="glyphicon glyphicon-thumbs-down"></span>
                                                     </a>
                                                 </td>
                                             </tr>
