@@ -96,7 +96,7 @@ class TopicoDAO{
             throw new Exception("Não foi possível deletar o tópico!");
     }
     
-        public static function deletarTopicoTutorial($codigoTutorial){
+    public static function deletarTopicoTutorial($codigoTutorial){
         $cod = (int)$codigoTutorial;
         if($cod <= 0)
             throw new Exception("Código Inválido");
