@@ -64,7 +64,7 @@
             </div>        
 
     </div>
-    <div class="modal-footer">        
+    <div class="modal-footer">  
         <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-floppy-disk"></span> Salvar</button>
         <button type="submit" class="btn btn-default btn-md" data-dismiss="modal">Descartar Alterações</button>
     </div>
