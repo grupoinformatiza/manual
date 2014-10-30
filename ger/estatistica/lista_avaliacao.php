@@ -42,6 +42,7 @@ require_once '../../config.php';
                                         </thead> 
                                         <tbody>
                                             <tr>
+                                                <?php //foreach($topicos as $topico) : ?>
                                                 <td>Teste</td>                                                
                                                 <td class="text-center">                                                                                                                
                                                     <a class="text-success">
@@ -54,11 +55,12 @@ require_once '../../config.php';
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="" class="text-muted pull-right">
+                                                    <a href="comentarios_topico.php?acao=coment&codigo=<?php //echo $topico->Codigo; ?>" class="text-muted pull-right coment">
                                                         <span class="glyphicon glyphicon-comment"></span>
                                                     </a>
                                                 </td>
-                                                    </tr>                              
+                                                <?php //endforeach; ?>
+                                            </tr>                              
                                         </tbody>
                                     </table>
                                 </div><!--/table-responsive-->
@@ -81,7 +83,9 @@ require_once '../../config.php';
                                                 <td></td>
                                         </thead> 
                                         <tbody>
-                                             <td>Teste</td>                                                
+                                            <tr>
+                                                <?php //foreach($topicos as $topico) : ?>
+                                                <td>Teste</td>                                                
                                                 <td class="text-center">                                                                                                                
                                                     <a class="text-success">
                                                         43534 <span class="glyphicon glyphicon-thumbs-up"></span>
@@ -92,12 +96,13 @@ require_once '../../config.php';
                                                         4 <span class="glyphicon glyphicon-thumbs-down"></span>
                                                     </a>
                                                 </td>
-                                                <td>
-                                                    <a href="" class="text-muted pull-right">
-                                                        <span class="glyphicon glyphicon-comment"></span>
-                                                    </a>
+                                                <td>                                                    
+                                                        <a href="comentarios_topico.php?acao=coment&codigo=<?php //echo $topico->Codigo; ?>" class="text-muted pull-right coment">
+                                                            <span class="glyphicon glyphicon-comment"></span>
+                                                        </a>                                                    
                                                 </td>
-                                                    </tr> 
+                                                <?php //endforeach; ?>
+                                            </tr> 
                                             
                                         </tbody>
                                     </table>
@@ -146,7 +151,7 @@ require_once '../../config.php';
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php //foreach($pgControllerTop->res as $ava) : ?>
+                                    <?php //foreach($topicos as $topico) : ?>
                                     <tr>
                                         <td>Teste</td>
                                         <td class="text-center">1</td>
@@ -161,79 +166,29 @@ require_once '../../config.php';
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="" class=" pull-right">
+                                            <a href="comentarios_topico.php?acao=coment&codigo=<?php //echo $topico->Codigo; ?>" class=" pull-right coment">
                                                 <span class="glyphicon glyphicon-comment text-muted"></span>
                                             </a>
                                         </td>
-                                    </tr>
-                                        <tr>
-                                        <td>Teste</td>
-                                        <td class="text-center">1</td>
-                                        <td class="text-center">                                                                                                                
-                                            <a class="text-success">
-                                                43534 <span class="glyphicon glyphicon-thumbs-up"></span>
-                                            </a>
-                                        </td>
-                                        <td class="text-center">
-                                            <a class="text-danger">
-                                                4 <span class="glyphicon glyphicon-thumbs-down"></span>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="" class=" pull-right">
-                                                <span class="glyphicon glyphicon-comment text-muted"></span>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                        <tr>
-                                        <td>Teste</td>
-                                        <td class="text-center">1</td>
-                                        <td class="text-center">                                                                                                                
-                                            <a class="text-success">
-                                                43534 <span class="glyphicon glyphicon-thumbs-up"></span>
-                                            </a>
-                                        </td>
-                                        <td class="text-center">
-                                            <a class="text-danger">
-                                                4 <span class="glyphicon glyphicon-thumbs-down"></span>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="" class=" pull-right">
-                                                <span class="glyphicon glyphicon-comment text-muted"></span>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                        <tr>
-                                        <td>Teste</td>
-                                        <td class="text-center">1</td>
-                                        <td class="text-center">                                                                                                                
-                                            <a class="text-success">
-                                                43534 <span class="glyphicon glyphicon-thumbs-up"></span>
-                                            </a>
-                                        </td>
-                                        <td class="text-center">
-                                            <a class="text-danger">
-                                                4 <span class="glyphicon glyphicon-thumbs-down"></span>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="" class=" pull-right">
-                                                <span class="glyphicon glyphicon-comment text-muted"></span>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    </tr>                                        
                                     <?php //endforeach; ?>
                                 </tbody>
                             </table>
                         </div> <!-- table responsive -->
-                    </div>                               
-            </div>
-        </div>
+                    </div><!-- /col -->
+                    <div class="modal fade" id="comentarios" tabindex="-1" role="dialog" aria-labelledby="comentLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                            </div>
+                        </div>
+                    </div>
+            </div><!-- /row -->
+        </div><!-- /container -->
     </body>
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../layout/default.js"></script>    
+    <script type="text/javascript" src="../layout/default.js"></script>
+    <script type="text/javascript" src="lista_avaliacao.js"></script>
 </html>
 
 
