@@ -1,3 +1,15 @@
+.busca{
+    margin-top:25px;
+    margin-bottom: 25px;
+    float:right;
+}
+.panel{
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+.glyphicon-comment{
+    margin-right: 5px;
+}
 body{
     padding-top: 25px;
     background-color: #eee;
