@@ -1,9 +1,9 @@
 <?php
 require_once '../../config.php';
+    $top10mais = Servico\EstatisticaDAO::listaTop10Avalia();
 
-
-    //if(!isset($pgControllerTop))
-        //$pgControllerTop = Servico\TopicoDAO::listarPesquisa($titulo,$tutorial);
+    //if(!isset($pgControllerEst))
+        //$pgControllerEst = Servico\EstatisticaDAO::listarTopicos($titulo,$tutorial);
     //$avaliacoes = Servico\EstatisticaDAO::listaTop10Avalia();
 ?>
 
@@ -41,24 +41,26 @@ require_once '../../config.php';
                                             </tr>
                                         </thead> 
                                         <tbody>
+                                            <?php foreach($top10mais as $topmais) : ?>
                                             <tr>
                                                 <td>Teste</td>                                                
                                                 <td class="text-center">                                                                                                                
                                                     <a class="text-success">
-                                                        43534 <span class="glyphicon glyphicon-thumbs-up"></span>
+                                                        <?php echo $topmais->Topico; ?> <span class="glyphicon glyphicon-thumbs-up"></span>
                                                     </a>
                                                 </td>
                                                 <td class="text-center">
                                                     <a class="text-danger">
-                                                        4 <span class="glyphicon glyphicon-thumbs-down"></span>
+                                                        <?php echo $topmais->Like; ?> <span class="glyphicon glyphicon-thumbs-down"></span>
                                                     </a>
                                                 </td>
                                                 <td>
                                                     <a href="" class="text-muted pull-right">
-                                                        <span class="glyphicon glyphicon-comment"></span>
+                                                        <?php echo $topmais->Dislike; ?> <span class="glyphicon glyphicon-comment"></span>
                                                     </a>
                                                 </td>
-                                                    </tr>                              
+                                                    </tr> 
+                                                <?php endforeach; ?> 
                                         </tbody>
                                     </table>
                                 </div><!--/table-responsive-->
@@ -81,6 +83,7 @@ require_once '../../config.php';
                                                 <td></td>
                                         </thead> 
                                         <tbody>
+                                             <?php foreach($top10mais as $topmais) : ?>
                                              <td>Teste</td>                                                
                                                 <td class="text-center">                                                                                                                
                                                     <a class="text-success">
@@ -98,7 +101,7 @@ require_once '../../config.php';
                                                     </a>
                                                 </td>
                                                     </tr> 
-                                            
+                                             <?php endforeach; ?>                                           
                                         </tbody>
                                     </table>
                                 </div><!--/table-responsive-->
