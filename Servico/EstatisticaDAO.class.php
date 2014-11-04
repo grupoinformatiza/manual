@@ -25,16 +25,17 @@ class EstatisticaDAO{
         $st->execute();        
     }
     
-    public static function listaTop10Avalia()
+    public static function listaTop10Mais()
     {
+        //tá adicionando sempre o mesmo registro, o ultimo
+        
         $con = \Suporte\PdoFactory::getConexao();
         $sql = "select top_titulo, (select count(*) from estatistica where esc_positivo=TRUE and top_codigo=EST.top_codigo) as POSITIVO,"
             ."(select count(*) from estatistica where esc_positivo=FALSE and top_codigo=EST.top_codigo) as NEGATIVO "
             ."from estatistica as EST " 
             ."inner join topico TOP on (EST.top_codigo=TOP.top_codigo)"
-            ."group by EST.top_codigo, top_titulo";
+            ."group by EST.top_codigo, top_titulo order by positivo desc";
         $st = $con->prepare($sql);
-        
         $st->execute();
         
         $avaliacoes = array();
@@ -53,6 +54,37 @@ class EstatisticaDAO{
         }
         return $avaliacoes;
     }
+    
+    public static function listaTop10Menos()
+    {
+        //tá adicionando sempre o mesmo registro, o ultimo
+        
+        $con = \Suporte\PdoFactory::getConexao();
+        $sql = "select top_titulo, (select count(*) from estatistica where esc_positivo=TRUE and top_codigo=EST.top_codigo) as POSITIVO,"
+            ."(select count(*) from estatistica where esc_positivo=FALSE and top_codigo=EST.top_codigo) as NEGATIVO "
+            ."from estatistica as EST " 
+            ."inner join topico TOP on (EST.top_codigo=TOP.top_codigo)"
+            ."group by EST.top_codigo, top_titulo order by negativo desc";
+        $st = $con->prepare($sql);
+        
+        $st->execute();
+        $avaliacoes = array();
+        $ava = new \stdClass();
+        
+        $ava->Topico = null;
+        $ava->Like = null;
+        $ava->Dislike = null;
+        
+        
+        while($rs = $st->fetchObject()){
+            $ava->Topico = $rs->top_titulo;
+            $ava->Like = $rs->positivo;
+            $ava->Dislike = $rs->negativo;
+            $avaliacoes[] = $ava;
+        }
+        return $avaliacoes;
+    }    
+    
     
     
     public static function listarTopicos($pesquisa='',$tutorial=0)
@@ -108,9 +140,7 @@ class EstatisticaDAO{
         
         if($tutorial != 0)
             $st->bindValue (':tutorial', '%'.$tutorial.'%');
-        
-        $st->execute();
-                
+        $st->execute();       
         $avaliacoes = array();
         $ava = new \stdClass();
         
@@ -128,7 +158,7 @@ class EstatisticaDAO{
         }
              
         $ret = new \stdClass();        
-        $ret->res = $topicos;
+        $ret->res = $avaliacoes;
         $ret->pag = $paginacao;
         return $ret;        
     }

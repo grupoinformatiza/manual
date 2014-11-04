@@ -1,10 +1,25 @@
 <?php
 require_once '../../config.php';
-    $top10mais = Servico\EstatisticaDAO::listaTop10Avalia();
 
-    //if(!isset($pgControllerEst))
-        //$pgControllerEst = Servico\EstatisticaDAO::listarTopicos($titulo,$tutorial);
-    //$avaliacoes = Servico\EstatisticaDAO::listaTop10Avalia();
+    $titulo   = "";
+    $tutorial = 0;
+
+    if (isset($_GET['acao'])){        
+        switch($_GET['acao']){
+            case 'pesquisa':
+                $titulo   = $_GET['txtPesquisarTopico'];
+                $tutorial = $_GET['cmbTutorial'];
+                break;
+        }
+    }
+        
+    $top10mais = Servico\EstatisticaDAO::listaTop10Mais();
+    $top10menos = Servico\EstatisticaDAO::listaTop10Menos();
+
+    if(!isset($pgControllerEst))
+        $pgControllerEst = Servico\EstatisticaDAO::listarTopicos ($titulo, $tutorial);
+    $tutoriais = Servico\TutorialDAO::listarTutoriais();    
+
 ?>
 
 <!DOCTYPE HTML>
@@ -42,25 +57,25 @@ require_once '../../config.php';
                                         </thead> 
                                         <tbody>
                                             <?php foreach($top10mais as $topmais) : ?>
-                                            <tr>
-                                                <td>Teste</td>                                                
+                                            <tr>     
+                                                <td><?php echo $topmais->Topico; ?></td>
                                                 <td class="text-center">                                                                                                                
                                                     <a class="text-success">
-                                                        <?php echo $topmais->Topico; ?> <span class="glyphicon glyphicon-thumbs-up"></span>
+                                                        <?php echo $topmais->Like; ?> <span class="glyphicon glyphicon-thumbs-up"></span>
                                                     </a>
                                                 </td>
                                                 <td class="text-center">
                                                     <a class="text-danger">
-                                                        <?php echo $topmais->Like; ?> <span class="glyphicon glyphicon-thumbs-down"></span>
+                                                        <?php echo $topmais->Dislike; ?> <span class="glyphicon glyphicon-thumbs-down"></span>
                                                     </a>
                                                 </td>
                                                 <td>
                                                     <a href="" class="text-muted pull-right">
-                                                        <?php echo $topmais->Dislike; ?> <span class="glyphicon glyphicon-comment"></span>
+                                                        <span class="glyphicon glyphicon-comment"></span>
                                                     </a>
                                                 </td>
-                                                    </tr> 
-                                                <?php endforeach; ?> 
+                                            </tr> 
+                                            <?php endforeach; ?> 
                                         </tbody>
                                     </table>
                                 </div><!--/table-responsive-->
@@ -83,16 +98,16 @@ require_once '../../config.php';
                                                 <td></td>
                                         </thead> 
                                         <tbody>
-                                             <?php foreach($top10mais as $topmais) : ?>
-                                             <td>Teste</td>                                                
+                                             <?php foreach($top10menos as $topmenos) : ?>   
+                                                <td> <?php echo $topmenos->Topico; ?> </td>
                                                 <td class="text-center">                                                                                                                
                                                     <a class="text-success">
-                                                        43534 <span class="glyphicon glyphicon-thumbs-up"></span>
+                                                         <?php echo $topmenos->Like; ?> <span class="glyphicon glyphicon-thumbs-up"></span>
                                                     </a>
                                                 </td>
                                                 <td class="text-center">
                                                     <a class="text-danger">
-                                                        4 <span class="glyphicon glyphicon-thumbs-down"></span>
+                                                        <?php echo $topmenos->Dislike; ?> <span class="glyphicon glyphicon-thumbs-down"></span>
                                                     </a>
                                                 </td>
                                                 <td>
@@ -129,7 +144,7 @@ require_once '../../config.php';
                         <select class="form-control input-lg" id="cmbTutorial" name="cmbTutorial">
                             <option value="0">-- Selecione o tutorial --</option>
                             <?php foreach($tutoriais as $tut) : ?>
-                                <option value="<?php echo $tut->Codigo; ?>" ><?php echo $tut->Nome . ' ('.$tut->TipoDescricao.')' ?></option>
+                                <option value="<?php echo $tut->Nome; ?>" ><?php echo $tut->Nome . ' ('.$tut->TipoDescricao.')' ?></option>
                             <?php endforeach; ?>                         
                         </select>
                     </div>
@@ -137,6 +152,8 @@ require_once '../../config.php';
             </div> <!--/row(fim da linha para busca)-->
             <div class="row">
                     <div class="col-md-12">
+                        <?php $pgControllerEst->pag->printResultBar(); ?>
+                        <?php require_once '../layout/mensagens.php'; ?>
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead> 
@@ -149,18 +166,18 @@ require_once '../../config.php';
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php //foreach($pgControllerTop->res as $ava) : ?>
+                                    <?php foreach($pgControllerEst->res as $ava) : ?>
                                     <tr>
-                                        <td>Teste</td>
-                                        <td class="text-center">1</td>
+                                        <td><?php echo $ava->Topico; ?></td>
+                                        <td class="text-center"><?php echo $ava->Tutorial; ?></td>
                                         <td class="text-center">                                                                                                                
                                             <a class="text-success">
-                                                43534 <span class="glyphicon glyphicon-thumbs-up"></span>
+                                                <?php echo $ava->Like; ?> <span class="glyphicon glyphicon-thumbs-up"></span>
                                             </a>
                                         </td>
                                         <td class="text-center">
                                             <a class="text-danger">
-                                                4 <span class="glyphicon glyphicon-thumbs-down"></span>
+                                                <?php echo $ava->Dislike; ?> <span class="glyphicon glyphicon-thumbs-down"></span>
                                             </a>
                                         </td>
                                         <td>
@@ -169,74 +186,19 @@ require_once '../../config.php';
                                             </a>
                                         </td>
                                     </tr>
-                                        <tr>
-                                        <td>Teste</td>
-                                        <td class="text-center">1</td>
-                                        <td class="text-center">                                                                                                                
-                                            <a class="text-success">
-                                                43534 <span class="glyphicon glyphicon-thumbs-up"></span>
-                                            </a>
-                                        </td>
-                                        <td class="text-center">
-                                            <a class="text-danger">
-                                                4 <span class="glyphicon glyphicon-thumbs-down"></span>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="" class=" pull-right">
-                                                <span class="glyphicon glyphicon-comment text-muted"></span>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                        <tr>
-                                        <td>Teste</td>
-                                        <td class="text-center">1</td>
-                                        <td class="text-center">                                                                                                                
-                                            <a class="text-success">
-                                                43534 <span class="glyphicon glyphicon-thumbs-up"></span>
-                                            </a>
-                                        </td>
-                                        <td class="text-center">
-                                            <a class="text-danger">
-                                                4 <span class="glyphicon glyphicon-thumbs-down"></span>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="" class=" pull-right">
-                                                <span class="glyphicon glyphicon-comment text-muted"></span>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                        <tr>
-                                        <td>Teste</td>
-                                        <td class="text-center">1</td>
-                                        <td class="text-center">                                                                                                                
-                                            <a class="text-success">
-                                                43534 <span class="glyphicon glyphicon-thumbs-up"></span>
-                                            </a>
-                                        </td>
-                                        <td class="text-center">
-                                            <a class="text-danger">
-                                                4 <span class="glyphicon glyphicon-thumbs-down"></span>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="" class=" pull-right">
-                                                <span class="glyphicon glyphicon-comment text-muted"></span>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <?php //endforeach; ?>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div> <!-- table responsive -->
                     </div>                               
             </div>
+            <?php $pgControllerEst->pag->printNavigationBar(); ?> 
         </div>
     </body>
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../layout/default.js"></script>    
+    <script type="text/javascript" src="lista_avaliacao.js"></script> 
 </html>
 
 
