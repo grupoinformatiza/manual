@@ -18,7 +18,7 @@
             <li <?php Suporte\ViewHelper::getMenuAtivo('usuario'); ?>><a href="<?php echo ROOT_PATH ?>ger/usuario/lista_usuario.php">Usuário</a></li>
             <li <?php Suporte\ViewHelper::getMenuAtivo('tutorial'); ?>><a href="<?php echo ROOT_PATH ?>ger/tutorial/lista_tutorial.php">Tutorial</a></li>
             <li <?php Suporte\ViewHelper::getMenuAtivo('topico'); ?>><a href="<?php echo ROOT_PATH ?>ger/topico/lista_topico.php">Tópico</a></li>
-            <li <?php Suporte\ViewHelper::getMenuAtivo('estatistica'); ?>><a href="<?php echo ROOT_PATH ?>ger/estatistica/lista_avaliacao.php">Avaliações</a></li>
+            <li <?php Suporte\ViewHelper::getMenuAtivo('estatistica'); ?>><a href="<?php echo ROOT_PATH ?>ger/estatistica/lista_avaliacao.php">Estatísticas</a></li>
           <!--<li><a href="rel_estatistica.php">Estatística</a></li>-->
         </ul>
         <p class="navbar-text pull-right">
