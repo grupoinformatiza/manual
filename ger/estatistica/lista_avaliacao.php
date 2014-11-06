@@ -10,6 +10,15 @@ require_once '../../config.php';
                 $titulo   = $_GET['txtPesquisarTopico'];
                 $tutorial = $_GET['cmbTutorial'];
                 break;
+            case 'exibirComentario':
+                $codigo = $_GET['codigo'];
+                die($codigo);
+                try{
+                    Servico\EstatisticaDAO::listaComentarios($codigo);
+                } catch (Exception $ex) {
+                    $erro = $ex->getMessage();
+                }
+                break;
         }
     }
         
@@ -70,7 +79,7 @@ require_once '../../config.php';
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="" class="text-muted pull-right">
+                                                    <a href="lista_avaliacao.php?acao=exibirComentario&codigo=<?php echo $topmais->CodigoTop; ?>" class="text-muted pull-right btn-mostraComentario">
                                                         <span class="glyphicon glyphicon-comment"></span>
                                                     </a>
                                                 </td>
@@ -111,7 +120,7 @@ require_once '../../config.php';
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="" class="text-muted pull-right">
+                                                    <a href="lista_avaliacao.php?acao=exibirComentario&codigo=<?php echo $topmais->CodigoTop ;?>" class="text-muted pull-right btn-mostraComentario">
                                                         <span class="glyphicon glyphicon-comment"></span>
                                                     </a>
                                                 </td>
@@ -181,7 +190,7 @@ require_once '../../config.php';
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="" class=" pull-right">
+                                            <a href="lista_avaliacao.php?acao=exibirComentario&codigo=<?php echo $ava->CodigoTop; ?>" class=" pull-right btn-mostraComentario">
                                                 <span class="glyphicon glyphicon-comment text-muted"></span>
                                             </a>
                                         </td>

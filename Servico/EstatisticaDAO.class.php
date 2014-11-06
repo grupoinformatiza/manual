@@ -30,7 +30,7 @@ class EstatisticaDAO{
         //tá adicionando sempre o mesmo registro, o ultimo
         
         $con = \Suporte\PdoFactory::getConexao();
-        $sql = "select top_titulo, (select count(*) from estatistica where esc_positivo=TRUE and top_codigo=EST.top_codigo) as POSITIVO,"
+        $sql = "select EST.top_codigo, top_titulo, (select count(*) from estatistica where esc_positivo=TRUE and top_codigo=EST.top_codigo) as POSITIVO,"
             ."(select count(*) from estatistica where esc_positivo=FALSE and top_codigo=EST.top_codigo) as NEGATIVO "
             ."from estatistica as EST " 
             ."inner join topico TOP on (EST.top_codigo=TOP.top_codigo)"
@@ -44,12 +44,14 @@ class EstatisticaDAO{
         $ava->Topico = null;
         $ava->Like = null;
         $ava->Dislike = null;
+        $ava->CodigoTop = null;
         
         
         while($rs = $st->fetchObject()){
             $ava->Topico = $rs->top_titulo;
             $ava->Like = $rs->positivo;
             $ava->Dislike = $rs->negativo;
+            $ava->CodigoTop = $rs->top_codigo;
             $avaliacoes[] = $ava;
         }
         return $avaliacoes;
@@ -60,7 +62,7 @@ class EstatisticaDAO{
         //tá adicionando sempre o mesmo registro, o ultimo
         
         $con = \Suporte\PdoFactory::getConexao();
-        $sql = "select top_titulo, (select count(*) from estatistica where esc_positivo=TRUE and top_codigo=EST.top_codigo) as POSITIVO,"
+        $sql = "select EST.top_codigo, top_titulo, (select count(*) from estatistica where esc_positivo=TRUE and top_codigo=EST.top_codigo) as POSITIVO,"
             ."(select count(*) from estatistica where esc_positivo=FALSE and top_codigo=EST.top_codigo) as NEGATIVO "
             ."from estatistica as EST " 
             ."inner join topico TOP on (EST.top_codigo=TOP.top_codigo)"
@@ -74,12 +76,14 @@ class EstatisticaDAO{
         $ava->Topico = null;
         $ava->Like = null;
         $ava->Dislike = null;
+        $ava->CodigoTop = null;
         
         
         while($rs = $st->fetchObject()){
             $ava->Topico = $rs->top_titulo;
             $ava->Like = $rs->positivo;
             $ava->Dislike = $rs->negativo;
+            $ava->CodigoTop = $rs->top_codigo;
             $avaliacoes[] = $ava;
         }
         return $avaliacoes;
@@ -100,7 +104,7 @@ class EstatisticaDAO{
             group by EST.top_codigo, top_titulo, tut_nome*/ 
         
         //select base
-        $sql = "select tut_nome,top_titulo, (select count(*) from estatistica where esc_positivo=TRUE and top_codigo=EST.top_codigo) as POSITIVO,"
+        $sql = "select EST.top_codigo, tut_nome,top_titulo, (select count(*) from estatistica where esc_positivo=TRUE and top_codigo=EST.top_codigo) as POSITIVO,"
                 ."(select count(*) from estatistica where esc_positivo=FALSE and top_codigo=EST.top_codigo) as NEGATIVO "
                 ."from estatistica as EST "
                 ."inner join topico TOP on (EST.top_codigo=TOP.top_codigo) "
@@ -148,12 +152,14 @@ class EstatisticaDAO{
         $ava->Topico = null;
         $ava->Like = null;
         $ava->Dislike = null;
+        $ava->CodigoTop = null;
              
         while($rs = $st->fetchObject()){
             $ava->Tutorial = $rs->tut_nome;
             $ava->Topico = $rs->top_titulo;
             $ava->Like = $rs->positivo;
             $ava->Dislike = $rs->negativo;
+            $ava->CodigoTop = $rs->top_codigo;
             $avaliacoes[] = $ava;
         }
              

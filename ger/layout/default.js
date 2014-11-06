@@ -10,7 +10,7 @@ $(function(){
         });
 
     });
-    
+        
     $('#confirmDelete').on('shown.bs.modal', function () {
         $('#btnConfirma').focus();
     });
@@ -21,6 +21,7 @@ $(function(){
     setTimeout(function(){
         $('.alert-success').alert('close');
     },2500);
+    
 });
 
 function alterarSenha(e){
