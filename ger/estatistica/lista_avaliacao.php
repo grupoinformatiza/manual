@@ -65,9 +65,9 @@ require_once '../../config.php';
                                             </tr>
                                         </thead> 
                                         <tbody>
+                                            <?php foreach($top10mais as $topmais) : ?>
                                             <tr>
-                                                <?php //foreach($topicos as $topico) : ?>
-                                                <td>Teste</td>                                                
+                                                <td><?php echo $topmais->Topico; ?></td>                                                
                                                 <td class="text-center">                                                                                                                
                                                     <a class="text-success">
                                                         <?php echo $topmais->Like; ?> <span class="glyphicon glyphicon-thumbs-up"></span>
@@ -83,7 +83,7 @@ require_once '../../config.php';
                                                         <span class="glyphicon glyphicon-comment"></span>
                                                     </a>
                                                 </td>
-                                                <?php //endforeach; ?>
+                                            <?php endforeach; ?>
                                             </tr>                              
                                         </tbody>
                                     </table>
@@ -105,9 +105,15 @@ require_once '../../config.php';
                                                 <td class="col-md-3 text-center">Likes</td>
                                                 <td class="col-md-3 text-center">Dislikes</td>
                                                 <td></td>
+                                            </tr>
                                         </thead> 
                                         <tbody>
-                                                <td class="text-center">                                                                                                                
+                                            
+                                            <?php foreach($top10menos as $topmenos) : ?>
+                                            <tr>
+                                                <td><?php echo $topmenos->Topico; ?></td>
+                                                
+                                                <td class="text-center">     
                                                     <a class="text-success">
                                                          <?php echo $topmenos->Like; ?> <span class="glyphicon glyphicon-thumbs-up"></span>
                                                     </a>
@@ -122,9 +128,9 @@ require_once '../../config.php';
                                                         <span class="glyphicon glyphicon-comment"></span>
                                                     </a>
                                                 </td>
-                                            <tr>
-                                                <?php //foreach($topicos as $topico) : ?>
-                                                <td>Teste</td>                                                
+                                            </tr>
+                                            <?php endforeach; ?>
+                                                                                           
                                         </tbody>
                                     </table>
                                 </div><!--/table-responsive-->
@@ -174,6 +180,8 @@ require_once '../../config.php';
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    
+                                    <?php foreach($tutoriais as $ava) : ?>
                                     <tr>
                                         <td><?php echo $ava->Topico; ?></td>
                                         <td class="text-center"><?php echo $ava->Tutorial; ?></td>
@@ -192,18 +200,18 @@ require_once '../../config.php';
                                                 <span class="glyphicon glyphicon-comment text-muted"></span>
                                             </a>
                                         </td>
-                                                <?php //endforeach; ?>
-                                            </tr> 
-                                            
+                                    </tr>
+                                    <?php endforeach; ?>                                                                                 
                                 </tbody>
                             </table>
                         </div> <!-- table responsive -->
-                                    <?php //foreach($topicos as $topico) : ?>
+                    </div>
+            </div>
+        </div>     
     </body>
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../layout/default.js"></script>  
+    <script type="text/javascript" src="lista_avaliacao.js"></script> 
 </html>
 
-
-                                    </tr>                                        
-                                    <?php //endforeach; ?>
