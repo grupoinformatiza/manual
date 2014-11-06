@@ -12,3 +12,11 @@ function handleEditarClick(e){
     });
     
 }
+$(function(){
+    $('#cmbTutorial').change(listarPorTutorial);
+});
+
+function listarPorTutorial(){
+    $('#frmBuscarTopico').submit();    
+}
+

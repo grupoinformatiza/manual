@@ -25,16 +25,17 @@ class EstatisticaDAO{
         $st->execute();        
     }
     
-    public static function listaTop10Avalia()
+    public static function listaTop10Mais()
     {
+        //tá adicionando sempre o mesmo registro, o ultimo
+        
         $con = \Suporte\PdoFactory::getConexao();
         $sql = "select top_titulo, (select count(*) from estatistica where esc_positivo=TRUE and top_codigo=EST.top_codigo) as POSITIVO,"
             ."(select count(*) from estatistica where esc_positivo=FALSE and top_codigo=EST.top_codigo) as NEGATIVO "
             ."from estatistica as EST " 
             ."inner join topico TOP on (EST.top_codigo=TOP.top_codigo)"
-            ."group by EST.top_codigo, top_titulo";
+            ."group by EST.top_codigo, top_titulo order by positivo desc";
         $st = $con->prepare($sql);
-        
         $st->execute();
         
         $avaliacoes = array();
@@ -54,6 +55,37 @@ class EstatisticaDAO{
         return $avaliacoes;
     }
     
+    public static function listaTop10Menos()
+    {
+        //tá adicionando sempre o mesmo registro, o ultimo
+        
+        $con = \Suporte\PdoFactory::getConexao();
+        $sql = "select top_titulo, (select count(*) from estatistica where esc_positivo=TRUE and top_codigo=EST.top_codigo) as POSITIVO,"
+            ."(select count(*) from estatistica where esc_positivo=FALSE and top_codigo=EST.top_codigo) as NEGATIVO "
+            ."from estatistica as EST " 
+            ."inner join topico TOP on (EST.top_codigo=TOP.top_codigo)"
+            ."group by EST.top_codigo, top_titulo order by negativo desc";
+        $st = $con->prepare($sql);
+        
+        $st->execute();
+        $avaliacoes = array();
+        $ava = new \stdClass();
+        
+        $ava->Topico = null;
+        $ava->Like = null;
+        $ava->Dislike = null;
+        
+        
+        while($rs = $st->fetchObject()){
+            $ava->Topico = $rs->top_titulo;
+            $ava->Like = $rs->positivo;
+            $ava->Dislike = $rs->negativo;
+            $avaliacoes[] = $ava;
+        }
+        return $avaliacoes;
+    }    
+    
+    
     
     public static function listarTopicos($pesquisa='',$tutorial=0)
     {
@@ -64,12 +96,17 @@ class EstatisticaDAO{
             from estatistica as EST 
             inner join topico TOP on (EST.top_codigo=TOP.top_codigo)
             inner join tutorial TUT on(TOP.tut_codigo=TUT.tut_codigo)
-            where TUT_nome='TESTE7' and TOP_TITULO=''
+            where TUT_nome like '%T% and TOP_TITULO like '%t%'
             group by EST.top_codigo, top_titulo, tut_nome*/ 
         
         //select base
-        $sql = "SELECT top_codigo,top_titulo, top_conteudo, usu_codigo, top_cadastro, tut_codigo "
-                . "FROM topico ";
+        $sql = "select tut_nome,top_titulo, (select count(*) from estatistica where esc_positivo=TRUE and top_codigo=EST.top_codigo) as POSITIVO,"
+                ."(select count(*) from estatistica where esc_positivo=FALSE and top_codigo=EST.top_codigo) as NEGATIVO "
+                ."from estatistica as EST "
+                ."inner join topico TOP on (EST.top_codigo=TOP.top_codigo) "
+                ."inner join tutorial TUT on(TOP.tut_codigo=TUT.tut_codigo) ";
+                //."where TUT_nome like '%T% and TOP_TITULO like '%t%' "
+                //."group by EST.top_codigo, top_titulo, tut_nome ";
         
         //tratando valores
         $pesquisa = trim(strtoupper($pesquisa));
@@ -81,14 +118,18 @@ class EstatisticaDAO{
         $parametros = null;
         
         if($pesquisa != ''){
-            $sql .= " AND top_conteudo_vetor @@ to_tsquery(:pesquisa) ";
-            $pesquisa = str_replace(' ', '|', $pesquisa);
+            $sql .= " AND upper(TOP_TITULO) like :pesquisa";
+            //$sql .= " AND top_conteudo_vetor @@ to_tsquery(:pesquisa) ";
+            //$pesquisa = str_replace(' ', '|', $pesquisa);
             $parametros[':pesquisa'] = '%'.$pesquisa.'%';
         }
         if($tutorial != 0){
-            $sql .= " AND tut_codigo = :tutorial";
-            $parametros[':tutorial'] = $tutorial;
+            $sql .= " AND upper(TUT_nome) like :tutorial";
+            //$sql .= " AND tut_codigo = :tutorial";
+            $parametros[':tutorial'] = '%'.$tutorial.'%';
         }
+        
+        $sql .= " group by EST.top_codigo, top_titulo, tut_nome ";
         
         //Preparação da paginação
         $paginacao = \Suporte\ViewHelper::prepararPaginacao($con, $sql,$parametros);
@@ -98,30 +139,50 @@ class EstatisticaDAO{
             $st->bindValue (':pesquisa', '%'.$pesquisa.'%');
         
         if($tutorial != 0)
-            $st->bindValue (':tutorial', $tutorial);
+            $st->bindValue (':tutorial', '%'.$tutorial.'%');
+        $st->execute();       
+        $avaliacoes = array();
+        $ava = new \stdClass();
         
-        $st->execute();
-        
-        $topicos = array();
-        
+        $ava->Tutorial = null;
+        $ava->Topico = null;
+        $ava->Like = null;
+        $ava->Dislike = null;
+             
         while($rs = $st->fetchObject()){
-            $topico = new \Entidade\Topico();
-            $topico->Codigo = $rs->top_codigo;
-            $topico->Titulo = $rs->top_titulo;
-            $topico->Conteudo = $rs->top_conteudo;
-            $topico->Usuario = UsuarioDAO::getUsuario($rs->usu_codigo);
-            $topico->Tutorial = TutorialDAO::getTutorial($rs->tut_codigo);
-            $topico->Data = $rs->top_cadastro;
-            $topicos[] = $topico;
+            $ava->Tutorial = $rs->tut_nome;
+            $ava->Topico = $rs->top_titulo;
+            $ava->Like = $rs->positivo;
+            $ava->Dislike = $rs->negativo;
+            $avaliacoes[] = $ava;
         }
-        
-        
-        
-        
+             
         $ret = new \stdClass();        
-        $ret->res = $topicos;
+        $ret->res = $avaliacoes;
         $ret->pag = $paginacao;
         return $ret;        
     }
     
+    public static function listaComentarios($topico){
+        if($topico == '')
+            throw new Exception("Tópico não encontrado.");
+        
+        $con = \Suporte\PdoFactory::getConexao();
+        $sql = "select esc_comentario Comentario from estatistica where top_codigo = :topico and esc_comentario != '' order by esc_comentario";
+        
+        $st = $con->prepare($sql);
+        $st->bindValue(':topico', $topico, PDO::PARAM_INT);
+        $st->execute();
+        
+        $comentarios = array();
+        $coment = new \stdClass();
+        $coment->Comentario = null;
+        while($rs = $st->fetchObject()){
+            $coment->Comentario = $rs->esc_comentario;
+            $comentarios[] = $coment;
+        }
+        return $comentarios;
+        
+        
+    }
 }
