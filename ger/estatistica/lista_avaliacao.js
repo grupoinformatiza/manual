@@ -3,6 +3,9 @@ $(document).ready(function(){
     $('#comentarios').on('hidden.bs.modal', function() {
         $(this).removeData('bs.modal');
     });
+    
+    $('.btn-mostraComentario').click(handleEditarClick);
+   
 });
 
 function handleEditarClick(e){

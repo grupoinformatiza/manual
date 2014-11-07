@@ -10,15 +10,6 @@ require_once '../../config.php';
                 $titulo   = $_GET['txtPesquisarTopico'];
                 $tutorial = $_GET['cmbTutorial'];
                 break;
-            case 'exibirComentario':
-                $codigo = $_GET['codigo'];
-                die($codigo);
-                try{
-                    Servico\EstatisticaDAO::listaComentarios($codigo);
-                } catch (Exception $ex) {
-                    $erro = $ex->getMessage();
-                }
-                break;
         }
     }
         
@@ -79,7 +70,7 @@ require_once '../../config.php';
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="lista_avaliacao.php?acao=exibirComentario&codigo=<?php echo $topmais->CodigoTop; ?>" class="text-muted pull-right btn-mostraComentario">
+                                                    <a href="comentarios_topico.php?acao=exibirComentario&codigo=<?php echo $topmais->CodigoTop; ?>" class="text-muted pull-right btn-mostraComentario">
                                                         <span class="glyphicon glyphicon-comment"></span>
                                                     </a>
                                                 </td>
@@ -124,7 +115,7 @@ require_once '../../config.php';
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="lista_avaliacao.php?acao=exibirComentario&codigo=<?php echo $topmais->CodigoTop ;?>" class="text-muted pull-right btn-mostraComentario">
+                                                    <a href="comentarios_topico.php?acao=exibirComentario&codigo=<?php echo $topmais->CodigoTop ;?>" class="text-muted pull-right btn-mostraComentario">
                                                         <span class="glyphicon glyphicon-comment"></span>
                                                     </a>
                                                 </td>
@@ -181,7 +172,7 @@ require_once '../../config.php';
                                 </thead>
                                 <tbody>
                                     
-                                    <?php foreach($tutoriais as $ava) : ?>
+                                    <?php foreach($pgControllerEst->res as $ava) : ?>
                                     <tr>
                                         <td><?php echo $ava->Topico; ?></td>
                                         <td class="text-center"><?php echo $ava->Tutorial; ?></td>
@@ -196,7 +187,7 @@ require_once '../../config.php';
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="lista_avaliacao.php?acao=exibirComentario&codigo=<?php echo $ava->CodigoTop; ?>" class=" pull-right btn-mostraComentario">
+                                            <a href="comentarios_topico.php?acao=exibirComentario&codigo=<?php echo $ava->CodigoTop; ?>" class=" pull-right btn-mostraComentario">
                                                 <span class="glyphicon glyphicon-comment text-muted"></span>
                                             </a>
                                         </td>
@@ -207,7 +198,15 @@ require_once '../../config.php';
                         </div> <!-- table responsive -->
                     </div>
             </div>
+            <?php $pgControllerEst->pag->printNavigationBar(); ?> 
         </div>     
+        
+        <div class="modal fade" id="comentarios" tabindex="-1" role="dialog" aria-labelledby="comentTitulo" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                </div>
+            </div>
+        </div>
     </body>
     <script type="text/javascript" src="../../libs/jquery-1.11.1.min.js" ></script>
     <script type="text/javascript" src="../../libs/bootstrap/js/bootstrap.min.js"></script>
