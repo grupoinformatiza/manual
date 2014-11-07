@@ -21,15 +21,11 @@
 
 <form name="frmComentarios" id="frmComentarios" method="post" action="">
         <div class="modal-body">
-            <div id="erroPlaceholder"></div>
-            <table class="table table-striped">
+            <div id="erroPlaceholder"></div>            
                 <?php foreach($comentarios as $coment) : ?>
-                <tr>
                     <div class="form-group">
                         <label for="comentario"><?php echo $coment->Coments; ?></label>
                     </div>
-                </tr>
-                <?php endforeach; ?>
-            </table>    
+                <?php endforeach; ?> 
         </div>
 </form>
