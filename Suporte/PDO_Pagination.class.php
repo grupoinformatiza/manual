@@ -85,16 +85,28 @@ class PDO_Pagination {
     public function getTotalOfResults() 
     {
         
-        preg_match_all('/SELECT (?P<texto>.*) FROM/' , $this->_sql , $match);
         
-        $sql = str_replace( $match['texto'], 'COUNT(*)', $this->_sql);
+            $fim = "FROM";
         
+        
+        preg_match_all("/SELECT (?P<texto>.*) {$fim}/" , $this->_sql , $match);
+        
+        if(isset($this->_parametros['count']))
+            $count = $this->_parametros['count'];
+        else
+            $count = '*';
+        
+        $sql = str_replace( $match['texto'], 'COUNT('.$count.')', $this->_sql);
+//die($sql);        
+//die(var_dump($match['texto']));
         $st = $this->_connection->prepare($sql);
         
-        if(!is_null($this->_parametros))
-            foreach($this->_parametros as $nome => $valor)
-                $st->bindValue($nome,$valor);
-
+        if(!is_null($this->_parametros)){
+            foreach($this->_parametros as $nome => $valor){
+                if($nome != 'count')
+                    $st->bindValue($nome,$valor);
+            }
+        }
         $st->execute();
         
         return (int) $st->fetchColumn();

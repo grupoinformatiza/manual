@@ -16,8 +16,8 @@ require_once '../../config.php';
     $top10mais = Servico\EstatisticaDAO::listaTop10Mais();
     $top10menos = Servico\EstatisticaDAO::listaTop10Menos();
 
-    if(!isset($pgControllerEst))
-        $pgControllerEst = Servico\EstatisticaDAO::listarTopicos ($titulo, $tutorial);
+    $pgControllerEst = Servico\EstatisticaDAO::listarTopicos ($titulo, $tutorial);
+    
     $tutoriais = Servico\TutorialDAO::listarTutoriais();    
 
 ?>
@@ -58,7 +58,7 @@ require_once '../../config.php';
                                         <tbody>
                                             <?php foreach($top10mais as $topmais) : ?>
                                             <tr>
-                                                <td><?php echo $topmais->Topico; ?></td>                                                
+                                                <td><?php echo substr($topmais->Topico,0,28); ?></td>                                                
                                                 <td class="text-center">                                                                                                                
                                                     <a class="text-success">
                                                         <?php echo $topmais->Like; ?> <span class="glyphicon glyphicon-thumbs-up"></span>
@@ -102,7 +102,7 @@ require_once '../../config.php';
                                             
                                             <?php foreach($top10menos as $topmenos) : ?>
                                             <tr>
-                                                <td><?php echo $topmenos->Topico; ?></td>
+                                                <td><?php echo substr($topmenos->Topico,0,28); ?></td>
                                                 
                                                 <td class="text-center">     
                                                     <a class="text-success">
@@ -145,14 +145,14 @@ require_once '../../config.php';
                         </div>                   
 
                     </div> 
-                    <div class="col-md-4 form-group">
+                    <!--<div class="col-md-4 form-group">
                         <select class="form-control input-lg" id="cmbTutorial" name="cmbTutorial">
                             <option value="0">-- Selecione o tutorial --</option>
                             <?php foreach($tutoriais as $tut) : ?>
                                 <option value="<?php echo $tut->Nome; ?>" ><?php echo $tut->Nome . ' ('.$tut->TipoDescricao.')' ?></option>
                             <?php endforeach; ?>                         
                         </select>
-                    </div>
+                    </div>-->
                 </form>
             </div> <!--/row(fim da linha para busca)-->
             <div class="row">

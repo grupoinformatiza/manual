@@ -11,11 +11,14 @@
     }
 ?>
 <div class="modal-header">
-    <h4 class="modal-title" id="comentTitulo">Comentários</h4>
-    <button type="button" class="close" data-dismiss="modal">
-        <span aria-hidden="true">×</span>
-        <span class="sr-only">Fechar</span>
-    </button>
+    <h4 class="modal-title" id="comentTitulo">
+        Comentários
+        <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">×</span>
+            <span class="sr-only">Fechar</span>
+        </button>
+    </h4>
+    
     
 </div>
 
