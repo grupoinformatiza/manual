@@ -103,7 +103,7 @@
                                     </div>
                                     <div class="col-lg-6 form-group">
                                         <label for="txtDtNasc">Data de Nascimento</label>
-                                        <input type="date" name="txtDtNasc" id="txtDtNasc" class="form-control input-lg"/>
+                                        <input type="text" name="txtDtNasc" id="txtDtNasc" class="form-control input-lg"/>
                                     </div>
                                     <div class="col-lg-12 col-xs-12 form-group">
                                         <label for="txtLogin">Login</label>

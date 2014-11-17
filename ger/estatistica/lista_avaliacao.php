@@ -157,7 +157,6 @@ require_once '../../config.php';
             </div> <!--/row(fim da linha para busca)-->
             <div class="row">
                     <div class="col-md-12">
-                        <?php $pgControllerEst->pag->printResultBar(); ?>
                         <?php require_once '../layout/mensagens.php'; ?>
                         <div class="table-responsive">
                             <table class="table table-striped">

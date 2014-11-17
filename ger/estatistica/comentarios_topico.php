@@ -25,6 +25,7 @@
                 <?php foreach($comentarios as $coment) : ?>
                     <div class="form-group">
                         <label for="comentario"><?php echo $coment->Coments; ?></label>
+                        <hr>
                     </div>
                 <?php endforeach; ?> 
         </div>
