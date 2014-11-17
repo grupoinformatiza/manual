@@ -60,8 +60,9 @@ class EstatisticaDAO{
         $con = \Suporte\PdoFactory::getConexao();
         $sql = "select EST.top_codigo, top_titulo, (select count(*) from estatistica where esc_positivo=TRUE and top_codigo=EST.top_codigo) as POSITIVO,"
             ."(select count(*) from estatistica where esc_positivo=FALSE and top_codigo=EST.top_codigo) as NEGATIVO "
-            ."from estatistica as EST " 
-            ."inner join topico TOP on (EST.top_codigo=TOP.top_codigo)"
+            ."from estatistica as EST "
+            ."inner join topico TOP on (EST.top_codigo=TOP.top_codigo) "
+            ."where (select count(*) from estatistica where esc_positivo=FALSE and top_codigo=EST.top_codigo) > 0 "
             ."group by EST.top_codigo, top_titulo order by negativo desc LIMIT 10";
         $st = $con->prepare($sql);
         
@@ -96,11 +97,12 @@ class EstatisticaDAO{
             group by EST.top_codigo, top_titulo, tut_nome*/ 
         
         //select base
-        $sql = "select EST.top_codigo, tut_nome,top_titulo, (select count(*) from estatistica where esc_positivo=TRUE and top_codigo=EST.top_codigo) as POSITIVO,"
-                ."(select count(*) from estatistica where esc_positivo=FALSE and top_codigo=EST.top_codigo) as NEGATIVO "
-                ."from estatistica as EST "
-                ."inner join topico TOP on (EST.top_codigo=TOP.top_codigo) "
-                ."inner join tutorial TUT on(TOP.tut_codigo=TUT.tut_codigo) ";
+        $sql = "SELECT EST.top_codigo, tut_nome,top_titulo,pos.tot as POSITIVO,neg.tot as NEGATIVO
+FROM estatistica as EST 
+left join (select count(*) as tot,top_codigo from estatistica where esc_positivo = TRUE group by top_codigo) As pos ON (est.top_codigo = pos.top_codigo)
+left join (select count(*) as tot,top_codigo from estatistica where esc_positivo = FALSE group by top_codigo) As neg ON (est.top_codigo = pos.top_codigo)
+inner join topico TOP on (EST.top_codigo=TOP.top_codigo) 
+inner join tutorial TUT on(TOP.tut_codigo=TUT.tut_codigo) ";
                 //."where TUT_nome like '%T% and TOP_TITULO like '%t%' "
                 //."group by EST.top_codigo, top_titulo, tut_nome ";
         
@@ -125,8 +127,8 @@ class EstatisticaDAO{
             $parametros[':tutorial'] = '%'.$tutorial.'%';
         }
         
-        $sql .= " group by EST.top_codigo, top_titulo, tut_nome";
-        
+        $sql .= " group by EST.top_codigo, top_titulo, tut_nome, pos.tot, neg.tot ";
+        $parametros['count'] = 'EST.top_codigo';
         //Preparação da paginação
         $paginacao = \Suporte\ViewHelper::prepararPaginacao($con, $sql,$parametros);
         $st = $con->prepare($paginacao->getSQL());
