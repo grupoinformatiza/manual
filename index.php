@@ -34,7 +34,7 @@ $tutoriais = \Servico\TutorialDAO::listarTutoriais($tipo);
                 
                 <div class="col-sm-6 col-md-4 col-xs-6">
                     <div class="thumbnail">
-                        <img  src="<?php echo $tut->Imagem ?>" alt="...">
+                        <a href="pub/index/index.php?tutorial=<?php echo $tut->Codigo?>"> <img  src="<?php echo $tut->Imagem ?>" alt="..."></a>
                         <div class="caption">
                             <a href="pub/index/index.php?tutorial=<?php echo $tut->Codigo?>"><h3 class="text-center"><?php echo $tut->Nome?></h3></a>
                         </div>
