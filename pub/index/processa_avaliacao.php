@@ -9,7 +9,7 @@ if(isset($_POST['acao'])){
                 $estatistica = new Entidade\Estatistica();          
                 $estatistica->Topico = Servico\TopicoDAO::getTopico($_POST['topico']);
                 $estatistica->Positivo = $_POST['positivo'];
-                $estatistica->Comentario = utf8_decode($_POST['comentario']);
+                $estatistica->Comentario = $_POST['comentario'];
                 Servico\EstatisticaDAO::gravar($estatistica);
                 $ret['status'] = true;
             } catch (Exception $ex) {
