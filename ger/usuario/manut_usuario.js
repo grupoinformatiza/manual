@@ -32,7 +32,7 @@ function carregarCidades(){
             },
             function(retorno){
                 if(retorno)
-                    $('#cmbTutorial').html(retorno);
+                    $('#cmbCidade').html(retorno);
             },
             'html'
         );
